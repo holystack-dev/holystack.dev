@@ -1,0 +1,78 @@
+---
+import Section from '../common/Section.astro';
+
+const faqs = [
+  {
+    question: 'Is Metanoia really free?',
+    answer: 'Yes, completely free. No ads, no in-app purchases, no hidden costs. It\'s our gift to the Church.'
+  },
+  {
+    question: 'Do I need to create an account?',
+    answer: 'No. We don\'t want your email or personal information. Everything stays on your device.'
+  },
+  {
+    question: 'Is my data truly private?',
+    answer: 'Absolutely. All data is encrypted and stored only on your device. Confession and private areas are protected by PIN or biometrics (Face ID/Touch ID). We have no servers — your spiritual life stays between you and God.'
+  },
+  {
+    question: 'What languages are supported?',
+    answer: 'English, Malayalam, Brazilian Portuguese, French, and Spanish.'
+  },
+  {
+    question: 'Can I use this during confession?',
+    answer: 'Yes! The Confession Mode is designed for discreet use during the sacrament itself.'
+  },
+  {
+    question: 'Who made this app?',
+    answer: 'Metanoia is created by Holystack, a Catholic initiative dedicated to building free, faithful apps for the Church. The app is open source — you can view and contribute to the code on GitHub.'
+  },
+  {
+    question: 'Is Metanoia open source?',
+    answer: 'Yes! Metanoia is fully open source under the MIT license. You can view the source code, report issues, and contribute at github.com/holystack-dev/metanoia. We believe transparency builds trust, especially for an app that handles something as sacred as your examination of conscience.'
+  },
+  {
+    question: 'How can I help?',
+    answer: 'Pray for us! You can also contribute to the project on GitHub — whether through code, translations, bug reports, or feature suggestions. And if Metanoia has blessed you, share it with others who might benefit.'
+  }
+];
+---
+
+<Section id="faq" background="gray" class="py-20 md:py-32">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="font-serif text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        Questions About the<br />
+        <span class="text-purple-700 dark:text-purple-400">Metanoia Confession App</span>
+      </h2>
+      <p class="text-gray-600 dark:text-gray-400">
+        Everything you need to know about our free Catholic confession app.
+      </p>
+    </div>
+
+    <div class="space-y-4">
+      {faqs.map((faq, index) => (
+        <details class="group bg-white dark:bg-[#1a1a24] rounded-xl border border-gray-100 dark:border-white/5 overflow-hidden">
+          <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none">
+            <h3 class="font-semibold text-gray-900 dark:text-white text-left">
+              {faq.question}
+            </h3>
+            <span class="flex-shrink-0 w-6 h-6 text-purple-600 dark:text-purple-400 transition-transform group-open:rotate-180">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </span>
+          </summary>
+          <div class="px-6 pb-6 text-gray-600 dark:text-gray-400 leading-relaxed">
+            {faq.answer}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</Section>
+
+<style>
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

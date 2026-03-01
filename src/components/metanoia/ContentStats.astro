@@ -1,0 +1,26 @@
+---
+import Section from '../common/Section.astro';
+
+const stats = [
+  { value: '335+', label: 'Examination Questions' },
+  { value: '14', label: 'Commandments & Categories' },
+  { value: '18', label: 'Prayers Included' },
+  { value: '39', label: "Saints' Quotes" },
+];
+---
+
+<Section background="white" class="py-12 md:py-16">
+  <h2 class="sr-only">Metanoia Catholic Confession App Content</h2>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 text-center">
+    {stats.map((stat) => (
+      <div>
+        <div class="font-serif text-4xl md:text-5xl font-bold text-purple-700 dark:text-purple-400">
+          {stat.value}
+        </div>
+        <div class="mt-2 text-xs uppercase tracking-widest text-gray-500 dark:text-gray-400">
+          {stat.label}
+        </div>
+      </div>
+    ))}
+  </div>
+</Section>

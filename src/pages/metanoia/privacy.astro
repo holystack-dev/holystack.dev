@@ -1,0 +1,173 @@
+---
+import MetanoiaLayout from '../../layouts/MetanoiaLayout.astro';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://holystack.dev"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Metanoia",
+      "item": "https://holystack.dev/metanoia"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Privacy Policy",
+      "item": "https://holystack.dev/metanoia/privacy"
+    }
+  ]
+};
+---
+
+<MetanoiaLayout
+  title="Privacy Policy - Metanoia Catholic Confession App"
+  description="Privacy policy for Metanoia, the Catholic confession preparation app. Your spiritual journey is private - all data stays on your device."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <section class="py-16 md:py-24 bg-white dark:bg-[#0f0f14]">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <!-- Breadcrumb Navigation -->
+      <nav aria-label="Breadcrumb" class="mb-8">
+        <ol class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+          <li><a href="/" class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Home</a></li>
+          <li aria-hidden="true" class="select-none">/</li>
+          <li><a href="/metanoia" class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Metanoia</a></li>
+          <li aria-hidden="true" class="select-none">/</li>
+          <li class="text-gray-900 dark:text-white font-medium" aria-current="page">Privacy Policy</li>
+        </ol>
+      </nav>
+
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 rounded-full text-sm font-medium mb-6">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+          Complete Privacy
+        </div>
+        <h1 class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          Metanoia Privacy Policy
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          Last updated: December 14, 2025
+        </p>
+      </div>
+
+      <!-- Content -->
+      <div class="prose prose-lg dark:prose-invert max-w-none">
+        <div class="bg-purple-50 dark:bg-purple-900/20 border border-purple-100 dark:border-purple-800/30 rounded-2xl p-6 mb-8">
+          <p class="text-purple-800 dark:text-purple-300 m-0 font-medium">
+            <strong>Summary:</strong> Metanoia respects the sacred nature of confession. All your data stays on your device. We do not collect, store, or transmit any personal information to external servers.
+          </p>
+        </div>
+
+        <h2 class="font-serif text-2xl font-bold text-gray-900 dark:text-white mt-10 mb-4">Introduction</h2>
+        <p class="text-gray-700 dark:text-gray-300">
+          Metanoia ("the App") is a Catholic confession preparation app designed to help you prepare for the Sacrament of Reconciliation. We believe your spiritual life is a sacred conversation between you and God. This Privacy Policy explains how we handle your information — which is to say, we don't collect it.
+        </p>
+
+        <h2 class="font-serif text-2xl font-bold text-gray-900 dark:text-white mt-10 mb-4">Data We Do NOT Collect</h2>
+        <p class="text-gray-700 dark:text-gray-300">
+          Metanoia is designed with your privacy as a core principle. We do <strong>not</strong> collect:
+        </p>
+        <ul class="text-gray-700 dark:text-gray-300 space-y-2">
+          <li>Your examination of conscience responses</li>
+          <li>Personal notes or reflections you write</li>
+          <li>Your confession history or records</li>
+          <li>Usage analytics or behavioral data</li>
+          <li>Device identifiers or tracking information</li>
+          <li>Location data</li>
+          <li>Any personal information whatsoever</li>
+        </ul>
+
+        <h2 class="font-serif text-2xl font-bold text-gray-900 dark:text-white mt-10 mb-4">Local Data Storage</h2>
+        <p class="text-gray-700 dark:text-gray-300">
+          All data you create within Metanoia is stored exclusively on your device:
+        </p>
+        <ul class="text-gray-700 dark:text-gray-300 space-y-2">
+          <li><strong>Examination responses:</strong> Your answers and selected items during examination of conscience are stored locally on your device.</li>
+          <li><strong>Personal reflections:</strong> Any notes you add are saved only to your device's local storage.</li>
+          <li><strong>Confession history:</strong> If you choose to track your confession dates, this information remains on your device.</li>
+          <li><strong>App preferences:</strong> Settings such as notification preferences are stored locally.</li>
+        </ul>
+
+        <h2 class="font-serif text-2xl font-bold text-gray-900 dark:text-white mt-10 mb-4">Data Security</h2>
+        <p class="text-gray-700 dark:text-gray-300">
+          We take the security of your spiritual data seriously:
+        </p>
+        <ul class="text-gray-700 dark:text-gray-300 space-y-2">
+          <li><strong>Encryption:</strong> All sensitive data is encrypted on your device using industry-standard encryption.</li>
+          <li><strong>PIN/Biometric Protection:</strong> Access to confession-related content is protected by PIN code or biometric authentication (Face ID, Touch ID, or fingerprint).</li>
+          <li><strong>No Account Required:</strong> You never need to create an account or provide any personal information to use Metanoia.</li>
+          <li><strong>Offline Functionality:</strong> The app works entirely offline. Your data never leaves your device.</li>
+        </ul>
+
+        <h2 class="font-serif text-2xl font-bold text-gray-900 dark:text-white mt-10 mb-4">No Third-Party Sharing</h2>
+        <p class="text-gray-700 dark:text-gray-300">
+          Since we do not collect any data, there is no data to share. We do not:
+        </p>
+        <ul class="text-gray-700 dark:text-gray-300 space-y-2">
+          <li>Sell your information to third parties</li>
+          <li>Share data with advertisers</li>
+          <li>Use third-party analytics services</li>
+          <li>Integrate with social media platforms</li>
+          <li>Transmit any information to external servers</li>
+        </ul>
+
+        <h2 class="font-serif text-2xl font-bold text-gray-900 dark:text-white mt-10 mb-4">Deleting Your Data</h2>
+        <p class="text-gray-700 dark:text-gray-300">
+          Since all data is stored locally on your device, you have complete control:
+        </p>
+        <ul class="text-gray-700 dark:text-gray-300 space-y-2">
+          <li><strong>Clear within the app:</strong> Use the app's settings to clear your examination history, notes, or confession records.</li>
+          <li><strong>Uninstall the app:</strong> Removing Metanoia from your device will permanently delete all associated data.</li>
+        </ul>
+
+        <h2 class="font-serif text-2xl font-bold text-gray-900 dark:text-white mt-10 mb-4">Children's Privacy</h2>
+        <p class="text-gray-700 dark:text-gray-300">
+          Metanoia does not collect personal information from anyone, including children. The app is suitable for Catholics of all ages preparing for the Sacrament of Reconciliation.
+        </p>
+
+        <h2 class="font-serif text-2xl font-bold text-gray-900 dark:text-white mt-10 mb-4">Changes to This Policy</h2>
+        <p class="text-gray-700 dark:text-gray-300">
+          If we make changes to this Privacy Policy, we will update the "Last updated" date at the top of this page. We encourage you to review this policy periodically. Continued use of the app after any changes constitutes acceptance of the updated policy.
+        </p>
+
+        <h2 class="font-serif text-2xl font-bold text-gray-900 dark:text-white mt-10 mb-4">Contact Us</h2>
+        <p class="text-gray-700 dark:text-gray-300">
+          If you have questions about this Privacy Policy or Metanoia's privacy practices, please contact us at:
+        </p>
+        <p class="text-gray-700 dark:text-gray-300">
+          <a href="mailto:privacy@holystack.com" class="text-purple-600 dark:text-purple-400 hover:underline">privacy@holystack.com</a>
+        </p>
+
+        <!-- Closing -->
+        <div class="mt-12 pt-8 border-t border-gray-200 dark:border-white/10">
+          <p class="text-gray-600 dark:text-gray-400 italic font-serif text-center">
+            "The Lord does not see as mortals see; they look on the outward appearance, but the Lord looks on the heart."
+            <br />
+            <span class="text-sm">— 1 Samuel 16:7</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Back Link -->
+      <div class="mt-12 text-center">
+        <a href="/metanoia" class="inline-flex items-center gap-2 text-purple-600 dark:text-purple-400 font-medium hover:underline">
+          <svg class="w-4 h-4 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+          Back to Metanoia
+        </a>
+      </div>
+    </div>
+  </section>
+</MetanoiaLayout>

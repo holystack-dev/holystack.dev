@@ -1,0 +1,72 @@
+---
+import Section from '../common/Section.astro';
+
+const scriptures = [
+  {
+    quote: "If we confess our sins, he is faithful and just and will forgive us our sins and purify us from all unrighteousness.",
+    reference: "1 John 1:9"
+  },
+  {
+    quote: "The Lord is compassionate and gracious, slow to anger, abounding in love. He does not treat us as our sins deserve or repay us according to our iniquities.",
+    reference: "Psalm 103:8-10"
+  },
+  {
+    quote: "I will give you a new heart and put a new spirit in you; I will remove from you your heart of stone and give you a heart of flesh.",
+    reference: "Ezekiel 36:26"
+  }
+];
+---
+
+<Section background="gray" class="py-20 md:py-32">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="font-serif text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+      Rooted in Sacred Scripture<br />
+      <span class="text-purple-700 dark:text-purple-400">& Catholic Teaching</span>
+    </h2>
+
+    <p class="text-lg text-gray-600 dark:text-gray-400 mb-6">
+      All content in Metanoia is drawn from:
+    </p>
+
+    <div class="flex flex-wrap justify-center gap-4 mb-16">
+      <span class="px-4 py-2 bg-white dark:bg-[#1a1a24] rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/10">
+        Sacred Scripture
+      </span>
+      <span class="px-4 py-2 bg-white dark:bg-[#1a1a24] rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/10">
+        Catechism of the Catholic Church
+      </span>
+      <span class="px-4 py-2 bg-white dark:bg-[#1a1a24] rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/10">
+        Approved Liturgical Texts
+      </span>
+      <span class="px-4 py-2 bg-white dark:bg-[#1a1a24] rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/10">
+        Wisdom of the Saints
+      </span>
+    </div>
+
+    <!-- Scripture Quotes -->
+    <div class="space-y-12">
+      {scriptures.map((scripture, index) => (
+        <div class="relative">
+          {/* Decorative quote mark */}
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 text-6xl text-purple-200 dark:text-purple-800 font-serif leading-none select-none">
+            "
+          </div>
+
+          <blockquote class="relative bg-white dark:bg-[#1a1a24] rounded-2xl p-8 md:p-12 border border-gray-100 dark:border-white/5 shadow-sm">
+            <p class="font-serif italic text-xl md:text-2xl text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+              "{scripture.quote}"
+            </p>
+            <footer class="text-sm font-semibold text-purple-700 dark:text-purple-400 uppercase tracking-widest">
+              — {scripture.reference}
+            </footer>
+          </blockquote>
+        </div>
+      ))}
+    </div>
+
+    <!-- Language Note -->
+    <p class="mt-16 text-gray-500 dark:text-gray-500">
+      Available in <span class="font-medium text-gray-700 dark:text-gray-300">English</span>, <span class="font-medium text-gray-700 dark:text-gray-300">Malayalam</span>, <span class="font-medium text-gray-700 dark:text-gray-300">Brazilian Portuguese</span>, <span class="font-medium text-gray-700 dark:text-gray-300">French</span>, and <span class="font-medium text-gray-700 dark:text-gray-300">Spanish</span>.
+    </p>
+  </div>
+</Section>

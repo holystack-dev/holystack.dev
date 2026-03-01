@@ -1,0 +1,24 @@
+---
+import Section from '../common/Section.astro';
+import Button from '../common/Button.astro';
+import Scripture from '../common/Scripture.astro';
+---
+
+<Section background="none" class="text-center pb-24">
+  <div class="max-w-2xl mx-auto">
+    <h2 class="font-serif text-3xl font-bold mb-6 text-gray-900 dark:text-white">Built with Prayer</h2>
+    
+    <p class="text-lg text-gray-600 dark:text-gray-400 mb-12">
+      Holystack is a labor of love for the Church. We ask only for your prayers as we continue this work for the Kingdom.
+    </p>
+
+    <Scripture 
+      quote="Let us not become weary in doing good, for at the proper time we will reap a harvest if we do not give up."
+      reference="Galatians 6:9"
+      centered={true}
+      class="mb-12"
+    />
+
+    <Button href="/contact" variant="secondary">Contact Us</Button>
+  </div>
+</Section>

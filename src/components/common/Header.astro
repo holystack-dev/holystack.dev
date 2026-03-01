@@ -1,0 +1,82 @@
+---
+const links = [
+  { href: '/apps', label: 'Apps' },
+  { href: '/privacy', label: 'Privacy' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<header class="fixed w-full top-0 z-50 bg-white/80 dark:bg-[#0f0f14]/80 backdrop-blur-md border-b border-gray-100 dark:border-white/5">
+  <div class="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2 group">
+      <div class="text-purple-700 dark:text-purple-400 w-8 h-8 group-hover:scale-110 transition-transform duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" class="w-full h-full">
+          <path d="M32 52L8 40V34L32 46L56 34V40L32 52Z" fill="currentColor" opacity="0.3"/>
+          <path d="M32 44L8 32V26L32 38L56 26V32L32 44Z" fill="currentColor" opacity="0.5"/>
+          <path d="M32 36L8 24V18L32 30L56 18V24L32 36Z" fill="currentColor" opacity="0.7"/>
+          <rect x="29" y="4" width="6" height="24" rx="1" fill="currentColor"/>
+          <rect x="22" y="10" width="20" height="6" rx="1" fill="currentColor"/>
+        </svg>
+      </div>
+      <span class="font-serif font-bold text-lg tracking-wide text-gray-900 dark:text-white">HOLYSTACK</span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center gap-8">
+      {links.map(link => (
+        <a 
+          href={link.href}
+          class="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-purple-700 dark:hover:text-purple-400 transition-colors"
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button id="menu-toggle" class="md:hidden text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white" aria-label="Toggle menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="4" x2="20" y1="12" y2="12" />
+        <line x1="4" x2="20" y1="6" y2="6" />
+        <line x1="4" x2="20" y1="18" y2="18" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-white dark:bg-[#0f0f14] border-b border-gray-100 dark:border-white/5 p-4 flex flex-col gap-4 shadow-lg">
+    {links.map(link => (
+      <a 
+        href={link.href}
+        class="text-base font-medium text-gray-600 dark:text-gray-400 hover:text-purple-700 dark:hover:text-purple-400 transition-colors"
+      >
+        {link.label}
+      </a>
+    ))}
+  </div>
+</header>
+
+<script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  // Toggle menu on button click
+  menuToggle?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+
+  // Close menu when clicking a link
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+    });
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!mobileMenu?.contains(e.target as Node) && !menuToggle?.contains(e.target as Node)) {
+      mobileMenu?.classList.add('hidden');
+    }
+  });
+</script>

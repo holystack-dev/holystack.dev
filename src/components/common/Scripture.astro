@@ -1,0 +1,19 @@
+---
+interface Props {
+  quote: string;
+  reference: string;
+  class?: string;
+  centered?: boolean;
+}
+
+const { quote, reference, class: className, centered = false } = Astro.props;
+---
+
+<figure class:list={["max-w-3xl mx-auto my-8", centered && "text-center", className]}>
+  <blockquote class="font-serif italic text-xl md:text-2xl text-gray-700 dark:text-gray-300 leading-relaxed">
+    "{quote}"
+  </blockquote>
+  <figcaption class="mt-4 text-sm font-medium text-purple-700 dark:text-purple-400 uppercase tracking-widest">
+    — {reference}
+  </figcaption>
+</figure>

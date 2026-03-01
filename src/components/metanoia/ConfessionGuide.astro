@@ -1,0 +1,74 @@
+---
+import Section from '../common/Section.astro';
+
+const steps = [
+  {
+    title: 'Before Confession',
+    summary: 'Examine your conscience, feel genuine sorrow for sin, and resolve to amend your life.',
+  },
+  {
+    title: 'Entering the Confessional',
+    summary: 'Kneel behind the screen or sit face-to-face. Make the Sign of the Cross together with the priest.',
+  },
+  {
+    title: 'Confessing Your Sins',
+    summary: 'State how long since your last confession, then confess simply and honestly — the kind of sin and how many times.',
+  },
+  {
+    title: 'Counsel and Penance',
+    summary: 'Listen to the priest\'s spiritual guidance and receive your penance — prayers, charity, or sacrifice.',
+  },
+  {
+    title: 'Act of Contrition',
+    summary: 'Pray an Act of Contrition expressing your sorrow and intention to amend your life.',
+  },
+  {
+    title: 'Receiving Absolution',
+    summary: 'The priest speaks the words of absolution. Your sins are truly forgiven — you are reconciled with God.',
+  },
+  {
+    title: 'After Confession',
+    summary: 'Complete your penance as soon as possible, give thanks, and go forward with joy.',
+  },
+];
+---
+
+<Section background="gray" class="py-20 md:py-32">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+        How to Make a<br />
+        <span class="text-purple-700 dark:text-purple-400">Good Confession</span>
+      </h2>
+      <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        A step-by-step guide to the Sacrament of Reconciliation
+      </p>
+    </div>
+
+    <div class="relative">
+      <!-- Timeline line -->
+      <div class="absolute left-6 md:left-8 top-0 bottom-0 w-px bg-purple-200 dark:bg-purple-800/40"></div>
+
+      <div class="space-y-8">
+        {steps.map((step, index) => (
+          <div class="relative flex gap-5 md:gap-7">
+            <!-- Number circle -->
+            <div class="relative z-10 flex-shrink-0 w-12 h-12 md:w-16 md:h-16 rounded-full bg-purple-700 dark:bg-purple-600 flex items-center justify-center shadow-lg shadow-purple-200 dark:shadow-purple-900/30">
+              <span class="font-serif text-lg md:text-xl font-bold text-white">{index + 1}</span>
+            </div>
+
+            <!-- Content -->
+            <div class="pt-2 md:pt-3 pb-2">
+              <h3 class="font-serif text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                {step.title}
+              </h3>
+              <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                {step.summary}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</Section>

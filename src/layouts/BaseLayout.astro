@@ -1,0 +1,73 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+	description?: string;
+	ogImage?: string;
+}
+
+const {
+	title,
+	description = "Free Catholic apps crafted with prayer for the glory of God.",
+	ogImage = "/images/og-holystack.png"
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(ogImage, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content={description} />
+		<meta name="generator" content={Astro.generator} />
+
+		<!-- Favicon -->
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+		<!-- Canonical URL -->
+		<link rel="canonical" href={canonicalURL} />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImageURL} />
+		<meta property="og:site_name" content="Holystack" />
+
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImageURL} />
+
+		<!-- Theme Color -->
+		<meta name="theme-color" content="#4f46e5" />
+
+		<!-- Organization Structured Data -->
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "Organization",
+			"name": "Holystack",
+			"url": "https://holystack.dev",
+			"logo": "https://holystack.dev/favicon.svg",
+			"sameAs": ["https://github.com/holystack-dev"]
+		})} />
+
+		<slot name="head" />
+
+		<title>{title}</title>
+	</head>
+	<body class="antialiased text-gray-900 bg-gray-50 dark:bg-[#0f0f14] dark:text-[#e5e5e5]">
+		<!-- Skip to content for accessibility -->
+		<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-purple-700 focus:text-white focus:rounded-md">
+			Skip to content
+		</a>
+		<slot />
+	</body>
+</html>

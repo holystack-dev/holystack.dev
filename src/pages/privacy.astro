@@ -1,0 +1,30 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Section from '../components/common/Section.astro';
+---
+
+<MainLayout
+  title="Privacy Policy - Holystack"
+  description="We respect your privacy. No tracking. No ads. No data collection."
+>
+  <Section class="py-20">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="font-serif text-5xl font-bold mb-8 text-gray-900 dark:text-white text-center">Privacy Policy</h1>
+
+      <div class="prose prose-lg dark:prose-invert mx-auto">
+        <p>We don't collect any data. That's the short version.</p>
+
+        <ul>
+          <li><strong>No cookies</strong> — this website doesn't use them.</li>
+          <li><strong>No analytics</strong> — we don't track visits, clicks, or behavior.</li>
+          <li><strong>No accounts</strong> — our apps don't require sign-up or login.</li>
+          <li><strong>All data stays on your device</strong> — nothing is transmitted to us.</li>
+        </ul>
+
+        <p>
+          If you have questions, <a href="/contact">contact us</a>.
+        </p>
+      </div>
+    </div>
+  </Section>
+</MainLayout>

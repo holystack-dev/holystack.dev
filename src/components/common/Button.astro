@@ -1,0 +1,32 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'ghost' | 'cta';
+  class?: string;
+  type?: 'button' | 'submit' | 'reset';
+}
+
+const { href, variant = 'primary', class: className, type = 'button' } = Astro.props;
+
+const variants = {
+  primary: "bg-purple-800 text-white hover:bg-purple-700 shadow-md hover:shadow-lg hover:-translate-y-0.5",
+  secondary: "bg-transparent border-2 border-purple-800 text-purple-800 dark:border-purple-400 dark:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20",
+  ghost: "bg-transparent text-gray-600 dark:text-gray-400 hover:text-purple-800 dark:hover:text-purple-300 hover:bg-gray-100 dark:hover:bg-white/5",
+  cta: "bg-gradient-to-r from-gold-400 to-gold-500 text-gray-900 font-bold hover:from-gold-300 hover:to-gold-400 shadow-lg hover:shadow-xl hover:-translate-y-1",
+};
+
+const baseStyles = "inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 disabled:opacity-50 disabled:cursor-not-allowed";
+const variantStyles = variants[variant];
+---
+
+{
+  href ? (
+    <a href={href} class:list={[baseStyles, variantStyles, className]}>
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class:list={[baseStyles, variantStyles, className]}>
+      <slot />
+    </button>
+  )
+}

@@ -1,0 +1,78 @@
+---
+import Section from '../common/Section.astro';
+
+const privacyFeatures = [
+  { text: 'Confession and private areas protected by PIN or biometrics', icon: 'lock' },
+  { text: 'All data encrypted and stored only on your device', icon: 'device' },
+  { text: 'No account required — completely offline', icon: 'user' }
+];
+---
+
+<Section id="privacy" background="white" class="py-20 md:py-32">
+  <div class="max-w-5xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <!-- Left: Content -->
+      <div>
+        <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+          Your Confession,<br />
+          <span class="text-purple-700 dark:text-purple-400">Completely Private</span>
+        </h2>
+
+        <p class="text-lg text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
+          Your data never leaves your device.
+        </p>
+
+        <!-- Privacy Checklist -->
+        <ul class="space-y-4">
+          {privacyFeatures.map((feature) => (
+            <li class="flex items-start gap-4">
+              <span class="flex-shrink-0 w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-full flex items-center justify-center mt-0.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+              </span>
+              <span class="text-gray-700 dark:text-gray-300">{feature.text}</span>
+            </li>
+          ))}
+        </ul>
+
+        <a href="/metanoia/privacy" class="inline-flex items-center gap-2 mt-8 text-purple-700 dark:text-purple-400 font-medium hover:underline">
+          Read our Privacy Policy
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Right: App Screenshot -->
+      <div class="relative flex justify-center">
+        <div class="relative">
+          <!-- Phone Frame -->
+          <div class="relative w-[280px] md:w-[320px] rounded-[3rem] overflow-hidden shadow-2xl border-8 border-gray-900 dark:border-gray-800 bg-gray-900">
+            <img
+              src="/images/metanoia/screenshots/pin-lock.png"
+              alt="Metanoia Catholic confession app PIN lock screen protecting examination of conscience data with biometric and PIN security"
+              class="w-full"
+              loading="lazy"
+              width="320"
+              height="693"
+            />
+          </div>
+
+          <!-- Security Badge -->
+          <div class="absolute -bottom-4 -right-4 bg-white dark:bg-[#1a1a24] rounded-2xl px-4 py-3 shadow-lg border border-emerald-100 dark:border-emerald-800/30">
+            <div class="flex items-center gap-2 text-sm font-medium text-emerald-700 dark:text-emerald-400">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+              PIN / Face ID Protected
+            </div>
+          </div>
+        </div>
+
+        <!-- Decorative -->
+        <div class="absolute -bottom-8 -left-8 w-32 h-32 bg-emerald-200/30 dark:bg-emerald-500/10 rounded-full blur-3xl"></div>
+      </div>
+    </div>
+  </div>
+</Section>

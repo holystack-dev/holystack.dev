@@ -1,0 +1,116 @@
+---
+import Section from '../common/Section.astro';
+
+const screens = [
+  {
+    title: 'Home Dashboard',
+    description: 'Begin each session with an inspiring word from Scripture or the Saints.',
+    image: '/images/metanoia/screenshots/home-light.png',
+    alt: 'Metanoia Catholic confession app home screen with daily Scripture quote and navigation to examination of conscience'
+  },
+  {
+    title: 'Examination',
+    description: 'Work through the commandments at your own pace. Your progress is always saved.',
+    image: '/images/metanoia/screenshots/examination.png',
+    alt: 'Examination of conscience screen in Metanoia app with questions organized by the Ten Commandments'
+  },
+  {
+    title: 'Confession Mode',
+    description: 'During the sacrament, follow along with prayers and your prepared list.',
+    image: '/images/metanoia/screenshots/confess.png',
+    alt: 'Confession mode in Metanoia app showing step-by-step guide through the Sacrament of Reconciliation'
+  },
+  {
+    title: 'Prayers',
+    description: 'Access the Act of Contrition and other prayers whenever you need them.',
+    image: '/images/metanoia/screenshots/prayers.png',
+    alt: 'Prayer screen in Metanoia app with Act of Contrition and other Catholic confession prayers'
+  },
+  {
+    title: 'Dark Mode',
+    description: 'Full dark theme for comfortable use in the quiet of the confessional.',
+    image: '/images/metanoia/screenshots/home-dark.png',
+    alt: 'Metanoia Catholic confession app in dark mode for discreet use in the confessional'
+  }
+];
+---
+
+<Section background="white" class="py-20 md:py-32 overflow-hidden">
+  <div class="text-center mb-16">
+    <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+      A Catholic Confession App<br />
+      <span class="text-purple-700 dark:text-purple-400">Designed for Prayerful Reflection</span>
+    </h2>
+    <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+      A beautiful, distraction-free interface to help you prepare your heart.
+    </p>
+  </div>
+
+  <!-- Screenshot Carousel / Grid -->
+  <div class="relative">
+    <!-- Gradient Overlays for scroll effect -->
+    <div class="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white dark:from-[#0f0f14] to-transparent z-10 pointer-events-none"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white dark:from-[#0f0f14] to-transparent z-10 pointer-events-none"></div>
+
+    <!-- Scrollable Container -->
+    <div class="flex gap-6 md:gap-8 overflow-x-auto pb-8 px-4 snap-x snap-mandatory scrollbar-hide" style="-webkit-overflow-scrolling: touch;">
+      {screens.map((screen, index) => (
+        <div class="flex-shrink-0 w-[280px] md:w-[320px] snap-center">
+          <!-- Phone Frame -->
+          <div class="relative bg-gray-900 rounded-[2.5rem] p-2 shadow-2xl">
+            <!-- Screen Content -->
+            <div class="bg-gray-900 rounded-[2rem] overflow-hidden">
+              <img
+                src={screen.image}
+                alt={screen.alt}
+                class="w-full h-full object-cover object-top"
+                loading="lazy"
+                width="320"
+                height="693"
+              />
+            </div>
+
+          </div>
+
+          <!-- Caption -->
+          <div class="mt-6 text-center">
+            <h3 class="font-semibold text-gray-900 dark:text-white mb-2">{screen.title}</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400">{screen.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Features Badges -->
+  <div class="flex flex-wrap justify-center gap-4 mt-12">
+    <span class="inline-flex items-center gap-2 px-4 py-2 bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 rounded-full text-sm font-medium">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+      </svg>
+      Thoughtful Animations
+    </span>
+    <span class="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+      </svg>
+      Dark Mode
+    </span>
+    <span class="inline-flex items-center gap-2 px-4 py-2 bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300 rounded-full text-sm font-medium">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+      </svg>
+      English, Malayalam, Portuguese, French & Spanish
+    </span>
+  </div>
+</Section>
+
+<style>
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+</style>

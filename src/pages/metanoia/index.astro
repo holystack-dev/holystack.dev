@@ -1,0 +1,134 @@
+---
+import MetanoiaLayout from '../../layouts/MetanoiaLayout.astro';
+import Hero from '../../components/metanoia/Hero.astro';
+import GiftOfConfession from '../../components/metanoia/GiftOfConfession.astro';
+import ConfessionGuide from '../../components/metanoia/ConfessionGuide.astro';
+import ConfessionFAQ from '../../components/metanoia/ConfessionFAQ.astro';
+import Features from '../../components/metanoia/Features.astro';
+import ContentStats from '../../components/metanoia/ContentStats.astro';
+import AppPreview from '../../components/metanoia/AppPreview.astro';
+import ScriptureSection from '../../components/metanoia/ScriptureSection.astro';
+import PrivacySection from '../../components/metanoia/PrivacySection.astro';
+import FAQ from '../../components/metanoia/FAQ.astro';
+import DownloadCTA from '../../components/metanoia/DownloadCTA.astro';
+import Closing from '../../components/metanoia/Closing.astro';
+
+const faqEntries = [
+  // App FAQ (8 questions)
+  { q: "Is Metanoia really free?", a: "Yes, completely free. No ads, no in-app purchases, no hidden costs. It's our gift to the Church." },
+  { q: "Do I need to create an account?", a: "No. We don't want your email or personal information. Everything stays on your device." },
+  { q: "Is my data truly private?", a: "Absolutely. All data is encrypted and stored only on your device. Confession and private areas are protected by PIN or biometrics (Face ID/Touch ID). We have no servers — your spiritual life stays between you and God." },
+  { q: "What languages are supported?", a: "English, Malayalam, Brazilian Portuguese, French, and Spanish." },
+  { q: "Can I use this during confession?", a: "Yes! The Confession Mode is designed for discreet use during the sacrament itself." },
+  { q: "Who made this app?", a: "Metanoia is created by Holystack, a Catholic initiative dedicated to building free, faithful apps for the Church. The app is open source — you can view and contribute to the code on GitHub." },
+  { q: "Is Metanoia open source?", a: "Yes! Metanoia is fully open source under the MIT license. You can view the source code, report issues, and contribute at github.com/holystack-dev/metanoia. We believe transparency builds trust, especially for an app that handles something as sacred as your examination of conscience." },
+  { q: "How can I help?", a: "Pray for us! You can also contribute to the project on GitHub — whether through code, translations, bug reports, or feature suggestions. And if Metanoia has blessed you, share it with others who might benefit." },
+  // Confession FAQ (21 questions)
+  { q: "Welcome Home — What if I haven't been to confession in a long time?", a: "If you're reading this, know that God has been waiting for you with open arms. Like the father in the parable of the Prodigal Son, He doesn't count the days you've been away — He rejoices that you're here now. There is no sin too great for God's mercy, and no absence too long for His welcome." },
+  { q: "What if I feel unworthy of confession?", a: "Many people feel they need to \"clean up\" before approaching confession. But confession is not for the perfect; it's for the broken. It's not a reward for the righteous; it's medicine for the sick. You simply need to come as you are and let God do the rest." },
+  { q: "Is any sin too great to be forgiven?", a: "No. St. Peter denied Christ three times. St. Paul persecuted Christians. St. Augustine lived a life of sin for years. Yet each became a beloved saint. The Church teaches clearly: any sin, no matter how grave, can be forgiven through a sincere confession. The only unforgivable sin is the one we refuse to bring to God's mercy." },
+  { q: "What is Confession?", a: "Confession — also called Reconciliation or Penance — is one of the seven sacraments instituted by Jesus Christ Himself. In this sacrament, we encounter Christ the Divine Physician. Through the priest, who acts in the person of Christ, we receive actual absolution — the certain forgiveness of our sins." },
+  { q: "Why do I need to confess to a priest?", a: "Because Jesus designed it this way. He gave His apostles — and through them, all priests — the authority to forgive sins in His name. When you confess to a priest, you're confessing to Christ Himself. Speaking sins aloud breaks the power of secrecy and shame, and hearing \"I absolve you\" makes God's forgiveness tangible and certain." },
+  { q: "What is the Seal of Confession?", a: "Everything you confess is protected by the most absolute secrecy imaginable — the Seal of Confession. A priest cannot reveal what he hears in confession under any circumstances, to anyone, for any reason. Ever. Throughout history, priests have chosen imprisonment and even death rather than break it." },
+  { q: "How often should I confess?", a: "The Church requires confession at least once a year if you're aware of mortal sin. But many saints and spiritual guides recommend monthly confession, even for venial sins. Regular confession builds spiritual strength, increases self-knowledge, and provides grace to overcome habitual sins." },
+  { q: "Is this app a replacement for Confession?", a: "No — Metanoia is a spiritual preparation tool designed to help you examine your conscience, organize your thoughts, and approach the confessional with greater peace and clarity. It is meant to assist you on your journey toward reconciliation — not replace the sacred encounter with Christ through the priest." },
+  { q: "How do I examine my conscience?", a: "Before confession, prayerfully review your life since your last confession. Many find it helpful to use the Ten Commandments as a guide. Ask the Holy Spirit to reveal what needs healing. This isn't about creating a perfect list — it's about honestly looking at where you've fallen short of God's love." },
+  { q: "What is contrition?", a: "Contrition is sorrow for sin. The Church recognizes two kinds: perfect contrition (from love of God) and imperfect contrition (from fear of punishment). Both lead to forgiveness. Don't worry if your sorrow feels imperfect — the fact that you're seeking confession shows the Holy Spirit is at work in you." },
+  { q: "What if I keep falling into the same sin?", a: "A valid confession requires genuine intention to avoid sin, not certainty of success. Think of a child learning to walk — she falls constantly, but her father helps her up and celebrates each wobbly step. Our Father in heaven is even more patient." },
+  { q: "How do I confess the number and kind of sins?", a: "The Church asks us to confess mortal sins by their kind (what the sin was) and number (how many times). Simply name the sin clearly. For habitual sins, an estimate is fine: \"about once a week\" or \"several times.\" God is not looking for accounting precision, but honesty." },
+  { q: "What do I say in the confessional?", a: "Begin with: \"Bless me, Father, for I have sinned. It has been [time period] since my last confession.\" Confess your sins honestly. When finished: \"For these and all my sins, I am truly sorry.\" Listen to the priest's counsel and penance, pray the Act of Contrition, and receive absolution. If confused, just ask the priest for help." },
+  { q: "What if I forget some sins during confession?", a: "Sins that are genuinely forgotten are forgiven along with the sins you confess. If you sincerely examined your conscience and confessed what you remembered, your confession is valid and complete. If you remember something later, mention it in your next confession." },
+  { q: "Will the priest judge me?", a: "Priests hear confessions constantly and have heard things you can't imagine. Your sins will not shock them. They're not there to judge — they're Christ's instrument of mercy. Many priests describe hearing confessions as one of the most beautiful parts of their ministry." },
+  { q: "What is penance and why is it given?", a: "After hearing your confession, the priest gives a penance — usually prayers or an action. Penance isn't punishment; it's medicine that helps repair the damage sin causes. Do your penance as soon as possible, approaching it not as a burden but as a gift." },
+  { q: "What is the gift of absolution?", a: "When the priest says the words of absolution, your sins are actually, truly forgiven — not symbolically, not hoped for, but done. Some feel immediate peace; others feel nothing. Both are normal. God's forgiveness doesn't depend on feelings." },
+  { q: "How do I grow in grace after confession?", a: "Stay close to the Eucharist. Pray daily. Avoid occasions of sin. Practice virtue actively. Return to confession regularly — monthly confession keeps your soul healthy and your relationship with God vibrant." },
+  { q: "What are indulgences and temporal punishment?", a: "Even after sins are forgiven, there can be lingering effects called temporal punishment. Indulgences — through prayer, acts of charity, and other practices — help reduce these effects for ourselves and for souls in Purgatory." },
+  { q: "What are mortal and venial sins?", a: "Mortal sin requires three things: grave matter, full knowledge, and full consent. It breaks our relationship with God and must be confessed before receiving Communion. Venial sin is less serious but still harmful. When in doubt, confess it." },
+  { q: "Do I need to make restitution?", a: "If your sin caused harm to others — stolen goods, damaged reputation, broken trust — true repentance includes making things right when possible. If restitution is impossible, do what you can: pray for the person, give to charity, or perform acts of kindness." },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqEntries.map(({ q, a }) => ({
+    "@type": "Question",
+    "name": q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": a
+    }
+  }))
+};
+
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Make a Good Catholic Confession",
+  "description": "A step-by-step guide to the Sacrament of Reconciliation, from examining your conscience to receiving absolution.",
+  "totalTime": "PT30M",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Before Confession",
+      "text": "Examine your conscience, feel genuine sorrow for sin, and resolve to amend your life."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Entering the Confessional",
+      "text": "Kneel behind the screen or sit face-to-face. Make the Sign of the Cross together with the priest."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Confessing Your Sins",
+      "text": "State how long since your last confession, then confess simply and honestly — the kind of sin and how many times."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 4,
+      "name": "Counsel and Penance",
+      "text": "Listen to the priest's spiritual guidance and receive your penance — prayers, charity, or sacrifice."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 5,
+      "name": "Act of Contrition",
+      "text": "Pray an Act of Contrition expressing your sorrow and intention to amend your life."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 6,
+      "name": "Receiving Absolution",
+      "text": "The priest speaks the words of absolution. Your sins are truly forgiven — you are reconciled with God."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 7,
+      "name": "After Confession",
+      "text": "Complete your penance as soon as possible, give thanks, and go forward with joy."
+    }
+  ]
+};
+---
+
+<MetanoiaLayout
+  title="Metanoia: Free Catholic Confession App & Examination of Conscience"
+  description="Metanoia is a free Catholic confession app with 335+ examination of conscience questions, a step-by-step confession guide, and complete privacy. No ads, no accounts. Available on iOS & Android."
+>
+  <Hero />
+  <GiftOfConfession />
+  <ConfessionGuide />
+  <ConfessionFAQ />
+  <Features />
+  <ContentStats />
+  <AppPreview />
+  <ScriptureSection />
+  <PrivacySection />
+  <FAQ />
+  <DownloadCTA />
+  <Closing />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(howToSchema)} />
+</MetanoiaLayout>

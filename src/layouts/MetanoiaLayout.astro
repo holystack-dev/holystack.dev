@@ -1,0 +1,56 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import MetanoiaHeader from '../components/metanoia/MetanoiaHeader.astro';
+import MetanoiaFooter from '../components/metanoia/MetanoiaFooter.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+
+const softwareAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Metanoia",
+  "alternateName": "Metanoia Catholic Confession App",
+  "description": description || "Prepare for the Sacrament of Reconciliation with Metanoia. A free Catholic confession app with examination of conscience, prayers, and step-by-step guidance.",
+  "url": "https://holystack.dev/metanoia",
+  "applicationCategory": "LifestyleApplication",
+  "applicationSubCategory": "Religious",
+  "operatingSystem": "iOS, Android",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "isAccessibleForFree": true,
+  "inLanguage": ["en", "ml", "pt-BR", "fr", "es"],
+  "featureList": "Examination of Conscience, Step-by-Step Confession Guide, Confession Mode, Act of Contrition Prayers, PIN & Biometric Privacy, Dark Mode, Personal Reflections, Confession History Tracking, Gentle Reminders",
+  "installUrl": "https://play.google.com/store/apps/details?id=dev.holystack.metanoia",
+  "screenshot": "https://holystack.dev/images/metanoia/og-metanoia.png",
+  "author": {
+    "@type": "Organization",
+    "name": "Holystack",
+    "url": "https://holystack.dev"
+  }
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  ogImage="/images/metanoia/og-metanoia.png"
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(softwareAppSchema)} />
+  <div class="flex flex-col min-h-screen bg-white dark:bg-[#0f0f14]">
+    <MetanoiaHeader />
+    <main id="main-content" class="flex-grow">
+      <article>
+        <slot />
+      </article>
+    </main>
+    <MetanoiaFooter />
+  </div>
+</BaseLayout>

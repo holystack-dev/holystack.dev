@@ -1,0 +1,50 @@
+---
+import Section from '../common/Section.astro';
+import Scripture from '../common/Scripture.astro';
+---
+
+<Section background="gray">
+  <div class="grid md:grid-cols-2 gap-12 items-center">
+    <div>
+      <h2 class="font-serif text-4xl font-bold mb-6 text-gray-900 dark:text-white">Our Mission</h2>
+      
+      <div class="prose dark:prose-invert prose-lg text-gray-600 dark:text-gray-400">
+        <p class="mb-6">
+          We believe the faithful deserve beautiful, trustworthy tools for their spiritual journey — free from the distractions of the world.
+        </p>
+        
+        <p class="mb-6">
+          Every app we create is:
+        </p>
+        
+        <ul class="space-y-4 list-none pl-0">
+          <li class="flex gap-3">
+            <span class="text-purple-600 dark:text-purple-400">✦</span>
+            <span>A gift to the Church, freely given</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-purple-600 dark:text-purple-400">✦</span>
+            <span>Built with respect for your attention</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-purple-600 dark:text-purple-400">✦</span>
+            <span>Faithful to Catholic teaching</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-purple-600 dark:text-purple-400">✦</span>
+            <span>Crafted with prayer and excellence</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="bg-white dark:bg-[#1a1a24] p-8 md:p-12 rounded-2xl shadow-sm border border-gray-100 dark:border-white/5">
+      <Scripture 
+        quote="Each of you should use whatever gift you have received to serve others, as faithful stewards of God's grace."
+        reference="1 Peter 4:10"
+        centered={true}
+        class="my-0"
+      />
+    </div>
+  </div>
+</Section>
