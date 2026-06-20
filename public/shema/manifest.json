@@ -1,0 +1,13 @@
+{
+  "name": "Shema",
+  "version": "1.0.0",
+  "new_install_prompt_erase": true,
+  "builds": [
+    {
+      "chipFamily": "ESP32-S3",
+      "parts": [
+        { "path": "https://raw.githubusercontent.com/holystack-dev/shema/main/installer/firmware.bin", "offset": 0 }
+      ]
+    }
+  ]
+}

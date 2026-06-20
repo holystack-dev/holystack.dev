@@ -43,6 +43,29 @@ import Card from '../components/common/Card.astro';
           </div>
         </div>
       </Card>
+
+      <!-- Audio Bible Card (Detailed) -->
+      <Card href="/shema" class="group relative overflow-hidden flex flex-col md:flex-row h-full">
+        <div class="w-full md:w-2/5 bg-gradient-to-br from-gray-900 to-purple-900 flex items-center justify-center p-8 relative overflow-hidden">
+          <div class="absolute inset-0 bg-[url('/images/noise.png')] opacity-10 mix-blend-overlay"></div>
+          <img src="/images/shema/screens/home.png" alt="Shema" class="w-32 h-32 object-contain drop-shadow-2xl" />
+        </div>
+
+        <div class="p-8 w-full md:w-3/5 flex flex-col justify-center">
+          <h2 class="font-serif text-3xl font-bold text-gray-900 dark:text-white mb-2">Shema</h2>
+          <p class="text-purple-700 dark:text-purple-400 font-medium mb-4 uppercase tracking-wide">Audio Bible · "Hear, O Israel"</p>
+
+          <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+            Named for the <em>Shema</em> ("Hear, O Israel"), a pocket-sized, offline audio Bible player. Open-source firmware for a round ESP32-S3 touchscreen, with multiple versions, a sleep timer, about 10 hours of playback, and a one-click browser installer.
+          </p>
+
+          <div>
+            <span class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-purple-800 hover:bg-purple-700 shadow-sm transition-colors">
+              View App
+            </span>
+          </div>
+        </div>
+      </Card>
     </div>
 
     <div class="mt-24 text-center">

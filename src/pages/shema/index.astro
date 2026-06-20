@@ -1,0 +1,330 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Section from '../../components/common/Section.astro';
+import Button from '../../components/common/Button.astro';
+import Scripture from '../../components/common/Scripture.astro';
+
+const GITHUB = 'https://github.com/holystack-dev/shema';
+
+const features = [
+  {
+    title: 'Completely offline',
+    description: 'No WiFi, no accounts, no internet. Scripture plays from a microSD card, so everything stays private.',
+    color: 'purple',
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.364 5.636a9 9 0 010 12.728M5.636 5.636a9 9 0 000 12.728M12 12h.01" /></svg>`,
+  },
+  {
+    title: '~10 hours of playback',
+    description: 'A single charge lasts about ten hours at a comfortable volume. Charge over USB-C and go.',
+    color: 'amber',
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>`,
+  },
+  {
+    title: 'Many versions & languages',
+    description: 'Drop multiple translations and languages on the card; the device lists whatever you add.',
+    color: 'blue',
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" /></svg>`,
+  },
+  {
+    title: 'Round, tactile UI',
+    description: 'A 360×360 touch display built for the round screen, with books, chapters, a player, and a sleep timer.',
+    color: 'indigo',
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`,
+  },
+  {
+    title: 'One-click install',
+    description: 'Flash the firmware from your browser, with nothing to download. Plug in over USB-C and click Install.',
+    color: 'green',
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>`,
+  },
+  {
+    title: 'Open source',
+    description: 'The firmware is free and open. Flash it as is, or customise it, and set up players for a parish, family, or friends.',
+    color: 'rose',
+    icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>`,
+  },
+];
+
+const colorClasses = {
+  purple: { bg: 'bg-purple-100 dark:bg-purple-900/30', text: 'text-purple-600 dark:text-purple-400' },
+  blue: { bg: 'bg-blue-100 dark:bg-blue-900/30', text: 'text-blue-600 dark:text-blue-400' },
+  green: { bg: 'bg-emerald-100 dark:bg-emerald-900/30', text: 'text-emerald-600 dark:text-emerald-400' },
+  amber: { bg: 'bg-amber-100 dark:bg-amber-900/30', text: 'text-amber-600 dark:text-amber-400' },
+  indigo: { bg: 'bg-indigo-100 dark:bg-indigo-900/30', text: 'text-indigo-600 dark:text-indigo-400' },
+  rose: { bg: 'bg-rose-100 dark:bg-rose-900/30', text: 'text-rose-600 dark:text-rose-400' },
+};
+
+const shots = [
+  { src: '/images/shema/screens/home.png', alt: 'Home screen' },
+  { src: '/images/shema/screens/player.png', alt: 'Player' },
+  { src: '/images/shema/screens/books.png', alt: 'Book list' },
+  { src: '/images/shema/screens/chapters.png', alt: 'Chapter grid' },
+  { src: '/images/shema/screens/settings.png', alt: 'Settings' },
+  { src: '/images/shema/screens/list.png', alt: 'Favourites' },
+];
+---
+
+<MainLayout
+  title="Shema Audio Bible | Holystack"
+  description="A small offline audio Bible player. Open-source firmware for the round ESP32-S3 touchscreen, flashed from your browser."
+>
+  <!-- Hero -->
+  <section class="relative bg-white dark:bg-[#0f0f14] py-24 md:py-28 overflow-hidden">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-purple-50 dark:bg-purple-900/10 rounded-full blur-3xl -z-10 opacity-60"></div>
+
+    <div class="max-w-[1200px] mx-auto px-6 text-center">
+      <!-- Icon badge -->
+      <div class="inline-flex items-center justify-center w-20 h-20 mb-8 rounded-2xl bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400">
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18.5V6a2 2 0 012-2h6v15H5a2 2 0 00-2 2z" /><path d="M21 18.5V6a2 2 0 00-2-2h-6v15h6a2 2 0 012 2z" opacity="0.4" /><path d="M15.5 9.5a2.5 2.5 0 010 5" /></svg>
+      </div>
+
+      <h1 class="font-serif font-bold text-6xl md:text-8xl mb-4 tracking-tight text-gray-900 dark:text-white">
+        Shema
+      </h1>
+      <p class="text-xl md:text-2xl text-purple-800 dark:text-purple-300 font-medium mb-3">
+        An offline audio Bible
+      </p>
+      <p class="text-sm text-gray-500 dark:text-gray-500 italic mb-8">
+        Shema · שְׁמַע · Hebrew for “Hear”
+      </p>
+      <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-8 leading-relaxed">
+        The name comes from the <em>Shema</em>, the prayer that begins
+        <span class="whitespace-nowrap">“Hear, O Israel.”</span> It's a small,
+        offline player for listening to Scripture, with no phone and no accounts.
+        The battery lasts about ten hours.
+      </p>
+      <Scripture
+        quote="Hear, O Israel: the LORD our God, the LORD is one."
+        reference="Deuteronomy 6:4"
+        centered={true}
+        class="mb-10 max-w-xl"
+      />
+
+      <!-- Open Source pill -->
+      <div class="flex items-center justify-center gap-2 mb-10">
+        <a href={GITHUB} target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-white/10 border border-gray-200 dark:border-white/10 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/20 transition-colors">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          Open-source firmware on GitHub
+        </a>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+        <Button href="/shema/flash" variant="primary">Flash a device →</Button>
+        <Button href={GITHUB} variant="secondary">View on GitHub</Button>
+      </div>
+
+      <!-- Device renders -->
+      <div class="flex justify-center items-center gap-6 flex-wrap">
+        <img src="/images/shema/device-home.png" alt="Shema home screen" width="320" class="w-64 md:w-80 object-contain drop-shadow-2xl" />
+        <img src="/images/shema/device-player.png" alt="Shema player screen" width="320" class="w-64 md:w-80 object-contain drop-shadow-2xl" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <Section background="gray" class="py-20 md:py-32">
+    <div class="text-center mb-16">
+      <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+        Made for listening<br />
+        <span class="text-purple-700 dark:text-purple-400 text-2xl md:text-3xl lg:text-4xl">simple, durable, distraction-free</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      {features.map((feature) => {
+        const colors = colorClasses[feature.color as keyof typeof colorClasses];
+        return (
+          <div class="group bg-white dark:bg-[#1a1a24] rounded-2xl p-6 md:p-8 border border-gray-100 dark:border-white/5 hover:border-purple-200 dark:hover:border-purple-800/50 transition-all hover:shadow-lg hover:-translate-y-1">
+            <div class={`w-12 h-12 ${colors.bg} ${colors.text} rounded-xl flex items-center justify-center mb-5`}>
+              <Fragment set:html={feature.icon} />
+            </div>
+            <h3 class="font-serif text-xl font-bold text-gray-900 dark:text-white mb-3">{feature.title}</h3>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">{feature.description}</p>
+          </div>
+        );
+      })}
+    </div>
+  </Section>
+
+  <!-- Screenshots -->
+  <Section background="white">
+    <div class="text-center mb-14">
+      <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">A look at the interface</h2>
+      <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Every view is laid out for the round screen.</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
+      {shots.map(s => (
+        <img src={s.src} alt={s.alt} width="220" class="w-full max-w-[220px] mx-auto drop-shadow-md" />
+      ))}
+    </div>
+  </Section>
+
+  <!-- Make your own: simple 3-step overview for non-technical people -->
+  <Section background="gray">
+    <div class="text-center mb-4">
+      <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+        Make your own<br />
+        <span class="text-purple-700 dark:text-purple-400 text-2xl md:text-3xl lg:text-4xl">three simple steps, no coding or soldering</span>
+      </h2>
+      <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        If you can copy files to a USB stick, you can set one up. Here's all it takes.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto mt-12">
+      <!-- Step 1 -->
+      <div class="bg-white dark:bg-[#1a1a24] rounded-2xl p-8 border border-gray-100 dark:border-white/5 text-center">
+        <div class="w-11 h-11 mx-auto mb-5 rounded-full bg-purple-700 text-white font-bold flex items-center justify-center">1</div>
+        <h3 class="font-serif text-xl font-bold text-gray-900 dark:text-white mb-3">Order the device</h3>
+        <p class="text-gray-600 dark:text-gray-400">
+          Buy the device (Waveshare 1.85C, SKU 30684). It comes assembled, with
+          the screen, speaker, and battery inside. Around US&nbsp;$30–50.
+        </p>
+      </div>
+      <!-- Step 2 -->
+      <div class="bg-white dark:bg-[#1a1a24] rounded-2xl p-8 border border-gray-100 dark:border-white/5 text-center">
+        <div class="w-11 h-11 mx-auto mb-5 rounded-full bg-purple-700 text-white font-bold flex items-center justify-center">2</div>
+        <h3 class="font-serif text-xl font-bold text-gray-900 dark:text-white mb-3">Add the Bible audio</h3>
+        <p class="text-gray-600 dark:text-gray-400">
+          Copy Bible MP3s into simple folders on a memory card (microSD), then slide
+          the card into the device. The step-by-step layout is below.
+        </p>
+      </div>
+      <!-- Step 3 -->
+      <div class="bg-white dark:bg-[#1a1a24] rounded-2xl p-8 border border-gray-100 dark:border-white/5 text-center">
+        <div class="w-11 h-11 mx-auto mb-5 rounded-full bg-purple-700 text-white font-bold flex items-center justify-center">3</div>
+        <h3 class="font-serif text-xl font-bold text-gray-900 dark:text-white mb-3">Install &amp; listen</h3>
+        <p class="text-gray-600 dark:text-gray-400">
+          Plug it into any computer with a USB-C cable, open our
+          <a href="/shema/flash" class="text-purple-700 dark:text-purple-400 font-medium hover:underline">installer page</a>,
+          and click Install. It takes about a minute, then press play.
+        </p>
+      </div>
+    </div>
+
+    <p class="text-center text-gray-500 dark:text-gray-400 mt-10 max-w-2xl mx-auto">
+      Want to make several for a parish, family, or friends? The same three steps
+      work for every device.
+    </p>
+  </Section>
+
+  <!-- Get the device -->
+  <Section background="white">
+    <div class="text-center mb-14">
+      <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+        Get the device<br />
+        <span class="text-purple-700 dark:text-purple-400 text-2xl md:text-3xl lg:text-4xl">buy the board, customise the software</span>
+      </h2>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      <!-- Buy -->
+      <div class="bg-white dark:bg-[#1a1a24] rounded-2xl p-8 border border-gray-100 dark:border-white/5">
+        <h3 class="font-serif text-2xl font-bold text-gray-900 dark:text-white mb-3">Buy the hardware</h3>
+        <p class="text-gray-600 dark:text-gray-400 mb-5">
+          Get the <strong>Waveshare ESP32-S3-Touch-LCD-1.85C (V2)</strong>, the
+          <strong>"BOX + battery" version (SKU 30684)</strong>. The hardware comes
+          fully assembled: round 360×360 touchscreen, speaker box (enclosure and
+          speaker), and a 3.7&nbsp;V battery. You then flash the firmware and add a
+          microSD card with the audio (the three steps above) to turn it into a
+          player.
+        </p>
+        <p class="text-sm font-semibold text-gray-900 dark:text-white mb-2">Variants you may see:</p>
+        <ul class="text-gray-600 dark:text-gray-400 text-sm space-y-1 mb-5">
+          <li><strong>SKU 30684</strong>: BOX <strong>+ battery</strong> (recommended; everything included)</li>
+          <li><strong>SKU 30685</strong>: BOX (speaker box, no battery)</li>
+          <li><strong>SKU 30683</strong>: bare board only (no box, no battery)</li>
+        </ul>
+        <ul class="space-y-2 mb-2">
+          <li><a class="text-purple-700 dark:text-purple-400 font-medium hover:underline" href="https://www.waveshare.com/esp32-s3-touch-lcd-1.85c.htm?sku=30684" target="_blank" rel="noopener noreferrer">Waveshare official (SKU 30684) →</a></li>
+          <li><a class="text-purple-700 dark:text-purple-400 font-medium hover:underline" href="https://www.amazon.com/s?k=Waveshare+ESP32-S3+1.85inch+Round+LCD+Speaker+Box" target="_blank" rel="noopener noreferrer">Search on Amazon →</a></li>
+          <li><a class="text-purple-700 dark:text-purple-400 font-medium hover:underline" href="https://docs.waveshare.com/ESP32-S3-Touch-LCD-1.85C" target="_blank" rel="noopener noreferrer">Datasheet &amp; wiki →</a></li>
+        </ul>
+        <p class="text-sm text-gray-500 dark:text-gray-500 mt-4">Typically <strong>US&nbsp;$30–50</strong>, depending on variant and seller. Also on AliExpress and Waveshare resellers.</p>
+      </div>
+
+      <!-- Build -->
+      <div class="bg-white dark:bg-[#1a1a24] rounded-2xl p-8 border border-gray-100 dark:border-white/5 flex flex-col">
+        <h3 class="font-serif text-2xl font-bold text-gray-900 dark:text-white mb-3">Open source</h3>
+        <p class="text-gray-600 dark:text-gray-400 mb-5">
+          MIT-licensed firmware on ESP-IDF, LVGL, and the Helix MP3 decoder. Fork
+          it to add languages and versions, rework the UI, or change playback,
+          then <code class="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-white/10 text-sm">idf.py build</code>
+          and flash. It targets the stock Waveshare ESP32-S3-Touch-LCD-1.85C (V2);
+          the hardware is off-the-shelf, only the software is yours to change.
+        </p>
+        <div class="mt-auto">
+          <Button href={GITHUB} variant="secondary">View the source on GitHub</Button>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Load the Scripture (SD card) -->
+  <Section background="gray">
+    <div class="text-center mb-14">
+      <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+        Load the Scripture<br />
+        <span class="text-purple-700 dark:text-purple-400 text-2xl md:text-3xl lg:text-4xl">prepare the microSD card</span>
+      </h2>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-10 max-w-5xl mx-auto items-start">
+      <div>
+        <p class="text-gray-600 dark:text-gray-400 mb-5 leading-relaxed">
+          The audio is <strong>not</strong> bundled. Recordings are licensed by
+          their rights holders, so you download the audio and prepare the card
+          yourself. Use recordings you have the right to use, for example the free
+          non-commercial audio Bibles from
+          <a class="text-purple-700 dark:text-purple-400 font-medium hover:underline" href="https://www.bible.is/" target="_blank" rel="noopener noreferrer">Faith Comes By Hearing</a>
+          or public-domain recordings.
+        </p>
+        <p class="text-gray-600 dark:text-gray-400 mb-3 leading-relaxed">
+          Format a microSD card as <strong>FAT32</strong> and lay the files out as
+          <code class="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-white/10 text-sm">{'BIBLE/<LANGUAGE>/<VERSION>/<book>_<chapter>.mp3'}</code>.
+        </p>
+        <ul class="text-gray-600 dark:text-gray-400 leading-relaxed space-y-2">
+          <li>• <strong>Book</strong> = number <strong>1–73</strong> (Catholic canon order, Genesis = 1 … Revelation = 73).</li>
+          <li>• Keep numbering <strong>consistent</strong> in each folder: all zero-padded (<code class="px-1 rounded bg-gray-100 dark:bg-white/10 text-sm">01_01.mp3</code>) or all plain (<code class="px-1 rounded bg-gray-100 dark:bg-white/10 text-sm">1_1.mp3</code>). Padding is recommended.</li>
+          <li>• The device <strong>scans the card at boot</strong>, so it only lists what you add. Folder names show in the menu as-is.</li>
+        </ul>
+      </div>
+
+      <pre class="bg-[#0f0f14] text-gray-100 rounded-2xl p-6 text-sm leading-relaxed overflow-x-auto font-mono">{`SD card  (FAT32)
+└── BIBLE/
+    ├── Malayalam/
+    │   ├── POC_Dramatized/      (default)
+    │   │   ├── 01_01.mp3        Genesis 1
+    │   │   ├── 01_02.mp3        Genesis 2
+    │   │   ├── 02_01.mp3        Exodus 1
+    │   │   └── ...
+    │   └── POC_Reading/
+    │       └── ...
+    └── English/
+        └── NRSV/
+            └── 01_01.mp3`}</pre>
+    </div>
+  </Section>
+
+  <!-- Closing / Flash CTA -->
+  <Section background="white" class="text-center">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="font-serif text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-white">Have the device? Flash it now.</h2>
+      <p class="text-lg text-gray-600 dark:text-gray-400 mb-10">
+        Install the firmware right from your browser, with no software to download.
+        Plug the device into a computer with a USB-C cable and click Install.
+      </p>
+      <Scripture
+        quote="So faith comes from hearing, and hearing through the word of Christ."
+        reference="Romans 10:17"
+        centered={true}
+        class="mb-10"
+      />
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button href="/shema/flash" variant="primary">Open the installer →</Button>
+        <Button href={GITHUB} variant="secondary">View the source</Button>
+      </div>
+    </div>
+  </Section>
+</MainLayout>

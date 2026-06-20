@@ -1,0 +1,98 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Section from '../../components/common/Section.astro';
+
+const GITHUB = 'https://github.com/holystack-dev/shema';
+
+const steps = [
+  'Open this page in <strong>Chrome</strong> or <strong>Edge</strong> on a computer.',
+  'Connect the device with a <strong>USB-C data cable</strong> (a charge-only cable will not work).',
+  'Click <strong>Connect &amp; Install</strong> below, then pick the device’s serial port.',
+  'Click <strong>Install</strong> and confirm. It takes about a minute, so don’t unplug.',
+  'When it finishes, unplug. The player boots on its own.',
+];
+
+const troubleshooting = [
+  ['Device not in the port list', 'Use a data USB-C cable (not charge-only), try another port, or enter download mode (below).'],
+  ['"Web Serial not supported"', 'Use Chrome or Edge on a computer, not a phone, and not Safari or Firefox.'],
+  ['Flashing fails partway', 'Try a different cable or port, then enter download mode and retry.'],
+  ['Blank screen afterwards', 'Tap RESET once, and make sure a microSD card with audio is inserted.'],
+];
+---
+
+<MainLayout
+  title="Flash Shema | Holystack"
+  description="Install the Shema audio Bible firmware on your ESP32-S3 device directly from your browser."
+>
+  <!-- ESP Web Tools (loaded from CDN; left untouched by Astro's bundler) -->
+  <script is:inline type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js"></script>
+
+  <Section background="white">
+    <div class="max-w-2xl mx-auto text-center">
+      <p class="text-purple-700 dark:text-purple-400 font-medium mb-3 uppercase tracking-wide text-sm">Shema · Audio Bible</p>
+      <h1 class="font-serif text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">Install the firmware</h1>
+      <p class="text-gray-600 dark:text-gray-400 text-lg mb-10">
+        Flash your device straight from this page, with nothing to download. Works in
+        Chrome or Edge on Windows, Mac, Linux, and Chromebook.
+      </p>
+
+      <!-- Installer button -->
+      <div class="flex flex-col items-center gap-4 mb-4">
+        <esp-web-install-button manifest="/shema/manifest.json">
+          <button slot="activate" class="inline-flex items-center justify-center px-8 py-4 rounded-lg font-bold text-white bg-purple-800 hover:bg-purple-700 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            Connect &amp; Install
+          </button>
+          <span slot="unsupported"></span>
+          <span slot="not-allowed"></span>
+        </esp-web-install-button>
+      </div>
+
+      <!-- Unsupported-browser notice -->
+      <div id="ua-warn" class="hidden mx-auto max-w-md text-sm rounded-xl border border-red-600/30 bg-red-600/10 text-red-700 dark:text-red-400 p-4 mb-4">
+        Your browser can’t talk to USB devices. Please use <strong>Chrome</strong>
+        or <strong>Edge</strong> on a computer. iPhones and iPads can’t flash USB devices.
+      </div>
+
+      <p class="text-sm text-gray-500 dark:text-gray-500">
+        Trouble connecting? Hold <strong>BOOT</strong>, tap <strong>RESET</strong>,
+        release <strong>BOOT</strong>, then click Connect again.
+      </p>
+    </div>
+  </Section>
+
+  <!-- Steps -->
+  <Section background="gray">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="font-serif text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">Step by step</h2>
+      <ol class="space-y-4">
+        {steps.map((s, i) => (
+          <li class="flex gap-4 items-start bg-white dark:bg-[#1a1a24] rounded-xl p-5 border border-gray-100 dark:border-white/5">
+            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-purple-700 text-white font-bold flex items-center justify-center">{i + 1}</span>
+            <span class="text-gray-700 dark:text-gray-300 pt-1" set:html={s} />
+          </li>
+        ))}
+      </ol>
+
+      <h2 class="font-serif text-3xl font-bold text-gray-900 dark:text-white mt-16 mb-8 text-center">If something goes wrong</h2>
+      <div class="overflow-hidden rounded-xl border border-gray-100 dark:border-white/5">
+        {troubleshooting.map(([problem, fix], i) => (
+          <div class:list={["grid sm:grid-cols-3 gap-2 p-5", i % 2 ? "bg-white dark:bg-[#1a1a24]" : "bg-gray-50 dark:bg-[#15151e]"]}>
+            <div class="font-semibold text-gray-900 dark:text-white">{problem}</div>
+            <div class="sm:col-span-2 text-gray-600 dark:text-gray-400">{fix}</div>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-center text-gray-500 dark:text-gray-400 mt-12">
+        Want to load the audio or build your own?
+        <a href={GITHUB} class="text-purple-700 dark:text-purple-400 font-medium hover:underline">See the guide on GitHub →</a>
+      </p>
+    </div>
+  </Section>
+
+  <script is:inline>
+    if (!('serial' in navigator)) {
+      document.getElementById('ua-warn')?.classList.remove('hidden');
+    }
+  </script>
+</MainLayout>
