@@ -1,0 +1,19 @@
+---
+import { brandIdentity } from '../../data/brand';
+const { mark, wordmark, horizontal } = brandIdentity;
+const width = 174;
+---
+<a class="brand" href="/" aria-label="HolyStack home">
+  <svg class="brand-logo" data-brand="holystack-v1" viewBox={`0 0 ${horizontal.width} ${horizontal.height}`} width={width} height={width * horizontal.height / horizontal.width} aria-hidden="true" focusable="false">
+    <g class="symbol" transform={mark.transform}>{mark.paths.map(d => <path d={d}/>)}</g>
+    <g class="wordmark" transform={`translate(${horizontal.wordX} ${horizontal.wordY})`}>
+      {wordmark.paths.map(glyph => <path d={glyph.d} transform={glyph.transform}/>)}
+    </g>
+  </svg>
+</a>
+<style>
+  .brand { display: inline-flex; align-items: center; min-height: 44px; max-width: 100%; text-decoration: none; flex-shrink: 0; }
+  .brand-logo { display: block; max-width: 100%; height: auto; overflow: visible; }
+  .symbol { fill: var(--brand-mark); }
+  .wordmark { fill: var(--brand-word); }
+</style>

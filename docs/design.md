@@ -8,7 +8,7 @@
 > *"Freely you have received; freely give."* — Matthew 10:8
 
 **Core Values:**
-- **For the Greater Glory of God (Ad Maiorem Dei Gloriam)**: Every app is an offering to the Lord
+- **For the Greater Glory of God**: Every app is an offering to the Lord
 - **Privacy as Sanctuary**: Your spiritual life is sacred — between you and God alone
 - **Excellence in Service**: Professional quality worthy of serving the faithful
 - **Freely Given**: No cost, no ads, no compromise — a gift to the Church
@@ -255,8 +255,6 @@ Building for the Kingdom
 
 [Links: Apps | About | Privacy | Contact]
 
-Ad Maiorem Dei Gloriam
-For the Greater Glory of God
 ```
 
 ---

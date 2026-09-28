@@ -1,0 +1,107 @@
+---
+import DeviceFrame from './DeviceFrame.astro';
+import { tour } from '../../data/shema';
+---
+<device-tour class="tour" id="device-tour">
+  <div class="tour-heading">Device demo</div>
+  <div class="device-stage">
+    <DeviceFrame>
+      <video id="shema-tour-video" poster={tour.poster} preload="none" muted playsinline aria-label="Shema device navigation tour" aria-describedby="tour-description">
+        <source src={tour.src} type="video/mp4" />
+      </video>
+    </DeviceFrame>
+  </div>
+  <div class="tour-controls" hidden>
+    <div class="transport">
+      <button type="button" data-play aria-controls="shema-tour-video" aria-label="Play device tour">
+        <svg data-play-icon viewBox="0 0 20 20" aria-hidden="true"><path d="m6 3 11 7-11 7z" /></svg>
+        <svg data-pause-icon viewBox="0 0 20 20" aria-hidden="true" hidden><path d="M5 3h4v14H5zm6 0h4v14h-4z" /></svg>
+        <span data-play-label>Play demo</span>
+      </button>
+    </div>
+    <div class="chapters" role="group" aria-label="Demo sections">
+      {tour.chapters.map((chapter, index) => <button class="chapter" type="button" data-chapter={chapter.time} aria-controls="shema-tour-video" aria-pressed={index === 0 ? 'true' : 'false'}>{chapter.label}</button>)}
+    </div>
+  </div>
+  <p id="tour-description" class="sr-only">The tour shows Home, Bible books and chapters, Bible in a Year, Library folders, favourites, playback and sleep timer, recent listening and settings. Select a demo section to play it. The video has no audio.</p>
+  <p data-error role="status" class="error" hidden>Unable to play here. <a href={tour.src}>Open the video directly.</a></p>
+  <noscript><p class="video-fallback"><a href={tour.src}>Watch the device tour (MP4, 1.1 MB) →</a></p></noscript>
+</device-tour>
+
+<script>
+  class DeviceTour extends HTMLElement {
+    connectedCallback() {
+      if (this.dataset.ready) return;
+      this.dataset.ready = 'true';
+      const video = this.querySelector<HTMLVideoElement>('video')!;
+      const play = this.querySelector<HTMLButtonElement>('[data-play]')!;
+      const label = this.querySelector<HTMLElement>('[data-play-label]')!;
+      const playIcon = this.querySelector<SVGElement>('[data-play-icon]')!;
+      const pauseIcon = this.querySelector<SVGElement>('[data-pause-icon]')!;
+      const chapters = [...this.querySelectorAll<HTMLButtonElement>('[data-chapter]')];
+      const error = this.querySelector<HTMLElement>('[data-error]')!;
+      let pendingSeek: number | null = null;
+      const update = () => {
+        const position = pendingSeek ?? video.currentTime;
+        const active = [...chapters].reverse().find(chapter => Number(chapter.dataset.chapter) <= position);
+        chapters.forEach(chapter => chapter.setAttribute('aria-pressed', String(chapter === active)));
+      };
+      const start = async () => {
+        error.hidden = true;
+        try { await video.play(); } catch { error.hidden = false; }
+      };
+      // A seek before metadata is available must wait until the media is ready.
+      const jump = (position: number) => {
+        if (video.readyState >= 1) video.currentTime = position;
+        else { pendingSeek = position; video.load(); }
+        update();
+      };
+      play.addEventListener('click', () => {
+        if (!video.paused) video.pause();
+        else { if (video.ended) jump(0); void start(); }
+      });
+      video.addEventListener('loadedmetadata', () => {
+        if (pendingSeek !== null) { video.currentTime = pendingSeek; pendingSeek = null; }
+        update();
+      });
+      const syncPlayback = () => {
+        label.textContent = video.paused ? (video.ended ? 'Replay' : 'Play demo') : 'Pause';
+        play.setAttribute('aria-label', video.paused ? 'Play device tour' : 'Pause device tour');
+        playIcon.toggleAttribute('hidden', !video.paused);
+        pauseIcon.toggleAttribute('hidden', video.paused);
+      };
+      ['play', 'pause', 'ended'].forEach(event => video.addEventListener(event, syncPlayback));
+      video.addEventListener('timeupdate', update);
+      video.addEventListener('error', () => { error.hidden = false; });
+      chapters.forEach(chapter => chapter.addEventListener('click', () => {
+        jump(Number(chapter.dataset.chapter));
+        void start();
+      }));
+      this.querySelector<HTMLElement>('.tour-controls')!.hidden = false;
+      // Playback is always user initiated, including with reduced motion enabled.
+    }
+  }
+  if (!customElements.get('device-tour')) customElements.define('device-tour', DeviceTour);
+</script>
+
+<style>
+  .tour { display: block; width: 100%; max-width: 480px; margin-inline: auto; scroll-margin-top: 90px; }
+  .tour-heading { display: flex; align-items: center; gap: 8px; color: var(--shema-muted); font-size: 12px; letter-spacing: .015em; }
+  .device-stage { padding: 20px 16px 30px; }
+  .tour-controls { padding-top: 4px; }
+  [hidden] { display: none !important; }
+  .transport { display: flex; justify-content: center; margin-bottom: 18px; }
+  button { display: inline-flex; flex-shrink: 0; align-items: center; gap: 7px; min-height: 44px; min-width: 104px; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--shema-ink); }
+  button svg { width: 18px; height: 18px; fill: currentColor; }
+  button:hover { color: var(--shema-accent); }
+  [data-play] { justify-content: center; padding: 10px 22px; border-radius: 10px; background: var(--site-button); color: var(--site-button-text); }
+  [data-play]:hover { box-shadow: 0 0 0 3px var(--shema-line); }
+  .chapters { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .chapter { min-width: 0; min-height: 44px; padding: 8px 13px; font-size: 12px; font-weight: 500; border: 1px solid var(--shema-line); border-radius: 8px; color: var(--shema-muted); }
+  .chapter:hover { border-color: var(--shema-accent); }
+  .chapter[aria-pressed='true'] { border-color: var(--shema-accent); background: var(--shema-card); color: var(--shema-accent); }
+  .video-fallback { color: var(--shema-muted); font-size: 11px; text-align: center; margin-top: 12px; }
+  .error { font-size: 13px; padding: 12px; color: var(--shema-ink); }
+  a { text-decoration: underline; text-underline-offset: 3px; }
+  @media (max-width: 380px) { .chapter { padding-inline: 10px; } }
+</style>

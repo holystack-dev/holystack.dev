@@ -1,33 +1,27 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-import Section from '../components/common/Section.astro';
-import Button from '../components/common/Button.astro';
+import Icon from '../components/common/Icon.astro';
+import GitHubIcon from '../components/common/GitHubIcon.astro';
+import { SHEMA_GITHUB } from '../data/shema';
 ---
-
-<MainLayout 
-  title="Contact Us - Holystack"
-  description="Get in touch with Holystack."
->
-  <Section class="py-20 min-h-[60vh] flex items-center">
-    <div class="max-w-2xl mx-auto text-center">
-      <h1 class="font-serif text-5xl font-bold mb-8 text-gray-900 dark:text-white">Get in Touch</h1>
-      
-      <p class="text-xl text-gray-600 dark:text-gray-400 mb-12 leading-relaxed">
-        We'd love to hear from you. Whether you have feedback, a feature request, or just want to say hello.
-      </p>
-
-      <div class="bg-white dark:bg-[#1a1a24] p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-white/5">
-        <p class="text-gray-900 dark:text-gray-200 font-medium mb-4">Email us at:</p>
-        <a href="mailto:hello@holystack.dev" class="text-3xl md:text-4xl font-serif font-bold text-purple-700 dark:text-purple-400 hover:text-purple-800 dark:hover:text-purple-300 transition-colors">
-          hello@holystack.dev
-        </a>
-      </div>
-      
-      <div class="mt-12">
-        <p class="text-sm text-gray-500 dark:text-gray-500">
-            "Peace I leave with you; my peace I give you." — John 14:27
-        </p>
-      </div>
-    </div>
-  </Section>
+<MainLayout title="Contact | HolyStack" description="Get in touch with HolyStack about Metanoia, Shema or contributing to our Catholic apps and open projects.">
+  <section class="page-intro wrap"><p class="eyebrow">Contact</p><h1 class="display">Get in touch.</h1><p class="lede">For questions about our projects, feedback or a conversation about contributing to the work.</p></section>
+  <section class="wrap contact-grid">
+    <article class="contact-card"><Icon name="mail" size={28}/><h2>Contact the studio</h2><p>For questions, feedback or a conversation about the projects.</p><a href="mailto:hello@holystack.dev" class="email">hello@holystack.dev</a></article>
+    <article class="contact-card"><GitHubIcon/><h2>Project issues & contributions</h2><p>Report a bug, suggest a feature or contribute to the code on GitHub.</p><div class="project-links"><a href="https://github.com/holystack-dev/metanoia/issues" class="text-link">Metanoia issues <Icon name="arrow" size={17}/></a><a href={`${SHEMA_GITHUB}/issues`} class="text-link">Shema issues <Icon name="arrow" size={17}/></a></div></article>
+  </section>
+  <div class="wrap contact-note"><Icon name="lock" size={19}/><p>If you’re reporting a problem with Metanoia, please leave personal journal and confession entries out of screenshots.</p></div>
 </MainLayout>
+<style>
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .contact-card { border: 1px solid var(--site-line); border-radius: 16px; background: var(--site-card); padding: 40px; }
+  .contact-card:first-child { background: var(--site-soft); }
+  .contact-card > :global(svg) { color: var(--site-accent); width: 28px; height: 28px; display: block; }
+  h2 { font-size: 1.8rem; font-weight: 400; margin: 25px 0 16px; }
+  .contact-card p { color: var(--site-muted); font-size: .95rem; margin-bottom: 26px; line-height: 1.8; }
+  .email { font-family: var(--font-serif); font-size: clamp(1.4rem, 2.5vw, 2rem); color: var(--site-accent); overflow-wrap: anywhere; text-decoration: underline; text-underline-offset: 7px; }
+  .project-links { display: flex; flex-wrap: wrap; gap: 24px; }
+  .contact-note { display: flex; gap: 12px; align-items: flex-start; padding-block: 32px 88px; color: var(--site-muted); font-size: .78rem; max-width: 760px; }
+  .contact-note :global(svg) { flex-shrink: 0; margin-top: 2px; }
+  @media(max-width:760px) { .contact-grid { grid-template-columns: 1fr; }.contact-card { padding: 28px; } }
+</style>

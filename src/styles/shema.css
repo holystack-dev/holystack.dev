@@ -1,0 +1,34 @@
+/* Product-specific names alias the shared site palette. */
+.shema-theme {
+  --shema-bg: var(--site-bg);
+  --shema-card: var(--site-card);
+  --shema-ink: var(--site-ink);
+  --shema-muted: var(--site-muted);
+  --shema-line: var(--site-line);
+  --shema-accent: var(--site-accent);
+  background: var(--shema-bg);
+  color: var(--shema-ink);
+}
+.shema-theme :focus-visible { outline: 2px solid var(--shema-accent); outline-offset: 4px; }
+
+/* ESP Web Tools v10 appends these hosts to body, outside .shema-theme.
+   Outer host declarations override the library's :host defaults. Keep these
+   token names aligned with its shared styles and Material components. */
+ewt-install-dialog, ewt-no-port-picked-dialog {
+  color: var(--site-ink);
+  --roboto-font: var(--font-sans);
+  --text-color: var(--site-muted);
+  --danger-color: var(--site-danger);
+  --md-sys-color-primary: var(--site-accent);
+  --md-sys-color-on-primary: var(--site-bg);
+  --md-sys-color-on-surface: var(--site-ink);
+  --md-sys-color-on-surface-variant: var(--site-muted);
+  --md-sys-color-surface: var(--site-card);
+  --md-sys-color-surface-container: var(--site-card);
+  --md-sys-color-surface-container-high: var(--site-card);
+  --md-sys-color-surface-container-highest: var(--site-soft);
+  --md-sys-color-secondary-container: var(--site-soft);
+  --md-sys-color-on-secondary-container: var(--site-ink);
+  --md-sys-color-error: var(--site-danger);
+  --md-sys-color-on-error-container: var(--site-danger);
+}

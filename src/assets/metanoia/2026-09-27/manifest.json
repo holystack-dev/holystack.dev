@@ -1,0 +1,91 @@
+{
+  "imported": "2026-09-27",
+  "kind": "Unchanged original app screenshots and current app icon",
+  "note": "Product captures contain sample entries. Import date is not an app release date.",
+  "files": [
+    {
+      "file": "00_lock.png",
+      "source": "output/app-store/en/source/captures/00_lock.png",
+      "sha256": "116ee9f06a5eea5d70431615e2ead530472325996e76b12d3c7000bbd1364a32",
+      "bytes": 177963
+    },
+    {
+      "file": "01_home.png",
+      "source": "output/app-store/en/source/captures/01_home.png",
+      "sha256": "92fa0fd6eb28e059cdf9d6cd4b95be0a947f2c827668b8477b17e10d00063334",
+      "bytes": 755817
+    },
+    {
+      "file": "02_journal.png",
+      "source": "output/app-store/en/source/captures/02_journal.png",
+      "sha256": "90a25a83999339fe9f03e95f395353db6ca7f1dcacf281506df23cb2a7beb60f",
+      "bytes": 201108
+    },
+    {
+      "file": "03_examine_list.png",
+      "source": "output/app-store/en/source/captures/03_examine_list.png",
+      "sha256": "31a9ab811ee03185378cbb33018e27b7791ec3db37d1d20bce54807ba23ed946",
+      "bytes": 359808
+    },
+    {
+      "file": "04_examine_guided.png",
+      "source": "output/app-store/en/source/captures/04_examine_guided.png",
+      "sha256": "9405920038e8692478c0d5ce399e037b35f7169ba69fedc372de7c404826d1e7",
+      "bytes": 250964
+    },
+    {
+      "file": "05_confess.png",
+      "source": "output/app-store/en/source/captures/05_confess.png",
+      "sha256": "3013011ac2fce2e751416112bd8e844af39deade690f112ee07747983c1571cf",
+      "bytes": 263366
+    },
+    {
+      "file": "06_penance.png",
+      "source": "output/app-store/en/source/captures/06_penance.png",
+      "sha256": "f023b14e21a5bd3cb2a3e35e0fa03bb33d71c1856b87626b6cd800238a80e2e7",
+      "bytes": 134995
+    },
+    {
+      "file": "07_guide.png",
+      "source": "output/app-store/en/source/captures/07_guide.png",
+      "sha256": "0f8087f4b1153f102ec34282de5f6a0aa202fe63c6b6f608ca9b0b4d1fbef9c0",
+      "bytes": 235018
+    },
+    {
+      "file": "08_prayers.png",
+      "source": "output/app-store/en/source/captures/08_prayers.png",
+      "sha256": "7d523a728183f8757e020f7eaafb5b1c9c7762a8d32db75e130221888c3f57fa",
+      "bytes": 362447
+    },
+    {
+      "file": "09_confession_mode.png",
+      "source": "output/app-store/en/source/captures/09_confession_mode.png",
+      "sha256": "bc846bd5cde03b3c1c0b5b2b349e40e11a181f7c9b7a793459bc62a274f6fe6f",
+      "bytes": 197741
+    },
+    {
+      "file": "10_examen_scripture.png",
+      "source": "output/app-store/en/source/captures/10_examen_scripture.png",
+      "sha256": "1c4616fb73fa2870b6cac3c2159c8b13358d0a109796aa134588a7ddbbfa8d93",
+      "bytes": 177866
+    },
+    {
+      "file": "11_security.png",
+      "source": "output/app-store/en/source/captures/11_security.png",
+      "sha256": "13a6d680fb5cd9c8404d04e6371755d305fc1ab170d54adcc3243a1c526fb7c7",
+      "bytes": 179885
+    },
+    {
+      "file": "12_journal_dark.png",
+      "source": "output/app-store/en/source/captures/12_journal_dark.png",
+      "sha256": "96eb151d7ce579ecc1221a864f02e90cb3eb87d055479e7abff12fd2f2cfa30d",
+      "bytes": 168667
+    },
+    {
+      "file": "icon.png",
+      "source": "assets/icon/icon.png",
+      "sha256": "1c4ce08eb36bd861d000474e5204979c80fea532f545e65455a6c33667db533b",
+      "bytes": 55296
+    }
+  ]
+}

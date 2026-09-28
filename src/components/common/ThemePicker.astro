@@ -1,0 +1,51 @@
+<theme-picker hidden>
+  <details class="theme-picker">
+    <summary aria-label="Change colour theme" title="Change colour theme">
+      <svg class="sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M5 19l1.4-1.4M17.6 6.4 19 5"/></svg>
+      <svg class="moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
+    </summary>
+    <div class="theme-options" role="group" aria-label="Colour theme">
+      <p>Appearance</p>
+      {['light','dark','system'].map(value => <button type="button" data-value={value} aria-pressed="false"><span>{value === 'system' ? 'Use device setting' : `${value[0].toUpperCase()}${value.slice(1)}`}</span><span class="selected" aria-hidden="true">✓</span></button>)}
+    </div>
+  </details>
+</theme-picker>
+<script>
+  class ThemePicker extends HTMLElement {
+    connectedCallback() {
+      if (this.dataset.ready) return;
+      this.dataset.ready = 'true';
+      this.hidden = false;
+      const details = this.querySelector('details')!;
+      const summary = this.querySelector('summary')!;
+      const buttons = [...this.querySelectorAll<HTMLButtonElement>('button')];
+      const sync = () => buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.value === document.documentElement.dataset.themePreference)));
+      buttons.forEach(button => button.addEventListener('click', () => {
+        document.dispatchEvent(new CustomEvent('holystack:theme-request', { detail: button.dataset.value }));
+        details.open = false;
+        summary.focus();
+      }));
+      this.addEventListener('keydown', event => { if (event.key === 'Escape') { details.open = false; summary.focus(); } });
+      document.addEventListener('click', event => { if (!this.contains(event.target as Node)) details.open = false; });
+      document.addEventListener('holystack:theme-change', sync);
+      sync();
+    }
+  }
+  if (!customElements.get('theme-picker')) customElements.define('theme-picker', ThemePicker);
+</script>
+<style>
+  theme-picker { display: block; position: relative; }
+  theme-picker[hidden] { display: none; }
+  summary { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--site-line); border-radius: 50%; list-style: none; cursor: pointer; color: var(--site-ink); background: var(--site-card); }
+  summary::-webkit-details-marker { display: none; }
+  summary:hover { background: var(--site-soft); }
+  .moon { display: none; }
+  :global([data-theme='dark']) .sun { display: none; }
+  :global([data-theme='dark']) .moon { display: block; }
+  .theme-options { position: absolute; z-index: 10; top: 54px; right: 0; width: 220px; padding: 10px; border: 1px solid var(--site-line); border-radius: 16px; background: var(--site-card); box-shadow: var(--site-shadow); }
+  .theme-options p { color: var(--site-muted); font-size: .68rem; padding: 7px 12px; margin: 0; text-transform: uppercase; letter-spacing: .08em; }
+  button { display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 44px; padding: 10px 12px; border-radius: 8px; cursor: pointer; font-size: .84rem; color: var(--site-ink); text-align: left; }
+  button:hover, button[aria-pressed='true'] { background: var(--site-soft); }
+  .selected { visibility: hidden; color: var(--site-accent); }
+  button[aria-pressed='true'] .selected { visibility: visible; }
+</style>

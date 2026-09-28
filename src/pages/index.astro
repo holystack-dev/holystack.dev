@@ -1,13 +1,61 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-import Hero from '../components/home/Hero.astro';
-import AppShowcase from '../components/home/AppShowcase.astro';
+import ProductCard from '../components/common/ProductCard.astro';
+import Icon from '../components/common/Icon.astro';
+import GitHubIcon from '../components/common/GitHubIcon.astro';
+import SaintMichaelPrayer from '../components/common/SaintMichaelPrayer.astro';
+import HailMaryPrayer from '../components/common/HailMaryPrayer.astro';
+import { projects } from '../data/projects';
 ---
-
-<MainLayout
-  title="Holystack - Catholic Apps for the Glory of God"
-  description="Free Catholic apps crafted with prayer and offered freely to the Church."
->
-  <Hero />
-  <AppShowcase />
+<MainLayout title="HolyStack | Free Catholic apps and open projects" description="Free Catholic apps for prayer, growth in holiness and a deeper relationship with God through Scripture and the sacramental life.">
+  <section class="studio-hero wrap">
+    <p class="eyebrow">A Catholic development studio</p>
+    <div class="hero-grid">
+      <h1 class="display">Grow in holiness.<br />Draw closer to God.</h1>
+      <div class="hero-intro"><p>HolyStack creates free Catholic apps and open projects to support prayer, growth in holiness, and a deeper relationship with God through Scripture and the sacramental life.</p><a href="#projects" class="text-link">Explore the projects <Icon name="arrow" size={18}/></a></div>
+    </div>
+    <div class="hero-rule"><span>Rooted in the Catholic faith</span></div>
+  </section>
+  <section class="project-section wrap" id="projects" aria-labelledby="projects-title">
+    <div class="section-bar"><div><p class="eyebrow">From the studio</p><h2 class="heading" id="projects-title">Our projects</h2></div><a href="/apps" class="text-link">View all projects <Icon name="arrow" size={18}/></a></div>
+    <div class="project-grid">{projects.map(project => <ProductCard project={project} eager/>)}</div>
+    <p class="pipeline">Further projects are in development. We’ll share them here when they’re ready.</p>
+  </section>
+  <section class="section tone-section" id="studio">
+    <div class="wrap studio-grid">
+      <div><p class="eyebrow">Faith & the work</p><h2 class="heading">In the life<br />of the Church.</h2></div>
+      <div class="studio-copy"><p>HolyStack is rooted in the Catholic faith. We seek to draw closer to our heavenly Father through Jesus Christ, guided by the Holy Spirit. Prayer, Scripture and the sacramental life shape what we build.</p><p>The projects grow from practices in our own lives: preparing for confession, reflecting on a day, and making time to listen to the Word of God.</p><p>We share the code for others to read, contribute to and build upon.</p><a href="https://github.com/holystack-dev" class="text-link"><GitHubIcon/> Explore the source</a></div>
+    </div>
+  </section>
+  <section class="section wrap studio-notes" aria-label="About the projects">
+    <article><span class="note-icon"><Icon name="gift" size={28}/></span><h3>Free to use</h3><p>Our apps and firmware are free, without ads or subscriptions. Shema uses hardware you supply.</p></article>
+    <article><span class="note-icon"><Icon name="lock" size={28}/></span><h3>On your device</h3><p>Metanoia’s personal entries and Shema’s listening history stay on the device. Neither requires an account.</p></article>
+    <article><span class="note-icon"><Icon name="code" size={28}/></span><h3>Open to contribution</h3><p>Code, translations, bug reports and practical suggestions are welcome.</p><a href="/contact" class="text-link">Get in touch <Icon name="arrow" size={17}/></a></article>
+  </section>
+  <section class="prayers wrap" aria-label="Prayers">
+    <div class="prayer-grid"><SaintMichaelPrayer/><HailMaryPrayer/></div>
+  </section>
 </MainLayout>
+<style>
+  .studio-hero { padding-top: clamp(64px, 8vw, 116px); }
+  .studio-hero > .eyebrow { margin-bottom: 32px; }
+  .hero-grid { display: grid; grid-template-columns: 1.65fr 1fr; gap: 72px; align-items: end; }
+  .hero-intro { padding-bottom: 4px; }
+  .hero-intro p { font-size: 1.08rem; line-height: 1.9; color: var(--site-muted); margin: 0 0 22px; }
+  .hero-rule { display: flex; justify-content: space-between; gap: 20px; padding: 25px 0; margin-top: 64px; border-top: 1px solid var(--site-line); font-size: .66rem; letter-spacing: .04em; color: var(--site-muted); }
+  .project-section { padding-block: 40px 84px; }
+  .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 36px; }
+  .pipeline { border-top: 1px solid var(--site-line); margin-top: 44px; padding-top: 25px; color: var(--site-muted); font-size: .8rem; line-height: 1.8; }
+  .studio-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 100px; }
+  .studio-copy p { color: var(--site-muted); font-size: .97rem; line-height: 1.95; margin: 0 0 20px; }
+  .studio-copy p:first-child { font-size: 1.24rem; line-height: 1.8; color: var(--site-ink); }
+  .studio-notes { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 48px; }
+  .note-icon { display: flex; align-items: center; height: 32px; color: var(--site-accent); }
+  .studio-notes h3 { font-size: 1.45rem; margin: 22px 0 15px; }
+  .studio-notes p { color: var(--site-muted); font-size: .88rem; line-height: 1.85; }
+  .studio-notes .text-link { margin-top: 14px; }
+  .prayers { padding-block: clamp(48px, 6vw, 72px) 82px; }
+  .prayer-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(48px, 7vw, 104px); }
+  @media(max-width: 1000px) { .hero-grid { gap: 40px; grid-template-columns: 1.4fr 1fr; }.studio-grid { gap: 56px; } }
+  @media(max-width: 760px) { .hero-grid, .project-grid, .studio-grid, .studio-notes, .prayer-grid { grid-template-columns: 1fr; }.prayer-grid { gap: 48px; }.hero-grid { gap: 30px; }.hero-intro { max-width: 500px; }.hero-rule { margin-top: 38px; align-items: start; flex-direction: column; gap: 8px; }.project-section { padding-top: 25px; padding-bottom: 60px; }.project-grid { gap: 44px; }.studio-grid { gap: 30px; }.studio-notes { gap: 30px; }.studio-notes article + article { padding-top: 30px; border-top: 1px solid var(--site-line); }.studio-notes h3 { margin-top: 14px; } }
+</style>

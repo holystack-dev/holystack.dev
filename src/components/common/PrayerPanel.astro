@@ -1,0 +1,32 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  opening: string;
+  stanzas: readonly string[];
+}
+
+const { id, title, opening, stanzas } = Astro.props;
+---
+<section class="prayer-panel" aria-labelledby={id}>
+  <h2 id={id} class="eyebrow">{title}</h2>
+  <blockquote>
+    <p class="opening">{opening}</p>
+    {stanzas.map(stanza => <p class="stanza">{stanza}</p>)}
+    <p class="amen">Amen.</p>
+  </blockquote>
+</section>
+<style>
+  .prayer-panel { min-width: 0; padding-top: 30px; border-top: 1px solid var(--site-line); text-align: left; }
+  h2 { margin: 0 0 26px; }
+  blockquote, p { margin: 0; }
+  .opening, .stanza, .amen { font-family: var(--font-serif); font-weight: 400; color: var(--site-ink); }
+  .opening { font-size: clamp(1.5rem, 2vw, 1.85rem); line-height: 1.48; letter-spacing: -.025em; text-wrap: balance; }
+  .stanza { margin-top: 24px; font-size: clamp(1.04rem, 1.5vw, 1.14rem); line-height: 1.82; }
+  .amen { margin-top: 28px; font-size: 1.08rem; color: var(--site-accent); }
+  .amen::before { content: ''; display: block; width: 28px; height: 1px; margin-bottom: 19px; background: var(--site-accent); opacity: .65; }
+  @media (max-width: 760px) {
+    .prayer-panel { padding-top: 25px; }
+    h2 { margin-bottom: 21px; }
+  }
+</style>

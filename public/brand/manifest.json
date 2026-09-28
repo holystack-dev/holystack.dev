@@ -1,0 +1,390 @@
+{
+  "version": 1,
+  "files": [
+    {
+      "file": "README.md",
+      "bytes": 2051,
+      "sha256": "a5f0ad5cc65abdb48aa6d3363642f3e558a61c2d5c429517a889d07bf17174b3"
+    },
+    {
+      "file": "favicon/favicon-128.png",
+      "bytes": 1671,
+      "sha256": "be4afa01b830e0ac5a40ce600ca653d50f19087e4172a8d9c0f9a6e62995fdd1"
+    },
+    {
+      "file": "favicon/favicon-16.png",
+      "bytes": 345,
+      "sha256": "ea381a05002f8af269c7088cd682929c19d521c94120496d164f028b09b03347"
+    },
+    {
+      "file": "favicon/favicon-256.png",
+      "bytes": 3857,
+      "sha256": "6ca4b37b0d6deddebfac2191d731b807084568c52b440bb408e3f9f37b6240da"
+    },
+    {
+      "file": "favicon/favicon-32.png",
+      "bytes": 503,
+      "sha256": "8180a0fa57e37ff70910f0be3f944c0f44a0834446afb91590c3d2e784be2d3c"
+    },
+    {
+      "file": "favicon/favicon-48.png",
+      "bytes": 686,
+      "sha256": "fa34444c48bacd8336e462cec1ab8b5951123e9ba716dfd5985a7119f996b7c8"
+    },
+    {
+      "file": "favicon/favicon-64.png",
+      "bytes": 807,
+      "sha256": "8e5323309378dd0abcb52ca091424fdff860acbb7b1d607dc71532dc1c44b56f"
+    },
+    {
+      "file": "favicon/favicon.ico",
+      "bytes": 1588,
+      "sha256": "31f4dfa20eb1d5c5476afc9498fd4372184a752d43804039e3f0b3113fd1c69a"
+    },
+    {
+      "file": "favicon/favicon.svg",
+      "bytes": 561,
+      "sha256": "2d0734d1ca142ed9d58ab7e6432b655d552aa33fe3390879a4d1f3cd2cbc2a74"
+    },
+    {
+      "file": "favicon/safari-pinned-tab.svg",
+      "bytes": 475,
+      "sha256": "99350231f9c4be8499a0837755f84b483aa3a69c3d9673796bfc907d81ceaf0c"
+    },
+    {
+      "file": "png/holystack-app-icon-1024.png",
+      "bytes": 34771,
+      "sha256": "1e539eb80a70df51fff5f9c2ffcbe353a1d0d06b6f5b1b6afbf8ce69bc31fe02"
+    },
+    {
+      "file": "png/holystack-app-icon-180.png",
+      "bytes": 2412,
+      "sha256": "a18b68b3459869518dbf745e0eaeefca63c8d88b9242c7e0ea71be6209e79b08"
+    },
+    {
+      "file": "png/holystack-app-icon-192.png",
+      "bytes": 2694,
+      "sha256": "17a27c339a245fe167a39f36270374bc94b7e17c4fafacfd260533ab542152fa"
+    },
+    {
+      "file": "png/holystack-app-icon-512.png",
+      "bytes": 10939,
+      "sha256": "60939bb669c6887cea2d247d29c4e3fe71272aee21984d96ba7204493a29edb9"
+    },
+    {
+      "file": "png/holystack-app-icon-light-1024.png",
+      "bytes": 34663,
+      "sha256": "da2fe29be5d097930776ace456a7c84ae4a7cc455d4bc52cbe5b5ce53bd70383"
+    },
+    {
+      "file": "png/holystack-app-icon-light-180.png",
+      "bytes": 2441,
+      "sha256": "b858d105a12c0d7aaad130f1d5671369a6aea244b3f8e451b3c6d84774dc8fe6"
+    },
+    {
+      "file": "png/holystack-app-icon-light-192.png",
+      "bytes": 2706,
+      "sha256": "11779a0a1c6b447eb3d2e3837f3128ac69df37d47ad121b04100f9bcf4e353e2"
+    },
+    {
+      "file": "png/holystack-app-icon-light-512.png",
+      "bytes": 10956,
+      "sha256": "c0a755902fdc1955696652a8356adffe2684955e60e50a66104dfe1b4d59a3c3"
+    },
+    {
+      "file": "png/holystack-horizontal-1024.png",
+      "bytes": 21872,
+      "sha256": "608353a4d0eced313265a8ca1f603355df7c7216cb16f505447485b8c0d6adc1"
+    },
+    {
+      "file": "png/holystack-horizontal-2048.png",
+      "bytes": 52452,
+      "sha256": "2953b33ee17bba2c130ae847e9df34e3a21386cf1a926f369f37112443435ea3"
+    },
+    {
+      "file": "png/holystack-horizontal-black-1024.png",
+      "bytes": 17321,
+      "sha256": "fa907b8aaa962800ba68129479cf6a29bb273d3afa66edd81d5eef06c3247763"
+    },
+    {
+      "file": "png/holystack-horizontal-black-2048.png",
+      "bytes": 41577,
+      "sha256": "ab592bf5761c94bf6dabd3df0a6f3ec32a9c19a6f47b75098f5594dba4e480e8"
+    },
+    {
+      "file": "png/holystack-horizontal-dark-1024.png",
+      "bytes": 21954,
+      "sha256": "7208886c3284e83ad0831cb8f77c814e1ee1a87b330072ea091cdc8ea561a79f"
+    },
+    {
+      "file": "png/holystack-horizontal-dark-2048.png",
+      "bytes": 52402,
+      "sha256": "beafeb44911be7556f3dcfaa36542b95d1b192e338e3bfba3ccb9b678c069a3d"
+    },
+    {
+      "file": "png/holystack-horizontal-white-1024.png",
+      "bytes": 17591,
+      "sha256": "b933712b1483f47fc88be049580ef108674cc8c3ce63b9d21a96f092f8d98d74"
+    },
+    {
+      "file": "png/holystack-horizontal-white-2048.png",
+      "bytes": 39962,
+      "sha256": "083a7b418e4ffb21b2dba963b9927467c7a1dda06726bd8925607f9bf18b5c52"
+    },
+    {
+      "file": "png/holystack-icon-1024.png",
+      "bytes": 45138,
+      "sha256": "f04bf5daf93d827e96067d1bcdb9e370050f043df15ce776d6742806cf295630"
+    },
+    {
+      "file": "png/holystack-icon-512.png",
+      "bytes": 9587,
+      "sha256": "7794b0de7cc4c4d2cf545aaf9616aa8de503d9f073a9d8c353647d1931b9c9f5"
+    },
+    {
+      "file": "png/holystack-icon-black-1024.png",
+      "bytes": 31225,
+      "sha256": "d55dc59cacdf13c4812f6f18e3cd1a6f684057ba27876bb4a17976226cc9cba9"
+    },
+    {
+      "file": "png/holystack-icon-black-512.png",
+      "bytes": 8033,
+      "sha256": "4d59a013102d2886925700dcb912af441de9dfc2b678f1a55678bfafaee7ec3c"
+    },
+    {
+      "file": "png/holystack-icon-dark-1024.png",
+      "bytes": 46788,
+      "sha256": "ce68b3b7f84c7e7b085b4b07eeef496c43d2fc38228d97ede866095e92a664ef"
+    },
+    {
+      "file": "png/holystack-icon-dark-512.png",
+      "bytes": 9555,
+      "sha256": "860b4d355ffb3b7167b4d5519f61472d467645d937a8e939449b42a398504db9"
+    },
+    {
+      "file": "png/holystack-icon-white-1024.png",
+      "bytes": 25418,
+      "sha256": "c0c4b7864e5dacdc4151a2a40bb820c3f080635f2588b1f38765483c720f6de3"
+    },
+    {
+      "file": "png/holystack-icon-white-512.png",
+      "bytes": 7304,
+      "sha256": "a956b2a429fa62d827740e2366b2e56c97a420e61a62289b423d6ef5671269fa"
+    },
+    {
+      "file": "png/holystack-stacked-1024.png",
+      "bytes": 26156,
+      "sha256": "73661b151784dd2c3cd401c26de4e4d705be3ddb979a5d0badb29ac7891bee4d"
+    },
+    {
+      "file": "png/holystack-stacked-2048.png",
+      "bytes": 61594,
+      "sha256": "d07f6d7a6ab9b636bdae860e085b557523b46b4a3bc0e77674b73697439f0472"
+    },
+    {
+      "file": "png/holystack-stacked-black-1024.png",
+      "bytes": 20275,
+      "sha256": "323e3708c584dcc5752ef2c577cf208159476389b8de6fac0812684cc5a72f0b"
+    },
+    {
+      "file": "png/holystack-stacked-black-2048.png",
+      "bytes": 48511,
+      "sha256": "52c4fad4f81e3e5ee7e7821afb32022cfb532fa2a23bb45eb1c2c1e94610097d"
+    },
+    {
+      "file": "png/holystack-stacked-dark-1024.png",
+      "bytes": 26138,
+      "sha256": "b811565d52f432c0da32ed3616fe9b659c6d6ac80e6ce3c331b19553bb26cf74"
+    },
+    {
+      "file": "png/holystack-stacked-dark-2048.png",
+      "bytes": 61413,
+      "sha256": "09c57e8915c5cf6220b8b351c6920d68a83d0a9283909283988ea0e7cdf50596"
+    },
+    {
+      "file": "png/holystack-stacked-white-1024.png",
+      "bytes": 21258,
+      "sha256": "c638bc4ceffbc55d0ef8e269864389eceb2cd611794da5e99385b93229c26da7"
+    },
+    {
+      "file": "png/holystack-stacked-white-2048.png",
+      "bytes": 47661,
+      "sha256": "6f5dc25842b8de40f23487e01496f02fe5dffa6c26e15be68bee9a8559c7f106"
+    },
+    {
+      "file": "png/holystack-wordmark-1024.png",
+      "bytes": 23479,
+      "sha256": "5e3a0985ec651232e6ec0bee878d7175917bb71d7836c610351902ca0f2f76ce"
+    },
+    {
+      "file": "png/holystack-wordmark-2048.png",
+      "bytes": 56496,
+      "sha256": "33d06609dbe6c46c74cfb61a62e1d94b062e7af40cd1d813ed53349017477603"
+    },
+    {
+      "file": "png/holystack-wordmark-black-1024.png",
+      "bytes": 18567,
+      "sha256": "2038e7db7ea41d2f72ee40fc107b73404524b42fd75c06e69e7394a96b6e4b05"
+    },
+    {
+      "file": "png/holystack-wordmark-black-2048.png",
+      "bytes": 45340,
+      "sha256": "862ce32f623712fedc1904df165eb261ebfab1821d8792f80304631ab9bda363"
+    },
+    {
+      "file": "png/holystack-wordmark-dark-1024.png",
+      "bytes": 23342,
+      "sha256": "37f1c5a675b2f75ba8b6092061f61305b56c6ac085db347068f6212dbb517b28"
+    },
+    {
+      "file": "png/holystack-wordmark-dark-2048.png",
+      "bytes": 56159,
+      "sha256": "e9bb828a51c53e6790a987cc83493f1325424fef988d99d61ea87f6e13e12340"
+    },
+    {
+      "file": "png/holystack-wordmark-white-1024.png",
+      "bytes": 19094,
+      "sha256": "486ef22e63b56c7bbe5db5e7130442f40522da3b9567f586510b2d886a8e16b3"
+    },
+    {
+      "file": "png/holystack-wordmark-white-2048.png",
+      "bytes": 43865,
+      "sha256": "c27308f64b26e4988ba44705a4b992132e00f4eb97934a34886ed066083c07ca"
+    },
+    {
+      "file": "preview.html",
+      "bytes": 3177,
+      "sha256": "ee3b04ef6ed8d2c2676a27d6e130c8ceeeb9082f1783cb13b5a9edb116afa732"
+    },
+    {
+      "file": "social/holystack-social-1200x630.png",
+      "bytes": 41975,
+      "sha256": "e4b18d7b0a91809a683a21325d20811e3202a7a5ddd802ff9e6766659b826a51"
+    },
+    {
+      "file": "social/holystack-social.svg",
+      "bytes": 19371,
+      "sha256": "6b8b4d1297c62e9bb32bd9980503aa46c78de3f6694857cc88520c1318813e74"
+    },
+    {
+      "file": "source/INTER-OFL.txt",
+      "bytes": 4477,
+      "sha256": "3b0a5fca3d17942cde889069889dedbbbd075e9b599968c82a95f4d944e9b345"
+    },
+    {
+      "file": "source/PLAYFAIR-OFL.txt",
+      "bytes": 4630,
+      "sha256": "c052aafd2a71e90bcee6e69f475029d430a10d548c08ffcae350171f0e9668b1"
+    },
+    {
+      "file": "source/build-brand.mjs",
+      "bytes": 15926,
+      "sha256": "9572c45efab04593ffb970ee1b918af14b6f1ee9e5b3ad786b8ee4f6f1a5316b"
+    },
+    {
+      "file": "source/identity.json",
+      "bytes": 7071,
+      "sha256": "3b7ee2f972db38f72a39e5ede66c6468dd028409f3aa4d8ce816c7fa6f2495ea"
+    },
+    {
+      "file": "source/playfair-display-latin-700-normal.woff",
+      "bytes": 28296,
+      "sha256": "648a046ddf99139a09b0ef25eb21890ea95c6323eead5285fdb4c9797a0bfc18"
+    },
+    {
+      "file": "svg/holystack-app-icon-light.svg",
+      "bytes": 569,
+      "sha256": "88aec5373c9ab8c81d56711dde555d127d81fc05fed9095019345d4406b69fe9"
+    },
+    {
+      "file": "svg/holystack-app-icon.svg",
+      "bytes": 569,
+      "sha256": "cc9dd1fcd044e04358630298a4049a83b86905a364a98c13e3f307440010c502"
+    },
+    {
+      "file": "svg/holystack-horizontal-black.svg",
+      "bytes": 6235,
+      "sha256": "ec8c403903cfe754f150c68c9be297e2bbc9c990c97ad654a5dabe629453e776"
+    },
+    {
+      "file": "svg/holystack-horizontal-dark.svg",
+      "bytes": 6235,
+      "sha256": "a4b9173cec017a7e4aa53ac7592bc1c11bbf29943de4b5ff64ce5d1c36b39386"
+    },
+    {
+      "file": "svg/holystack-horizontal-white.svg",
+      "bytes": 6235,
+      "sha256": "7e97ec3f00873a761a9a0381fc8310421a0944bd755d51c215e4457588fca00f"
+    },
+    {
+      "file": "svg/holystack-horizontal.svg",
+      "bytes": 6235,
+      "sha256": "7dd15e6f0ce3b95520ff96e7f468996cfc1043b58b6c9b7b8c6762d1c4bef240"
+    },
+    {
+      "file": "svg/holystack-icon-black.svg",
+      "bytes": 475,
+      "sha256": "b9f76476d5637a606fa3bd1052f5594827f94b6dbf0f70402992f67553314c5c"
+    },
+    {
+      "file": "svg/holystack-icon-dark.svg",
+      "bytes": 475,
+      "sha256": "90223dc512be620f6a86ef566957b69224c43049fadb67ec45b25210c51a0024"
+    },
+    {
+      "file": "svg/holystack-icon-small.svg",
+      "bytes": 475,
+      "sha256": "7a55da0d6c4612c72dd0917a7b641b3f90d7da83d3f8f314a41dc4d38009c212"
+    },
+    {
+      "file": "svg/holystack-icon-white.svg",
+      "bytes": 475,
+      "sha256": "40d8eb94c9497f945b6dfc94bec616204a912772c7950cadd100a27c9c4e146b"
+    },
+    {
+      "file": "svg/holystack-icon.svg",
+      "bytes": 475,
+      "sha256": "024c08361733311ce20878967c0dc86a8190566a831baa3b09d0a85427e03e9c"
+    },
+    {
+      "file": "svg/holystack-stacked-black.svg",
+      "bytes": 6279,
+      "sha256": "e7affa2d9a94f84903b6a312b6b5844f820e2cb2a7625ba08bf1c8c3c1afeff8"
+    },
+    {
+      "file": "svg/holystack-stacked-dark.svg",
+      "bytes": 6279,
+      "sha256": "cc5a1961476067e3994fc11d361747dce39ae8d30ac3a2a05be9e7f99000798d"
+    },
+    {
+      "file": "svg/holystack-stacked-white.svg",
+      "bytes": 6279,
+      "sha256": "ca63f903d9929c16e29f758ff430eaa10270ef8c3be62594835e328bcdb97417"
+    },
+    {
+      "file": "svg/holystack-stacked.svg",
+      "bytes": 6279,
+      "sha256": "1d2e95a5c82d24e5249b1d7685e5590dddd100dc4491b1c291250693d26b50c1"
+    },
+    {
+      "file": "svg/holystack-wordmark-black.svg",
+      "bytes": 5909,
+      "sha256": "79e13939bddc8bedb66c17b7a9dcb538dd5fa7339c2f03a8924757bc6c753c63"
+    },
+    {
+      "file": "svg/holystack-wordmark-dark.svg",
+      "bytes": 5909,
+      "sha256": "78189c054eb11fdd50331d285c294f0318bba8e1cfc1470ece0c5129bf10c561"
+    },
+    {
+      "file": "svg/holystack-wordmark-white.svg",
+      "bytes": 5909,
+      "sha256": "ab627c0263ddda38dbe49a3911c8a2bfabddebeb78510f33d62f451e69cffa0f"
+    },
+    {
+      "file": "svg/holystack-wordmark.svg",
+      "bytes": 5909,
+      "sha256": "0eedd320fcc4ddea50826b29eddc0f5d7a0196d6d63e3c24beaaa51d4c0a5233"
+    }
+  ]
+}

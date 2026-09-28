@@ -1,0 +1,40 @@
+---
+import PhoneFrame from './PhoneFrame.astro';
+import DeviceFrame from '../shema/DeviceFrame.astro';
+import Icon from './Icon.astro';
+import type { Project } from '../../data/projects';
+interface Props { project: Project; eager?: boolean; }
+const { project, eager = false } = Astro.props;
+---
+<article class:list={['product-card', project.id]}>
+  <a class="product-art" href={project.href} aria-label={`Explore ${project.name}`}>
+    {project.media.kind === 'phone'
+      ? <PhoneFrame src={project.media.src} alt={project.media.alt} size={200} eager={eager}/>
+      : <DeviceFrame view="angled" src={project.media.src} alt={project.media.alt} size={288} eager={eager}/>}
+  </a>
+  <div class="product-copy">
+    <div class="product-title"><h2><a href={project.href}>{project.name}</a></h2><span>{project.category}</span></div>
+    <p>{project.description}</p>
+    <ul class="tag-list">{project.tags.map(tag => <li>{tag}</li>)}</ul>
+    <a class="product-link" href={project.href}>Explore {project.name} <Icon name="arrow" size={19}/></a>
+  </div>
+</article>
+<style>
+  .product-card { display: flex; flex-direction: column; min-width: 0; }
+  .product-art { display: flex; align-items: center; justify-content: center; height: 470px; padding: 30px; border: 1px solid var(--site-line); border-radius: 18px; text-decoration: none; background: var(--site-soft); transition: border-color .2s; }
+  .product-art:hover { border-color: var(--site-accent); }
+  .metanoia .product-art { background: var(--product-meta); }
+  .shema .product-art { background: var(--product-shema); }
+  .product-copy { display: flex; flex: 1; flex-direction: column; padding: 27px 2px 0; }
+  .product-title { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 17px; }
+  h2 { font-size: 2rem; line-height: 1.2; letter-spacing: -.03em; margin: 0; }
+  h2 a { text-decoration: none; }
+  .product-title span { color: var(--site-muted); font-size: .7rem; }
+  .product-copy > p { color: var(--site-muted); font-size: .92rem; line-height: 1.85; margin: 0 0 20px; }
+  .tag-list { margin: auto 0 16px; }
+  .product-link { display: inline-flex; align-items: center; gap: 16px; align-self: start; min-height: 44px; color: var(--site-accent); font-size: .83rem; font-weight: 500; text-decoration: none; }
+  .product-link:hover { text-decoration: underline; text-underline-offset: 5px; }
+  @media(max-width: 1000px) { .product-art { height: 440px; }.product-title { align-items: start; flex-direction: column; gap: 8px; } }
+  @media(max-width: 760px) { .product-art { height: 440px; padding: 24px; }.product-title { flex-direction: row; align-items: center; }.product-copy { padding-top: 23px; } }
+  @media(max-width: 380px) { .product-art { height: 410px; }.product-title { align-items: start; flex-direction: column; } }
+</style>

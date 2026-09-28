@@ -1,82 +1,75 @@
 ---
-const links = [
-  { href: '/apps', label: 'Apps' },
-  { href: '/privacy', label: 'Privacy' },
-  { href: '/contact', label: 'Contact' },
-];
+import Brand from './Brand.astro';
+import ThemePicker from './ThemePicker.astro';
+const links = [{href:'/apps',label:'Projects'},{href:'/metanoia',label:'Metanoia'},{href:'/shema',label:'Shema'},{href:'/contact',label:'Contact'}];
+const pathname = Astro.url.pathname.replace(/\/$/, '');
 ---
-
-<header class="fixed w-full top-0 z-50 bg-white/80 dark:bg-[#0f0f14]/80 backdrop-blur-md border-b border-gray-100 dark:border-white/5">
-  <div class="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
-    <!-- Logo -->
-    <a href="/" class="flex items-center gap-2 group">
-      <div class="text-purple-700 dark:text-purple-400 w-8 h-8 group-hover:scale-110 transition-transform duration-300">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" class="w-full h-full">
-          <path d="M32 52L8 40V34L32 46L56 34V40L32 52Z" fill="currentColor" opacity="0.3"/>
-          <path d="M32 44L8 32V26L32 38L56 26V32L32 44Z" fill="currentColor" opacity="0.5"/>
-          <path d="M32 36L8 24V18L32 30L56 18V24L32 36Z" fill="currentColor" opacity="0.7"/>
-          <rect x="29" y="4" width="6" height="24" rx="1" fill="currentColor"/>
-          <rect x="22" y="10" width="20" height="6" rx="1" fill="currentColor"/>
-        </svg>
-      </div>
-      <span class="font-serif font-bold text-lg tracking-wide text-gray-900 dark:text-white">HOLYSTACK</span>
-    </a>
-
-    <!-- Desktop Nav -->
-    <nav class="hidden md:flex items-center gap-8">
-      {links.map(link => (
-        <a 
-          href={link.href}
-          class="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-purple-700 dark:hover:text-purple-400 transition-colors"
-        >
-          {link.label}
-        </a>
-      ))}
-    </nav>
-
-    <!-- Mobile Menu Button -->
-    <button id="menu-toggle" class="md:hidden text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white" aria-label="Toggle menu">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="4" x2="20" y1="12" y2="12" />
-        <line x1="4" x2="20" y1="6" y2="6" />
-        <line x1="4" x2="20" y1="18" y2="18" />
-      </svg>
-    </button>
-  </div>
-
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-white dark:bg-[#0f0f14] border-b border-gray-100 dark:border-white/5 p-4 flex flex-col gap-4 shadow-lg">
-    {links.map(link => (
-      <a 
-        href={link.href}
-        class="text-base font-medium text-gray-600 dark:text-gray-400 hover:text-purple-700 dark:hover:text-purple-400 transition-colors"
-      >
-        {link.label}
-      </a>
-    ))}
+<header class="site-header">
+  <div class="wrap header-inner">
+    <Brand />
+    <div class="header-controls">
+      <site-navigation>
+        <button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false" aria-label="Open navigation" hidden>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
+        </button>
+        <nav id="site-navigation" aria-label="Main navigation">
+          {links.map(link => <a href={link.href} aria-current={pathname === link.href ? 'page' : undefined}>{link.label}</a>)}
+        </nav>
+      </site-navigation>
+      <ThemePicker/>
+    </div>
   </div>
 </header>
-
+<noscript><style is:inline>
+  @media (max-width: 860px) {
+    .site-shell header.site-header { position: static; }
+    .site-header .header-inner { height: auto; min-height: 72px; flex-wrap: wrap; padding-block: 10px; }
+    .site-header .header-controls, .site-header site-navigation { width: 100%; }
+    .site-header nav { position: static; display: flex; flex-wrap: wrap; gap: 8px 24px; padding: 0; border: 0; box-shadow: none; }
+    .site-main { padding-top: 0; }
+  }
+</style></noscript>
 <script>
-  const menuToggle = document.getElementById('menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-
-  // Toggle menu on button click
-  menuToggle?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
-  });
-
-  // Close menu when clicking a link
-  mobileMenu?.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu?.classList.add('hidden');
-    });
-  });
-
-  // Close menu when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!mobileMenu?.contains(e.target as Node) && !menuToggle?.contains(e.target as Node)) {
-      mobileMenu?.classList.add('hidden');
+  class SiteNavigation extends HTMLElement {
+    connectedCallback() {
+      const button = this.querySelector<HTMLButtonElement>('button')!;
+      const nav = this.querySelector<HTMLElement>('nav')!;
+      const media = matchMedia('(max-width: 860px)');
+      let open = false;
+      const update = () => {
+        button.hidden = !media.matches;
+        nav.hidden = media.matches && !open;
+        button.setAttribute('aria-expanded', String(open));
+        button.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+      };
+      button.addEventListener('click', () => { open = !open; update(); });
+      this.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && open) { open = false; update(); button.focus(); }
+      });
+      document.addEventListener('click', e => {
+        if (open && !this.contains(e.target as Node)) { open = false; update(); }
+      });
+      media.addEventListener('change', () => { open = false; update(); });
+      update();
     }
-  });
+  }
+  if (!customElements.get('site-navigation')) customElements.define('site-navigation', SiteNavigation);
 </script>
+<style>
+  .site-header { position: fixed; z-index: 50; top: 0; width: 100%; background: var(--site-bg); border-bottom: 1px solid var(--site-line); }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; height: calc(var(--header-height) - 1px); gap: 20px; }
+  .header-controls { display: flex; align-items: center; gap: 32px; }
+  nav { display: flex; align-items: center; gap: 30px; }
+  nav[hidden], button[hidden] { display: none; }
+  nav a { display: inline-flex; align-items: center; min-height: 44px; font-size: .79rem; color: var(--site-muted); text-decoration: none; }
+  nav a:hover, nav a[aria-current] { color: var(--site-accent); }
+  nav a[aria-current] { text-decoration: underline; text-underline-offset: 7px; }
+  .menu-toggle { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--site-line); border-radius: 50%; color: var(--site-ink); background: var(--site-card); cursor: pointer; }
+  @media (max-width: 860px) {
+    .header-controls { gap: 8px; }
+    site-navigation { order: 2; }
+    nav { position: absolute; top: var(--header-height); left: 0; right: 0; display: grid; gap: 0; padding: 14px 24px 22px; background: var(--site-card); border-bottom: 1px solid var(--site-line); box-shadow: var(--site-shadow); }
+    nav a { font-size: 1rem; padding: 8px 0; }
+  }
+  @media (max-width: 420px) { .header-inner :global(.brand-logo) { width: 152px; } }
+</style>

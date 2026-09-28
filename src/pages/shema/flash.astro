@@ -1,98 +1,182 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
-import Section from '../../components/common/Section.astro';
-
-const GITHUB = 'https://github.com/holystack-dev/shema';
+import DeviceFrame from '../../components/shema/DeviceFrame.astro';
+import { SHEMA_GITHUB, screen } from '../../data/shema';
+import '../../styles/shema.css';
 
 const steps = [
-  'Open this page in <strong>Chrome</strong> or <strong>Edge</strong> on a computer.',
-  'Connect the device with a <strong>USB-C data cable</strong> (a charge-only cable will not work).',
-  'Click <strong>Connect &amp; Install</strong> below, then pick the device’s serial port.',
-  'Click <strong>Install</strong> and confirm. It takes about a minute, so don’t unplug.',
-  'When it finishes, unplug. The player boots on its own.',
+  {
+    title: 'Prepare the microSD card',
+    text: 'Back up any files you need, then format the card as FAT32. Formatting erases everything on the card. Copy your MP3s into the BIBLE, BIY (Bible in a Year) and LIBRARY folders using the layout in the audio setup guide.',
+    link: { href: '/shema/#audio-setup', label: 'Folder layout and file names' },
+  },
+  {
+    title: 'Open the installer on a computer',
+    text: 'Use Chrome or Edge on Windows, macOS, Linux or a Chromebook. Connect the device with a USB-C data cable. A charge-only cable will not work.',
+  },
+  {
+    title: 'Connect to the device',
+    text: 'Click Connect & Install and select the device’s serial port from the browser prompt. If no port appears, follow the download mode instructions below.',
+  },
+  {
+    title: 'Install the firmware',
+    text: 'Choose Install and follow the prompts. Keep the device connected until the installer reports that it has finished.',
+  },
+  {
+    title: 'Insert the card and start listening',
+    text: 'Turn the device off before inserting the prepared microSD card, then turn it on again. Choose your Bible recording in Settings, open Bible, pick a book and chapter, and press play.',
+  },
 ];
 
 const troubleshooting = [
-  ['Device not in the port list', 'Use a data USB-C cable (not charge-only), try another port, or enter download mode (below).'],
-  ['"Web Serial not supported"', 'Use Chrome or Edge on a computer, not a phone, and not Safari or Firefox.'],
-  ['Flashing fails partway', 'Try a different cable or port, then enter download mode and retry.'],
-  ['Blank screen afterwards', 'Tap RESET once, and make sure a microSD card with audio is inserted.'],
+  ['Device is missing from the port list', 'Use a USB-C data cable, try another USB port, or enter download mode using the steps below.'],
+  ['Browser does not support the installer', 'Use Chrome or Edge on a computer. Safari, Firefox and phone browsers cannot use this installer.'],
+  ['Installation stops partway through', 'Check the cable connection, try a different USB port and retry. Enter download mode if the device no longer appears.'],
+  ['Screen is blank after installation', 'Tap RESET once. Check that you have the supported Waveshare ESP32-S3-Touch-LCD-1.85C V2 hardware.'],
+  ['Audio or folders do not appear', 'Check that the card is formatted as FAT32 and that the folder names and MP3 filenames match the audio setup guide. Turn the device off and on after changing the card contents.'],
 ];
 ---
 
-<MainLayout
-  title="Flash Shema | Holystack"
-  description="Install the Shema audio Bible firmware on your ESP32-S3 device directly from your browser."
->
-  <!-- ESP Web Tools (loaded from CDN; left untouched by Astro's bundler) -->
+<MainLayout title="Install Shema | HolyStack" description="Set up your Shema audio Bible player. Prepare a FAT32 microSD card, add your audio and install the firmware from Chrome or Edge.">
   <script is:inline type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js"></script>
 
-  <Section background="white">
-    <div class="max-w-2xl mx-auto text-center">
-      <p class="text-purple-700 dark:text-purple-400 font-medium mb-3 uppercase tracking-wide text-sm">Shema · Audio Bible</p>
-      <h1 class="font-serif text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">Install the firmware</h1>
-      <p class="text-gray-600 dark:text-gray-400 text-lg mb-10">
-        Flash your device straight from this page, with nothing to download. Works in
-        Chrome or Edge on Windows, Mac, Linux, and Chromebook.
-      </p>
+  <div class="shema-theme installer-page">
+    <div class="installer-width">
+      <a href="/shema/" class="back-link">← Back to Shema</a>
 
-      <!-- Installer button -->
-      <div class="flex flex-col items-center gap-4 mb-4">
-        <esp-web-install-button manifest="/shema/manifest.json">
-          <button slot="activate" class="inline-flex items-center justify-center px-8 py-4 rounded-lg font-bold text-white bg-purple-800 hover:bg-purple-700 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-            Connect &amp; Install
-          </button>
-          <span slot="unsupported"></span>
-          <span slot="not-allowed"></span>
-        </esp-web-install-button>
-      </div>
+      <section class="install-hero" aria-labelledby="install-title">
+        <div class="intro">
+          <p class="eyebrow">DEVICE SETUP</p>
+          <h1 id="install-title">Install Shema.</h1>
+          <p class="lead">Prepare your audio card and install the firmware from your browser.</p>
+          <h2 class="checklist-title">Before you start</h2>
+          <ul class="checklist">
+            <li>Waveshare ESP32-S3-Touch-LCD-1.85C <strong>V2</strong></li>
+            <li>A computer with <strong>Chrome or Edge</strong></li>
+            <li>A <strong>USB-C data cable</strong></li>
+            <li>A microSD card and your MP3 audio files</li>
+          </ul>
+          <aside class="format-note" aria-label="Required card format">
+            <strong>FAT32 is required.</strong>
+            <p>Format the microSD card as FAT32 before adding audio. Back up any files first: formatting erases the card.</p>
+            <a class="text-link" href="/shema/#audio-setup">See the folder layout and file names →</a>
+          </aside>
+        </div>
 
-      <!-- Unsupported-browser notice -->
-      <div id="ua-warn" class="hidden mx-auto max-w-md text-sm rounded-xl border border-red-600/30 bg-red-600/10 text-red-700 dark:text-red-400 p-4 mb-4">
-        Your browser can’t talk to USB devices. Please use <strong>Chrome</strong>
-        or <strong>Edge</strong> on a computer. iPhones and iPads can’t flash USB devices.
-      </div>
+        <div class="install-card">
+          <div class="install-device"><DeviceFrame view="angled" src={screen('home')} alt="Shema device showing the Home screen" size={232} eager /></div>
+          <h2>Connect your device</h2>
+          <p>Plug it into your computer with a USB-C data cable.</p>
+          <esp-web-install-button manifest="/shema/manifest.json">
+            <button slot="activate" class="install-button">Connect &amp; Install</button>
+            <div slot="unsupported" class="browser-notice">Open this page in Chrome or Edge on a computer to install Shema.</div>
+            <div slot="not-allowed" class="browser-notice">Open this page over HTTPS or on localhost to connect to the device.</div>
+          </esp-web-install-button>
+          <noscript><p class="browser-notice">JavaScript is required to use the browser installer.</p></noscript>
+          <div id="ua-warn" class="browser-notice" hidden>Your browser cannot connect to USB devices. Use Chrome or Edge on a computer.</div>
+          <p class="install-help"><a href="#download-mode">Device not detected?</a></p>
+        </div>
+      </section>
 
-      <p class="text-sm text-gray-500 dark:text-gray-500">
-        Trouble connecting? Hold <strong>BOOT</strong>, tap <strong>RESET</strong>,
-        release <strong>BOOT</strong>, then click Connect again.
-      </p>
+      <section class="instructions" aria-labelledby="steps-title">
+        <p class="eyebrow">INSTALLATION GUIDE</p>
+        <h2 id="steps-title">Step by step</h2>
+        <ol class="steps">
+          {steps.map((step, index) => <li>
+            <span class="step-number" aria-hidden="true">{index + 1}</span>
+            <div><h3>{step.title}</h3><p>{step.text}</p>{step.link && <a class="text-link" href={step.link.href}>{step.link.label} →</a>}</div>
+          </li>)}
+        </ol>
+      </section>
+
+      <section class="download-mode" id="download-mode" aria-labelledby="download-title">
+        <div><p class="eyebrow">IF THE DEVICE IS NOT DETECTED</p><h2 id="download-title">Enter download mode</h2></div>
+        <ol>
+          <li>Keep the USB-C cable connected.</li>
+          <li>Hold the <strong>BOOT</strong> button.</li>
+          <li>While holding BOOT, press and release <strong>RESET</strong>.</li>
+          <li>Release BOOT, then click <strong>Connect &amp; Install</strong> again.</li>
+        </ol>
+      </section>
+
+      <section class="troubleshooting" aria-labelledby="help-title">
+        <p class="eyebrow">HELP</p>
+        <h2 id="help-title">Troubleshooting</h2>
+        <div class="help-list">{troubleshooting.map(([problem, fix]) => <details><summary>{problem}</summary><p>{fix}</p></details>)}</div>
+        <div class="guide-links"><a href="/shema/#get-started" class="text-link">Hardware and audio setup →</a><a href={SHEMA_GITHUB} class="text-link">Source code and build instructions ↗</a></div>
+      </section>
     </div>
-  </Section>
-
-  <!-- Steps -->
-  <Section background="gray">
-    <div class="max-w-3xl mx-auto">
-      <h2 class="font-serif text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">Step by step</h2>
-      <ol class="space-y-4">
-        {steps.map((s, i) => (
-          <li class="flex gap-4 items-start bg-white dark:bg-[#1a1a24] rounded-xl p-5 border border-gray-100 dark:border-white/5">
-            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-purple-700 text-white font-bold flex items-center justify-center">{i + 1}</span>
-            <span class="text-gray-700 dark:text-gray-300 pt-1" set:html={s} />
-          </li>
-        ))}
-      </ol>
-
-      <h2 class="font-serif text-3xl font-bold text-gray-900 dark:text-white mt-16 mb-8 text-center">If something goes wrong</h2>
-      <div class="overflow-hidden rounded-xl border border-gray-100 dark:border-white/5">
-        {troubleshooting.map(([problem, fix], i) => (
-          <div class:list={["grid sm:grid-cols-3 gap-2 p-5", i % 2 ? "bg-white dark:bg-[#1a1a24]" : "bg-gray-50 dark:bg-[#15151e]"]}>
-            <div class="font-semibold text-gray-900 dark:text-white">{problem}</div>
-            <div class="sm:col-span-2 text-gray-600 dark:text-gray-400">{fix}</div>
-          </div>
-        ))}
-      </div>
-
-      <p class="text-center text-gray-500 dark:text-gray-400 mt-12">
-        Want to load the audio or build your own?
-        <a href={GITHUB} class="text-purple-700 dark:text-purple-400 font-medium hover:underline">See the guide on GitHub →</a>
-      </p>
-    </div>
-  </Section>
+  </div>
 
   <script is:inline>
+    // Keep the fallback visible even if the external installer fails to load.
     if (!('serial' in navigator)) {
-      document.getElementById('ua-warn')?.classList.remove('hidden');
+      document.getElementById('ua-warn').hidden = false;
+      document.querySelector('esp-web-install-button').hidden = true;
     }
   </script>
 </MainLayout>
+
+<style>
+  .installer-page { padding: 32px 0 88px; }
+  .installer-width { width: min(1120px, calc(100% - 64px)); margin-inline: auto; }
+  .back-link { display: inline-block; padding-block: 10px; font-size: 13px; color: var(--shema-muted); }
+  .back-link:hover, .install-help a:hover { color: var(--shema-accent); }
+  .install-hero { display: grid; grid-template-columns: 1.2fr 1fr; gap: 76px; align-items: center; padding-block: 40px 76px; }
+  .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .16em; color: var(--shema-accent); margin-bottom: 18px; }
+  h1, h2, h3 { font-weight: 400; letter-spacing: -.03em; }
+  h1 { font-size: clamp(40px, 5vw, 64px); line-height: 1.15; margin-bottom: 24px; }
+  .lead { font-size: 20px; line-height: 1.65; color: var(--shema-muted); }
+  h2 { font-size: 34px; line-height: 1.2; }
+  .checklist-title { font: 600 15px/1.6 var(--font-sans); letter-spacing: 0; margin: 30px 0 14px; }
+  .checklist { list-style: none; padding: 0; font-size: 14px; color: var(--shema-muted); }
+  .checklist li { position: relative; padding-left: 22px; margin-bottom: 10px; }
+  .checklist li::before { content: '✓'; position: absolute; left: 0; color: var(--shema-accent); }
+  strong { color: var(--shema-ink); font-weight: 600; }
+  .format-note { margin-top: 26px; padding: 20px; border: 1px solid var(--shema-accent); border-radius: 14px; background: var(--shema-card); font-size: 14px; }
+  .format-note > strong { color: var(--shema-accent); }
+  .format-note p { color: var(--shema-muted); line-height: 1.8; margin-top: 8px; }
+  .text-link { display: inline-block; padding-block: 10px; color: var(--shema-accent); font-size: 13px; font-weight: 600; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 4px; }
+  .text-link:hover { text-decoration-color: currentColor; }
+  .install-card { padding: 28px; background: var(--shema-card); border: 1px solid var(--shema-line); border-radius: 22px; text-align: center; min-width: 0; }
+  .install-device { margin: -8px -8px 28px; padding: 26px 12px; border-radius: 12px; background: var(--product-shema); }
+  .install-card h2 { font-size: 26px; margin-bottom: 14px; }
+  .install-card > p { font-size: 14px; line-height: 1.75; color: var(--shema-muted); }
+  esp-web-install-button { display: block; margin-top: 22px; }
+  .install-button { display: block; width: 100%; min-height: 50px; border-radius: 8px; background: var(--site-button); color: var(--site-button-text); font-size: 14px; font-weight: 600; cursor: pointer; }
+  .install-button:hover { box-shadow: 0 0 0 3px var(--shema-line); }
+  .browser-notice { margin-top: 18px; padding: 14px; border: 1px solid var(--shema-line); border-radius: 10px; color: var(--shema-muted); font-size: 13px; line-height: 1.8; }
+  [hidden] { display: none !important; }
+  .install-card > .install-help { margin-top: 18px; font-size: 12px; }
+  .install-help a { padding-block: 10px; display: inline-block; text-decoration: underline; text-underline-offset: 3px; }
+  .instructions { border-top: 1px solid var(--shema-line); padding-top: 56px; }
+  .steps { margin-top: 32px; padding: 0; list-style: none; }
+  .steps li { display: flex; gap: 24px; padding: 26px 0; border-bottom: 1px solid var(--shema-line); }
+  .step-number { display: grid; place-items: center; flex-shrink: 0; width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--shema-line); color: var(--shema-accent); font-size: 13px; }
+  h3 { font-size: 23px; margin-bottom: 12px; }
+  .steps p { max-width: 780px; font-size: 15px; line-height: 1.85; color: var(--shema-muted); }
+  .download-mode { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; padding: 32px; margin-block: 56px; border-radius: 18px; background: var(--site-soft); color: var(--shema-ink); border: 1px solid var(--shema-line); scroll-margin-top: 90px; }
+  .download-mode .eyebrow { color: var(--shema-accent); }
+  .download-mode h2 { font-size: 30px; }
+  .download-mode ol { list-style: decimal; padding-left: 20px; color: var(--shema-muted); font-size: 14px; line-height: 1.85; }
+  .download-mode li + li { margin-top: 8px; }
+  .download-mode strong { color: var(--shema-ink); }
+  .help-list { margin-top: 30px; }
+  details { padding: 20px 0; border-bottom: 1px solid var(--shema-line); }
+  summary { cursor: pointer; font-size: 15px; font-weight: 600; min-height: 24px; }
+  details p { margin: 14px 0 0 18px; color: var(--shema-muted); font-size: 14px; line-height: 1.8; max-width: 800px; }
+  .guide-links { display: flex; flex-wrap: wrap; gap: 12px 28px; margin-top: 32px; }
+  @media (max-width: 900px) { .install-hero { gap: 36px; }  }
+  @media (max-width: 720px) {
+    .installer-page { padding-top: 20px; padding-bottom: 60px; }
+    .installer-width { width: calc(100% - 40px); }
+    .install-hero { grid-template-columns: 1fr; padding-block: 28px 48px; }
+    .install-card { max-width: 440px; width: 100%; margin-inline: auto; }
+    .instructions { padding-top: 42px; }
+    .steps li { gap: 16px; }
+    h3 { font-size: 21px; }
+    .steps p { font-size: 14px; }
+    .download-mode { grid-template-columns: 1fr; gap: 24px; padding: 26px; margin-block: 42px; }
+    .download-mode h2 { font-size: 28px; }
+  }
+</style>

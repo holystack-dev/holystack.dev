@@ -1,30 +1,24 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-import Section from '../components/common/Section.astro';
+import Icon from '../components/common/Icon.astro';
 ---
-
-<MainLayout
-  title="Privacy Policy - Holystack"
-  description="We respect your privacy. No tracking. No ads. No data collection."
->
-  <Section class="py-20">
-    <div class="max-w-3xl mx-auto">
-      <h1 class="font-serif text-5xl font-bold mb-8 text-gray-900 dark:text-white text-center">Privacy Policy</h1>
-
-      <div class="prose prose-lg dark:prose-invert mx-auto">
-        <p>We don't collect any data. That's the short version.</p>
-
-        <ul>
-          <li><strong>No cookies</strong> — this website doesn't use them.</li>
-          <li><strong>No analytics</strong> — we don't track visits, clicks, or behavior.</li>
-          <li><strong>No accounts</strong> — our apps don't require sign-up or login.</li>
-          <li><strong>All data stays on your device</strong> — nothing is transmitted to us.</li>
-        </ul>
-
-        <p>
-          If you have questions, <a href="/contact">contact us</a>.
-        </p>
-      </div>
-    </div>
-  </Section>
+<MainLayout title="Privacy | HolyStack" description="HolyStack does not use cookies or analytics. Our apps do not require accounts, and your personal data stays on your device.">
+  <section class="page-intro wrap reading"><p class="eyebrow">Privacy</p><h1 class="display">Privacy at HolyStack.</h1><p class="lede">Our apps don’t require an account. This website uses no cookies or analytics. Your chosen colour theme is saved in your browser so it can be remembered on your next visit.</p></section>
+  <section class="wrap reading privacy-list" aria-label="Our privacy commitments">
+    <article><Icon name="lock"/><div><h2>No cookies.</h2><p>This website doesn’t use them.</p></div></article>
+    <article><Icon name="check"/><div><h2>No analytics.</h2><p>We don’t track visits, clicks or behaviour.</p></div></article>
+    <article><Icon name="user"/><div><h2>No accounts.</h2><p>Our apps don’t require sign-up or login.</p></div></article>
+    <article><Icon name="journal"/><div><h2>Your data stays with you.</h2><p>Your app data stays on your device. It isn’t sent to us.</p></div></article>
+  </section>
+  <section class="section wrap reading"><div class="notice legal theme-storage"><h2>Your appearance preference</h2><p>Choosing Light or Dark saves one setting in your browser’s local storage. It is not sent to us. Choosing “Use device setting” removes this saved preference.</p></div><div class="notice legal"><h2>Looking for Metanoia’s policy?</h2><p>Read about local storage, security and deleting your app data.</p><a href="/metanoia/privacy">Metanoia privacy policy</a></div><p class="questions">Questions about privacy? <a class="text-link" href="/contact">Get in touch.</a></p></section>
 </MainLayout>
+<style>
+  .theme-storage { margin-bottom: 24px; }
+  .privacy-list { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .privacy-list article { background: var(--site-card); border: 1px solid var(--site-line); border-radius: 14px; display: flex; align-items: start; gap: 24px; padding: 26px; border-top: 1px solid var(--site-line); }
+  .privacy-list :global(svg) { color: var(--site-accent); margin-top: 4px; flex-shrink: 0; }
+  .privacy-list h2 { font-size: 1.45rem; font-weight: 400; margin: 0 0 10px; }
+  .privacy-list p, .questions { color: var(--site-muted); font-size: .94rem; }
+  .notice h2 { margin-top: 0; }.questions { margin-top: 28px; }
+  @media(max-width:760px) { .privacy-list { grid-template-columns: 1fr; } }
+</style>

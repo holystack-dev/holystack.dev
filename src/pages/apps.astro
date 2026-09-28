@@ -1,76 +1,19 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-import Section from '../components/common/Section.astro';
-import Card from '../components/common/Card.astro';
+import ProductCard from '../components/common/ProductCard.astro';
+import GitHubIcon from '../components/common/GitHubIcon.astro';
+import { projects } from '../data/projects';
 ---
-
-<MainLayout 
-  title="Our Apps - Holystack"
-  description="Explore our collection of free Catholic apps."
->
-  <Section class="bg-purple-900 text-white py-20">
-    <div class="text-center">
-      <h1 class="font-serif text-5xl font-bold mb-6">Our Apps</h1>
-      <p class="text-purple-200 text-xl max-w-2xl mx-auto">
-        Tools for the faithful, built with excellence and prayer.
-      </p>
-    </div>
-  </Section>
-
-  <Section>
-    <div class="grid md:grid-cols-2 gap-12">
-      <!-- Metanoia Card (Detailed) -->
-      <Card href="/metanoia" class="group relative overflow-hidden flex flex-col md:flex-row h-full">
-        <div class="w-full md:w-2/5  bg-gradient-to-br from-purple-900 to-gray-900 flex items-center justify-center p-8 relative overflow-hidden">
-          <div class="absolute inset-0 bg-[url('/images/noise.png')] opacity-10 mix-blend-overlay"></div>
-          <div class="text-white/90 w-32 h-32">
-             <img src="/images/metanoia/logo.png" alt="Metanoia Logo" class="w-full h-full object-contain drop-shadow-2xl" />
-          </div>
-        </div>
-        
-        <div class="p-8 w-full md:w-3/5 flex flex-col justify-center">
-          <h2 class="font-serif text-3xl font-bold text-gray-900 dark:text-white mb-2">Metanoia</h2>
-          <p class="text-purple-700 dark:text-purple-400 font-medium mb-4 uppercase tracking-wide">Catholic Confession</p>
-          
-          <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-            A complete companion for the Sacrament of Reconciliation. Featuring a guided examination of conscience, step-by-step ritual guide, and prayers.
-          </p>
-          
-          <div>
-            <span class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-purple-800 hover:bg-purple-700 shadow-sm transition-colors">
-              View App
-            </span>
-          </div>
-        </div>
-      </Card>
-
-      <!-- Audio Bible Card (Detailed) -->
-      <Card href="/shema" class="group relative overflow-hidden flex flex-col md:flex-row h-full">
-        <div class="w-full md:w-2/5 bg-gradient-to-br from-gray-900 to-purple-900 flex items-center justify-center p-8 relative overflow-hidden">
-          <div class="absolute inset-0 bg-[url('/images/noise.png')] opacity-10 mix-blend-overlay"></div>
-          <img src="/images/shema/screens/home.png" alt="Shema" class="w-32 h-32 object-contain drop-shadow-2xl" />
-        </div>
-
-        <div class="p-8 w-full md:w-3/5 flex flex-col justify-center">
-          <h2 class="font-serif text-3xl font-bold text-gray-900 dark:text-white mb-2">Shema</h2>
-          <p class="text-purple-700 dark:text-purple-400 font-medium mb-4 uppercase tracking-wide">Audio Bible · "Hear, O Israel"</p>
-
-          <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-            Named for the <em>Shema</em> ("Hear, O Israel"), a pocket-sized, offline audio Bible player. Open-source firmware for a round ESP32-S3 touchscreen, with multiple versions, a sleep timer, about 10 hours of playback, and a one-click browser installer.
-          </p>
-
-          <div>
-            <span class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-purple-800 hover:bg-purple-700 shadow-sm transition-colors">
-              View App
-            </span>
-          </div>
-        </div>
-      </Card>
-    </div>
-
-    <div class="mt-24 text-center">
-      <p class="text-gray-500 dark:text-gray-400 mb-4">More apps coming soon...</p>
-      <div class="w-16 h-1 bg-purple-100 dark:bg-purple-900/30 mx-auto rounded-full"></div>
-    </div>
-  </Section>
+<MainLayout title="Projects | HolyStack" description="Explore HolyStack’s Catholic apps and open projects: Metanoia for confession and daily reflection, and Shema for listening to Scripture offline.">
+  <section class="page-intro wrap"><p class="eyebrow">The studio’s work</p><h1 class="display">Catholic apps<br />and open projects.</h1><p class="lede">Every HolyStack project is made for Catholic prayer and the life of the Church, from confession and daily reflection to listening to Scripture.</p></section>
+  <section class="wrap project-list" aria-label="HolyStack projects">{projects.map(project => <ProductCard project={project} eager/>)}</section>
+  <section class="section wrap"><div class="next-projects"><div><p class="eyebrow">Work in progress</p><h2 class="heading">More to come.</h2><p class="lede">Further projects are in development. We’ll add them here when they’re ready to share.</p></div><div class="contribute"><h3>Contribute to a project</h3><p>The repositories are open to code contributions, translations, bug reports and suggestions.</p><a class="text-link" href="https://github.com/holystack-dev"><GitHubIcon /> HolyStack on GitHub</a></div></div></section>
 </MainLayout>
+<style>
+  .project-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 36px; }
+  .next-projects { display: grid; grid-template-columns: 1.2fr 1fr; align-items: start; gap: 100px; border-top: 1px solid var(--site-line); padding-top: 56px; }
+  .contribute { padding: 32px; background: var(--site-soft); border-radius: 16px; }
+  .contribute h3 { font-size: 1.5rem; margin-bottom: 16px; }
+  .contribute p { color: var(--site-muted); font-size: .9rem; line-height: 1.8; margin-bottom: 18px; }
+  @media(max-width: 760px) { .project-list, .next-projects { grid-template-columns: 1fr; gap: 44px; }.contribute { padding: 26px; } }
+</style>
