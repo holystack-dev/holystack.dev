@@ -2,7 +2,7 @@
 const { chromium, webkit } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const assert = require('node:assert/strict');
 const base = process.env.SITE_URL || 'http://127.0.0.1:4322';
-const routes = ['/', '/apps/', '/metanoia/', '/metanoia/guide/', '/metanoia/privacy/', '/contact/', '/privacy/', '/shema/', '/shema/flash/'];
+const routes = ['/', '/apps/', '/metanoia/', '/metanoia/examine/', '/metanoia/examine/ml/', '/metanoia/guide/', '/metanoia/privacy/', '/contact/', '/privacy/', '/shema/', '/shema/flash/'];
 const palettes = {
   light: { bg: 'rgb(250, 248, 244)', ink: 'rgb(23, 43, 53)', mark: 'rgb(165, 111, 43)' },
   dark: { bg: 'rgb(16, 27, 34)', ink: 'rgb(248, 244, 236)', mark: 'rgb(229, 185, 118)' },
@@ -85,6 +85,6 @@ async function check(page, theme) {
     assert.deepEqual(errors, []);
     await context.close();
     await browser.close();
-    console.log(`${engine.name()}: manual themes on all 9 routes, persistence, system changes, cross-tab sync, keyboard and no-JavaScript checks passed`);
+    console.log(`${engine.name()}: manual themes on all ${routes.length} routes, persistence, system changes, cross-tab sync, keyboard and no-JavaScript checks passed`);
   }
 })().catch(error => { console.error(error); process.exit(1); });

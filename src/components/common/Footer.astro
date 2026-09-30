@@ -9,7 +9,7 @@ const year = new Date().getFullYear();
     <div class="footer-top">
       <div class="footer-studio"><Brand /><p class="footer-description">Free Catholic apps and open projects.<br />For prayer and growth in holiness.</p></div>
       <nav aria-label="Projects"><p class="footer-label">Projects</p>{projects.map(project => <a href={project.href}>{project.name}</a>)}<a href="/apps">All projects</a></nav>
-      <nav aria-label="Resources"><p class="footer-label">Resources</p><a href="/metanoia/guide">Confession guide</a><a href="/shema/flash">Install Shema</a><a href="https://github.com/holystack-dev"><GitHubIcon /> GitHub</a></nav>
+      <nav aria-label="Resources"><p class="footer-label">Resources</p><a href="/metanoia/examine">Examination of conscience</a><a href="/metanoia/guide">Confession guide</a><a href="/shema/flash">Install Shema</a><a href="https://github.com/holystack-dev"><GitHubIcon /> GitHub</a></nav>
       <nav aria-label="Studio"><p class="footer-label">Studio</p><a href="/#studio">About HolyStack</a><a href="/contact">Contact</a><a href="/privacy">Privacy</a></nav>
     </div>
     <div class="footer-bottom"><p>© {year} HolyStack Ltd.</p></div>

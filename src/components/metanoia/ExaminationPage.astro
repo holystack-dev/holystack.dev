@@ -1,0 +1,179 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Icon from '../common/Icon.astro';
+import { examinationLocales, getExamination } from '../../data/examination';
+interface Props { language?: string; }
+const { locale, sections, total } = getExamination(Astro.props.language);
+const guideHref = locale.slug === 'en' ? '/metanoia/guide/' : `/metanoia/guide/${locale.slug}/`;
+---
+<MainLayout title={`Examination of conscience${locale.code === 'en' ? '' : ` — ${locale.name}`} | Metanoia`} description={`Read Metanoia’s examination of conscience in ${locale.name}. Browse ${total} questions by commandment, with no account or saved responses.`}>
+  <section class="page-intro wrap reader-intro">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/metanoia">Metanoia</a><span aria-hidden="true">/</span>Examination of conscience</nav>
+    <p class="eyebrow">Metanoia in your browser</p>
+    <h1 class="display">A moment for<br />an honest reflection.</h1>
+    <p class="lede">Take your time with these questions as you prepare for confession. Read through a commandment, or find a question you want to reflect on.</p>
+    <p class="reader-privacy"><Icon name="lock" size={18}/><span>Completely free. No account. No responses or progress are collected or saved.</span></p>
+  </section>
+  <conscience-reader class="wrap reader">
+    <div class="reader-toolbar">
+      <div class="reader-search" hidden data-search-controls>
+        <label for="question-search">Find a question</label>
+        <div class="search-field"><Icon name="search" size={20}/><input id="question-search" type="search" placeholder="Search questions…" autocomplete="off" spellcheck="false" aria-controls="examination-sections"/><button type="button" data-clear hidden aria-label="Clear search"><Icon name="close" size={18}/></button></div>
+      </div>
+      <details class="reader-language">
+        <summary><Icon name="language" size={20}/><span><small>Question language</small><strong lang={locale.code}>{locale.name}</strong></span><Icon name="chevronDown" size={17}/></summary>
+        <ul>{examinationLocales.map(language=><li><a href={language.href} lang={language.code} aria-current={language.code === locale.code ? 'page' : undefined}>{language.name}{language.code === locale.code && <Icon name="check" size={16}/>}</a></li>)}</ul>
+      </details>
+    </div>
+    <div class="reader-status-row"><p data-result-count role="status">{total} questions · {sections.length} sections</p><div class="reader-expand" data-expand-controls hidden><button type="button" data-expand>Expand all</button><span aria-hidden="true">·</span><button type="button" data-collapse>Collapse all</button></div></div>
+    <div class="reader-layout">
+      <aside class="reader-index" aria-label="Examination sections">
+        <p class="eyebrow">Take one section at a time</p>
+        <nav aria-label="Commandments and other sections" lang={locale.code}>{sections.map(section=><a href={`#${section.anchor}`} data-section-link={section.anchor}><span class="index-number">{String(section.number).padStart(2,'0')}</span><span>{section.custom_title}</span><Icon name="arrow" size={15}/></a>)}</nav>
+        <a class="reader-guide text-link" href={guideHref}><Icon name="book" size={17}/>A guide to confession</a>
+      </aside>
+      <div class="examination-sections" id="examination-sections" lang={locale.code}>
+        {sections.map((section,index)=><details class="examination-section" id={section.anchor} data-section open={index === 0}>
+          <summary><span class="section-number">{String(section.number).padStart(2,'0')}</span><span class="section-title"><h2>{section.custom_title}</h2>{section.content !== section.custom_title && <span class="commandment-text">{section.content}</span>}<span class="question-count" data-group-count lang="en">{section.questions.length} questions</span></span><Icon name="chevronDown" size={20}/></summary>
+          <ol class="question-list">{section.questions.map(question=><li data-question id={question.id}><p>{question.text}</p></li>)}</ol>
+        </details>)}
+        <div class="reader-empty" data-empty hidden lang="en"><Icon name="search" size={28}/><h2>No questions found.</h2><p>Try another word, or clear your search to read all the questions.</p><button class="action secondary" type="button" data-reset>Clear search</button></div>
+      </div>
+    </div>
+    <div class="reader-closing"><div><h2>Ready for the next step?</h2><p>Find the confession steps, prayers and answers to common questions.</p></div><a href={guideHref} class="action secondary">Read the guide <Icon name="arrow" size={18}/></a></div>
+    <p class="reader-attribution">Examination text from <a href="https://github.com/holystack-dev/metanoia">Metanoia by HolyStack</a>, reproduced unchanged. Licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>.</p>
+  </conscience-reader>
+</MainLayout>
+
+<script>
+  class ConscienceReader extends HTMLElement {
+    connectedCallback() {
+      if (this.dataset.ready) return;
+      this.dataset.ready = 'true';
+      const input = this.querySelector<HTMLInputElement>('#question-search')!;
+      const clear = this.querySelector<HTMLButtonElement>('[data-clear]')!;
+      const status = this.querySelector<HTMLElement>('[data-result-count]')!;
+      const empty = this.querySelector<HTMLElement>('[data-empty]')!;
+      const language = this.querySelector<HTMLDetailsElement>('.reader-language')!;
+      const normalize = (value: string) => value.normalize('NFKC').toLocaleLowerCase().trim();
+      const groups = [...this.querySelectorAll<HTMLDetailsElement>('[data-section]')].map(section => ({
+        section,
+        count: section.querySelector<HTMLElement>('[data-group-count]')!,
+        link: this.querySelector<HTMLAnchorElement>(`[data-section-link="${section.id}"]`)!,
+        questions: [...section.querySelectorAll<HTMLLIElement>('[data-question]')].map(element => ({element, text: normalize(element.textContent || '')})),
+      }));
+      const total = groups.reduce((sum, group) => sum + group.questions.length, 0);
+      let previousOpen: boolean[] | null = null;
+      const filter = () => {
+        const query = normalize(input.value);
+        if (query && !previousOpen) previousOpen = groups.map(group => group.section.open);
+        let count = 0;
+        let sectionCount = 0;
+        groups.forEach((group, index) => {
+          let matches = 0;
+          group.questions.forEach(question => {
+            const visible = !query || question.text.includes(query);
+            question.element.hidden = !visible;
+            if (visible) matches++;
+          });
+          group.section.hidden = matches === 0;
+          group.link.hidden = matches === 0;
+          group.count.textContent = `${matches} ${matches === 1 ? 'question' : 'questions'}`;
+          if (query) group.section.open = matches > 0;
+          else if (previousOpen) group.section.open = previousOpen[index];
+          count += matches;
+          if (matches) sectionCount++;
+        });
+        if (!query) previousOpen = null;
+        status.textContent = query ? `${count} of ${total} questions` : `${total} questions · ${sectionCount} sections`;
+        empty.hidden = count > 0;
+        clear.hidden = !input.value;
+      };
+      const reset = () => { input.value = ''; filter(); input.focus(); };
+      input.addEventListener('input', filter);
+      clear.addEventListener('click', reset);
+      this.querySelector('[data-reset]')!.addEventListener('click', reset);
+      this.querySelector('[data-expand]')!.addEventListener('click', () => groups.forEach(group => { if (!group.section.hidden) group.section.open = true; }));
+      this.querySelector('[data-collapse]')!.addEventListener('click', () => groups.forEach(group => { group.section.open = false; }));
+      groups.forEach(group => group.link.addEventListener('click', () => { group.section.open = true; }));
+      document.addEventListener('click', event => { if (!language.contains(event.target as Node)) language.open = false; });
+      language.addEventListener('keydown', event => { if (event.key === 'Escape') { language.open = false; language.querySelector('summary')!.focus(); } });
+      // Language is a normal page link. Search and disclosure states stay in memory.
+      this.querySelector<HTMLElement>('[data-search-controls]')!.hidden = false;
+      this.querySelector<HTMLElement>('[data-expand-controls]')!.hidden = false;
+    }
+  }
+  if (!customElements.get('conscience-reader')) customElements.define('conscience-reader', ConscienceReader);
+</script>
+
+<style>
+  .reader-intro { padding-bottom: 40px; }
+  .reader-intro .display { font-size: clamp(2.5rem, 5vw, 4.4rem); }
+  .reader-intro .lede { max-width: 650px; }
+  .reader-privacy { display: flex; align-items: flex-start; gap: 10px; margin-top: 24px; font-size: .8rem; color: var(--site-muted); }
+  .reader-privacy :global(svg) { color: var(--site-accent); flex-shrink: 0; margin-top: 3px; }
+  .reader { display: block; padding-bottom: 72px; }
+  [hidden] { display: none !important; }
+  .reader-toolbar { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; padding: 24px; border: 1px solid var(--site-line); border-radius: 16px; background: var(--site-card); }
+  .reader-search { flex: 1; max-width: 620px; min-width: 0; }
+  .reader-search label { display: block; margin-bottom: 8px; font-size: .75rem; font-weight: 500; }
+  .search-field { display: flex; align-items: center; gap: 10px; min-height: 50px; padding-inline: 14px 6px; border: 1px solid var(--site-line); border-radius: 10px; background: var(--site-bg); }
+  .search-field :global(svg) { flex-shrink: 0; color: var(--site-accent); }
+  input { width: 100%; min-width: 0; padding-block: 12px; font: inherit; font-size: 16px; color: var(--site-ink); background: transparent; }
+  input::placeholder { color: var(--site-muted); opacity: 1; }
+  input::-webkit-search-cancel-button { display: none; }
+  .search-field:focus-within { outline: 2px solid var(--site-accent); outline-offset: 3px; }
+  input:focus-visible { outline: none; }
+  [data-clear] { display: grid; place-items: center; flex-shrink: 0; width: 40px; height: 40px; border-radius: 8px; cursor: pointer; }
+  [data-clear]:hover { background: var(--site-soft); }
+  .reader-language { position: relative; flex-shrink: 0; min-width: 220px; }
+  .reader-language summary { display: flex; align-items: center; gap: 12px; padding: 11px 14px; min-height: 66px; border: 1px solid var(--site-line); border-radius: 10px; list-style: none; cursor: pointer; }
+  .reader-language summary::-webkit-details-marker { display: none; }
+  .reader-language summary > :global(svg) { color: var(--site-accent); flex-shrink: 0; }
+  .reader-language summary > :global(svg:last-child) { margin-left: auto; }
+  .reader-language small { display: block; color: var(--site-muted); font-size: .66rem; }
+  .reader-language strong { font-size: .9rem; font-weight: 500; }
+  .reader-language ul { position: absolute; right: 0; top: calc(100% + 8px); z-index: 20; width: 260px; max-height: 380px; overflow-y: auto; padding: 8px; margin: 0; list-style: none; border: 1px solid var(--site-line); border-radius: 12px; background: var(--site-card); box-shadow: var(--site-shadow); }
+  .reader-language a { display: flex; align-items: center; justify-content: space-between; min-height: 44px; padding: 10px 12px; font-size: .85rem; border-radius: 6px; }
+  .reader-language a:hover, .reader-language a[aria-current] { background: var(--site-soft); color: var(--site-accent); }
+  .reader-status-row { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-block: 18px 28px; color: var(--site-muted); font-size: .75rem; }
+  .reader-expand { display: flex; align-items: center; gap: 10px; }
+  .reader-expand button { min-height: 44px; color: var(--site-accent); cursor: pointer; }
+  .reader-expand button:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .reader-layout { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 36px; align-items: start; }
+  .reader-index { position: sticky; top: calc(var(--header-height) + 24px); }
+  .reader-index > .eyebrow { font-size: .6rem; margin-bottom: 16px; }
+  .reader-index nav { display: grid; gap: 4px; }
+  .reader-index nav a { display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 8px 10px; font-size: .78rem; border-radius: 8px; color: var(--site-muted); }
+  .reader-index nav a:hover, .reader-index nav a:focus-visible { background: var(--site-soft); color: var(--site-ink); }
+  .index-number { flex-shrink: 0; width: 22px; font-size: .66rem; color: var(--site-accent); }
+  .reader-index nav :global(svg) { flex-shrink: 0; margin-left: auto; color: var(--site-accent); }
+  .reader-guide { margin-top: 20px; font-size: .75rem; }
+  .examination-sections { min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .examination-section { min-width: 0; border: 1px solid var(--site-line); border-radius: 14px; background: var(--site-card); }
+  .examination-section summary { display: flex; align-items: flex-start; gap: 18px; padding: 24px; list-style: none; cursor: pointer; border-radius: 14px; }
+  .examination-section summary::-webkit-details-marker { display: none; }
+  .examination-section summary > :global(svg) { flex-shrink: 0; margin-left: auto; margin-top: 6px; color: var(--site-accent); }
+  .examination-section[open] summary > :global(svg) { transform: rotate(180deg); }
+  .section-number { display: grid; place-items: center; flex-shrink: 0; width: 38px; height: 38px; font-size: .78rem; border-radius: 10px; background: var(--site-soft); color: var(--site-accent); }
+  .section-title { min-width: 0; overflow-wrap: anywhere; }
+  .section-title h2 { margin: 0; font-size: 1.45rem; line-height: 1.4; }
+  .commandment-text { display: block; margin-top: 8px; font-size: .86rem; color: var(--site-muted); line-height: 1.7; }
+  .question-count { display: block; margin-top: 10px; font-size: .68rem; color: var(--site-accent); }
+  .question-list { margin: 0; padding: 0 24px 12px 80px; list-style: decimal; }
+  .question-list li { padding: 18px 6px 18px 8px; border-top: 1px solid var(--site-line); font-size: .96rem; line-height: 1.9; }
+  .question-list li::marker { color: var(--site-accent); font-size: .72rem; }
+  .question-list p { margin: 0; overflow-wrap: anywhere; }
+  .reader-empty { padding: 48px 28px; text-align: center; border: 1px solid var(--site-line); border-radius: 14px; background: var(--site-card); }
+  .reader-empty > :global(svg) { color: var(--site-accent); margin-inline: auto; }
+  .reader-empty h2 { font-size: 1.7rem; margin-block: 20px 12px; }
+  .reader-empty p { color: var(--site-muted); font-size: .9rem; margin-bottom: 24px; }
+  .reader-closing { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-top: 48px; padding: 28px; border: 1px solid var(--site-line); border-radius: 14px; background: var(--site-soft); }
+  .reader-closing h2 { font-size: 1.5rem; margin-bottom: 10px; }
+  .reader-closing p { color: var(--site-muted); font-size: .86rem; }
+  .reader-closing .action { flex-shrink: 0; }
+  .reader-attribution { margin-top: 24px; max-width: 700px; font-size: .7rem; color: var(--site-muted); line-height: 1.9; }
+  .reader-attribution a { text-decoration: underline; text-underline-offset: 3px; color: var(--site-accent); }
+  @media(max-width:1000px) { .reader-layout { grid-template-columns: 220px minmax(0, 1fr); gap: 24px; }.reader-index nav a { font-size: .74rem; padding-inline: 6px; } }
+  @media(max-width:760px) { .reader-intro { padding-bottom: 30px; }.reader-toolbar { flex-direction: column; align-items: stretch; gap: 18px; padding: 20px; }.reader-language { min-width: 0; }.reader-language ul { width: 100%; }.reader-status-row { align-items: flex-start; flex-direction: column; gap: 4px; margin-bottom: 20px; }.reader-layout { grid-template-columns: minmax(0, 1fr); gap: 24px; }.reader-index { position: static; }.reader-index nav { display: flex; overflow-x: auto; padding-bottom: 12px; gap: 8px; scrollbar-width: thin; scrollbar-color: var(--site-accent) var(--site-soft); }.reader-index nav a { flex-shrink: 0; max-width: 260px; padding: 10px 12px; border: 1px solid var(--site-line); background: var(--site-card); }.reader-index nav :global(svg) { display: none; }.reader-guide { margin-top: 6px; }.examination-section summary { padding: 20px 16px; gap: 12px; }.section-title h2 { font-size: 1.25rem; }.section-number { width: 32px; height: 32px; }.question-list { padding: 0 16px 10px 46px; }.question-list li { padding-block: 16px; font-size: 1rem; }.reader-closing { flex-direction: column; align-items: flex-start; padding: 24px; }.reader-privacy { font-size: .76rem; } }
+</style>

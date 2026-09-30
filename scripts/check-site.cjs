@@ -3,7 +3,7 @@ const fs=require('node:fs');const assert=require('node:assert/strict');
 const path=require('node:path');
 const base=process.env.SITE_URL || 'http://127.0.0.1:4322';
 const out=process.env.SCREENSHOT_DIR || path.join(__dirname,'../artifacts/website');fs.mkdirSync(out,{recursive:true});
-const routes=process.env.SITE_ROUTES?.split(',') || ['/','/apps/','/metanoia/','/metanoia/guide/','/metanoia/privacy/','/contact/','/privacy/','/shema/','/shema/flash/'];
+const routes=process.env.SITE_ROUTES?.split(',') || ['/','/apps/','/metanoia/','/metanoia/examine/','/metanoia/examine/ml/','/metanoia/guide/','/metanoia/privacy/','/contact/','/privacy/','/shema/','/shema/flash/'];
 (async()=>{
  const browser=await chromium.launch({headless:true});
  for(const scenario of [{name:'desktop',width:1440,height:1000,colorScheme:'light'},{name:'mobile',width:390,height:844,colorScheme:'light'},{name:'dark',width:1280,height:900,colorScheme:'dark'},{name:'small',width:320,height:800,colorScheme:'dark'}]){

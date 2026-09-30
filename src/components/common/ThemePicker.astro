@@ -1,3 +1,6 @@
+---
+import Icon from './Icon.astro';
+---
 <theme-picker hidden>
   <details class="theme-picker">
     <summary aria-label="Change colour theme" title="Change colour theme">
@@ -6,7 +9,7 @@
     </summary>
     <div class="theme-options" role="group" aria-label="Colour theme">
       <p>Appearance</p>
-      {['light','dark','system'].map(value => <button type="button" data-value={value} aria-pressed="false"><span>{value === 'system' ? 'Use device setting' : `${value[0].toUpperCase()}${value.slice(1)}`}</span><span class="selected" aria-hidden="true">✓</span></button>)}
+      {['light','dark','system'].map(value => <button type="button" data-value={value} aria-pressed="false"><span>{value === 'system' ? 'Use device setting' : `${value[0].toUpperCase()}${value.slice(1)}`}</span><span class="selected"><Icon name="check" size={18}/></span></button>)}
     </div>
   </details>
 </theme-picker>

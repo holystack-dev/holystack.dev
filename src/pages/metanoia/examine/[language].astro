@@ -1,0 +1,8 @@
+---
+import ExaminationPage from '../../../components/metanoia/ExaminationPage.astro';
+import { examinationLocales } from '../../../data/examination';
+export function getStaticPaths() {
+  return examinationLocales.filter(locale => locale.slug !== 'en').map(locale => ({ params: { language: locale.slug } }));
+}
+---
+<ExaminationPage language={Astro.params.language}/>

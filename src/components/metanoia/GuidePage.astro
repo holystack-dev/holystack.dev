@@ -1,0 +1,135 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Icon from '../common/Icon.astro';
+import ReadingText from './ReadingText.astro';
+import { getGuide, guideLocales } from '../../data/metanoia-guide';
+interface Props { language?: string; }
+const { locale, guide, prayerBook, faqGroups, invitation, examinationHref } = getGuide(Astro.props.language);
+const links = [
+  { id: 'confession', title: 'Confession guide', description: 'Prepare and know what to expect.', icon: 'book' },
+  { id: 'prayers', title: 'Prayers', description: 'Before confession, afterwards and each day.', icon: 'heart' },
+  { id: 'questions', title: 'Common questions', description: 'Answers when you feel unsure.', icon: 'journal' },
+  { id: 'returning', title: 'Returning to confession', description: 'Take the first step, at your own pace.', icon: 'history' },
+] as const;
+const plainText = (text: string) => text.replace(/\[\/?[A-Z_]+\]/g, '');
+const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', inLanguage: locale.code, mainEntity: faqGroups.flatMap(group => group.items.map(item => ({ '@type': 'Question', name: item.title, acceptedAnswer: { '@type': 'Answer', text: plainText(item.content) } }))) };
+---
+<MainLayout title={`A guide to confession${locale.code === 'en' ? '' : ` — ${locale.name}`} | Metanoia`} description={`Read Metanoia’s confession guide, prayers and answers to common questions in ${locale.name}. Completely free, with no account or download.`}>
+  <Fragment slot="head"><script type="application/ld+json" set:html={JSON.stringify(faqSchema)}/></Fragment>
+  <section class="page-intro wrap guide-intro">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/metanoia">Metanoia</a><span aria-hidden="true">/</span>Confession guide</nav>
+    <p class="eyebrow">Metanoia in your browser</p>
+    <h1 class="display">A little guidance.<br/>One step at a time.</h1>
+    <p class="lede">Prepare for confession, find a prayer, or read through a question on your mind. Whether it’s your first time or you’re returning after a while, start wherever you feel ready.</p>
+    <p class="guide-privacy"><Icon name="lock" size={18}/><span>Completely free. No download or account. No responses or progress are collected or saved.</span></p>
+  </section>
+  <web-confession-guide class="wrap web-guide">
+    <div class="guide-toolbar">
+      <a href={examinationHref} class="text-link"><Icon name="arrowLeft" size={18}/>Read the examination of conscience</a>
+      <details class="guide-language">
+        <summary><Icon name="language" size={20}/><span><small>Reading language</small><strong lang={locale.code}>{locale.name}</strong></span><Icon name="chevronDown" size={18}/></summary>
+        <ul>{guideLocales.map(language => <li><a href={language.href} lang={language.code} aria-current={language.code === locale.code ? 'page' : undefined}>{language.name}{language.code === locale.code && <Icon name="check" size={16}/>}</a></li>)}</ul>
+      </details>
+    </div>
+    <nav class="guide-topics" aria-label="Guide topics">{links.map(link => <a href={`#${link.id}`}><Icon name={link.icon} size={22}/><span><strong>{link.title}</strong><small>{link.description}</small></span><Icon name="arrowDown" size={17}/></a>)}</nav>
+    <div class="guide-layout">
+      <aside class="guide-index"><p class="eyebrow">Explore the guide</p><nav aria-label="On this page">{links.map(link => <a href={`#${link.id}`}>{link.title}<Icon name="arrow" size={15}/></a>)}</nav><a href={examinationHref} class="text-link">Examination of conscience <Icon name="arrow" size={15}/></a></aside>
+      <div class="guide-sections">
+        <section id="confession" class="guide-section" lang={locale.code}>
+          <div class="section-heading"><p class="eyebrow" lang="en">Confession guide</p><h2 class="heading">{guide.title}</h2><p class="guide-subtitle">{guide.subtitle}</p></div>
+          <div class="guide-disclosures">{guide.sections.map((section, index) => <details class="guide-disclosure" data-reading-id={`guide-${section.id}`} open={index === 0}><summary><span class="step-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span><h3>{section.title}</h3><Icon name="chevronDown" size={19}/></summary><div class="disclosure-body"><ReadingText content={section.content}/></div></details>)}</div>
+        </section>
+        <section id="prayers" class="guide-section" lang={locale.code}>
+          <div class="section-heading"><p class="eyebrow" lang="en">Prayers</p><h2 class="heading">{prayerBook.subtitle}</h2></div>
+          {prayerBook.categories.map(category => <section class="prayer-category"><h3 class="category-title">{category.title}</h3><div class="guide-disclosures">{category.prayers.map(prayer => <details class="guide-disclosure" data-reading-id={`prayer-${prayer.id}`}><summary><h4>{prayer.title}</h4><Icon name="chevronDown" size={19}/></summary><div class="disclosure-body">{prayer.subtitle && <p class="prayer-subtitle">{prayer.subtitle}</p>}{prayer.content && <ReadingText content={prayer.content}/>} {prayer.sections?.map(section => <section class="prayer-part"><h5>{section.title}</h5>{section.subtitle && <p class="prayer-subtitle">{section.subtitle}</p>}<ReadingText content={section.content}/></section>)}</div></details>)}</div></section>)}
+        </section>
+        <section id="questions" class="guide-section" lang={locale.code}>
+          <div class="section-heading" lang="en"><p class="eyebrow">Common questions</p><h2 class="heading">Before you go.</h2></div>
+          {faqGroups.map((group, groupIndex) => <section class="faq-group"><h3 class="category-title">{group.heading}</h3><div class="guide-disclosures">{group.items.map((item, index) => <details class="guide-disclosure" data-reading-id={`faq-${groupIndex}-${index}`}><summary><h4>{item.title}</h4><Icon name="chevronDown" size={19}/></summary><div class="disclosure-body"><ReadingText content={item.content}/></div></details>)}</div></section>)}
+        </section>
+        <section id="returning" class="guide-section" lang={locale.code}>
+          <div class="section-heading"><p class="eyebrow" lang="en">Returning to confession</p><h2 class="heading">{invitation.subtitle}</h2></div>
+          <div class="guide-disclosures">{invitation.sections.map(section => <details class="guide-disclosure" data-reading-id={`invitation-${section.id}`}><summary><h3>{section.title}</h3><Icon name="chevronDown" size={19}/></summary><div class="disclosure-body"><ReadingText content={section.content}/></div></details>)}</div>
+        </section>
+        <aside class="guide-closing"><h2>Take a quiet moment.</h2><p>When you’re ready, read through the examination of conscience. For help with your own circumstances, speak with your parish priest.</p><a href={examinationHref} class="action secondary">Read the examination <Icon name="arrow" size={18}/></a><div class="guide-sources"><h3>Further reading</h3><a href="https://www.usccb.org/prayer-and-worship/sacraments-and-sacramentals/penance/examinations-of-conscience">USCCB: examinations of conscience</a><a href="https://www.vatican.va/content/catechism/en/part_two/section_two/chapter_two/article_4/vii_the_acts_of_the_penitent.html">Catechism: contrition, confession and penance</a></div></aside>
+        <p class="guide-attribution">Reading material from <a href="https://github.com/holystack-dev/metanoia">Metanoia by HolyStack</a>. Mobile-only instructions are omitted. See the <a href="/metanoia/content-license.txt">content licence and acknowledgements</a>.</p>
+      </div>
+    </div>
+  </web-confession-guide>
+</MainLayout>
+<script>
+  class WebConfessionGuide extends HTMLElement {
+    connectedCallback() {
+      if (this.dataset.ready) return;
+      this.dataset.ready = 'true';
+      const language = this.querySelector<HTMLDetailsElement>('.guide-language')!;
+      document.addEventListener('click', event => { if (!language.contains(event.target as Node)) language.open = false; });
+      language.addEventListener('keydown', event => { if (event.key === 'Escape') { language.open = false; language.querySelector('summary')!.focus(); } });
+    }
+  }
+  if (!customElements.get('web-confession-guide')) customElements.define('web-confession-guide', WebConfessionGuide);
+</script>
+<style>
+  .guide-intro { padding-bottom: 36px; }
+  .guide-intro .display { font-size: clamp(2.5rem, 5vw, 4.4rem); }
+  .guide-intro .lede { max-width: 700px; }
+  .guide-privacy { display: flex; align-items: flex-start; gap: 10px; margin-top: 24px; font-size: .8rem; color: var(--site-muted); }
+  .guide-privacy :global(svg) { color: var(--site-accent); flex-shrink: 0; margin-top: 3px; }
+  .web-guide { display: block; padding-bottom: 72px; }
+  .guide-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-bottom: 24px; }
+  .guide-toolbar > a { font-size: .85rem; }
+  .guide-language { position: relative; min-width: 240px; }
+  .guide-language summary { display: flex; align-items: center; gap: 12px; min-height: 66px; padding: 12px 16px; border: 1px solid var(--site-line); border-radius: 12px; background: var(--site-card); list-style: none; cursor: pointer; }
+  summary::-webkit-details-marker { display: none; }
+  .guide-language summary :global(svg) { color: var(--site-accent); flex-shrink: 0; }
+  .guide-language summary > :global(svg:last-child) { margin-left: auto; }
+  .guide-language small { display: block; font-size: .66rem; color: var(--site-muted); }
+  .guide-language strong { font-weight: 500; font-size: .9rem; }
+  .guide-language ul { position: absolute; right: 0; top: calc(100% + 8px); z-index: 20; width: 260px; max-height: 380px; overflow-y: auto; padding: 8px; margin: 0; list-style: none; background: var(--site-card); border: 1px solid var(--site-line); border-radius: 12px; box-shadow: var(--site-shadow); }
+  .guide-language a { display: flex; justify-content: space-between; align-items: center; min-height: 44px; padding: 10px 12px; font-size: .85rem; border-radius: 6px; }
+  .guide-language a:hover, .guide-language a[aria-current] { background: var(--site-soft); color: var(--site-accent); }
+  .guide-topics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-bottom: 56px; }
+  .guide-topics a { display: flex; align-items: flex-start; gap: 12px; padding: 22px; background: var(--site-card); border: 1px solid var(--site-line); border-radius: 14px; }
+  .guide-topics a:hover { background: var(--site-soft); border-color: var(--site-accent); }
+  .guide-topics :global(svg) { flex-shrink: 0; color: var(--site-accent); }
+  .guide-topics :global(svg:last-child) { margin-left: auto; width: 14px; }
+  .guide-topics strong { display: block; font-size: .85rem; font-weight: 500; margin-bottom: 8px; }
+  .guide-topics small { display: block; font-size: .73rem; color: var(--site-muted); line-height: 1.7; }
+  .guide-layout { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 60px; align-items: start; }
+  .guide-index { position: sticky; top: calc(var(--header-height) + 28px); }
+  .guide-index .eyebrow { font-size: .65rem; margin-bottom: 18px; }
+  .guide-index nav { display: grid; gap: 8px; }
+  .guide-index nav a { display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 0; font-size: .8rem; color: var(--site-muted); }
+  .guide-index nav a:hover { color: var(--site-accent); }
+  .guide-index nav :global(svg) { margin-left: auto; color: var(--site-accent); flex-shrink: 0; }
+  .guide-index > a { margin-top: 24px; font-size: .72rem; }
+  .guide-sections { min-width: 0; }
+  .guide-section { scroll-margin-top: calc(var(--header-height) + 24px); margin-bottom: 64px; }
+  .section-heading { margin-bottom: 24px; }
+  .guide-section .heading { font-size: clamp(1.7rem, 3.5vw, 2.5rem); line-height: 1.5; overflow-wrap: anywhere; }
+  .guide-subtitle { margin-top: 14px; color: var(--site-muted); font-size: .9rem; line-height: 1.8; }
+  .guide-disclosures { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .guide-disclosure { min-width: 0; border: 1px solid var(--site-line); border-radius: 12px; background: var(--site-card); }
+  .guide-disclosure summary { display: flex; gap: 14px; align-items: center; padding: 22px; list-style: none; border-radius: 12px; cursor: pointer; }
+  .guide-disclosure summary:hover { background: var(--site-soft); }
+  .guide-disclosure summary :global(svg) { margin-left: auto; flex-shrink: 0; color: var(--site-accent); }
+  .guide-disclosure[open] summary :global(svg) { transform: rotate(180deg); }
+  .guide-disclosure h3, .guide-disclosure h4 { margin: 0; font-size: 1.1rem; line-height: 1.7; font-weight: 500; overflow-wrap: anywhere; min-width: 0; }
+  .step-number { flex-shrink: 0; color: var(--site-accent); font-size: .72rem; }
+  .disclosure-body { padding: 6px 24px 26px; }
+  .category-title { margin: 28px 0 16px; font-size: 1.2rem; line-height: 1.7; font-weight: 500; overflow-wrap: anywhere; }
+  .prayer-category + .prayer-category, .faq-group + .faq-group { margin-top: 32px; }
+  .prayer-part + .prayer-part { margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--site-line); }
+  .prayer-part h5 { margin-bottom: 12px; font-size: 1.1rem; font-weight: 500; line-height: 1.7; }
+  .prayer-subtitle { color: var(--site-muted); margin-bottom: 18px; font-size: .8rem; }
+  .guide-closing { padding: 28px; border: 1px solid var(--site-line); border-radius: 14px; background: var(--site-soft); }
+  .guide-closing h2 { font-size: 1.7rem; margin-bottom: 14px; }
+  .guide-closing p { color: var(--site-muted); font-size: .9rem; line-height: 1.9; margin-bottom: 24px; }
+  .guide-sources { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--site-line); }
+  .guide-sources h3 { font-size: 1.1rem; margin-bottom: 12px; }
+  .guide-sources a { display: block; width: fit-content; min-height: 44px; color: var(--site-accent); font-size: .8rem; text-decoration: underline; text-underline-offset: 4px; }
+  .guide-attribution { margin-top: 24px; color: var(--site-muted); font-size: .7rem; line-height: 1.9; }
+  .guide-attribution a { color: var(--site-accent); text-decoration: underline; text-underline-offset: 3px; }
+  @media(max-width:1100px) { .guide-topics { grid-template-columns: repeat(2, minmax(0, 1fr)); }.guide-layout { gap: 32px; grid-template-columns: 210px minmax(0, 1fr); } }
+  @media(max-width:760px) { .guide-toolbar { flex-direction: column; align-items: stretch; gap: 22px; }.guide-language { min-width: 0; }.guide-language ul { width: 100%; }.guide-topics { gap: 10px; margin-bottom: 40px; }.guide-topics a { display: block; padding: 16px; }.guide-topics a > :global(svg:first-child) { margin-bottom: 12px; }.guide-topics a > :global(svg:last-child) { display: none; }.guide-topics strong { font-size: .82rem; }.guide-topics small { font-size: .7rem; }.guide-layout { grid-template-columns: minmax(0, 1fr); }.guide-index { display: none; }.guide-section { margin-bottom: 48px; }.guide-disclosure summary { padding: 18px 16px; gap: 10px; }.guide-disclosure h3, .guide-disclosure h4 { font-size: 1rem; }.disclosure-body { padding: 6px 18px 24px; }.guide-privacy { font-size: .76rem; }.guide-closing { padding: 24px; } }
+</style>

@@ -5,9 +5,9 @@ import GitHubIcon from '../components/common/GitHubIcon.astro';
 import { SHEMA_GITHUB } from '../data/shema';
 ---
 <MainLayout title="Contact | HolyStack" description="Get in touch with HolyStack about Metanoia, Shema or contributing to our Catholic apps and open projects.">
-  <section class="page-intro wrap"><p class="eyebrow">Contact</p><h1 class="display">Get in touch.</h1><p class="lede">For questions about our projects, feedback or a conversation about contributing to the work.</p></section>
+  <section class="page-intro wrap"><p class="eyebrow">Contact</p><h1 class="display">Get in touch.</h1><p class="lede">For questions or feedback about our projects.</p></section>
   <section class="wrap contact-grid">
-    <article class="contact-card"><Icon name="mail" size={28}/><h2>Contact the studio</h2><p>For questions, feedback or a conversation about the projects.</p><a href="mailto:hello@holystack.dev" class="email">hello@holystack.dev</a></article>
+    <article class="contact-card"><Icon name="mail" size={28}/><h2>Contact the studio</h2><p>For questions or feedback.</p><a href="mailto:hello@holystack.dev" class="email">hello@holystack.dev</a></article>
     <article class="contact-card"><GitHubIcon/><h2>Project issues & contributions</h2><p>Report a bug, suggest a feature or contribute to the code on GitHub.</p><div class="project-links"><a href="https://github.com/holystack-dev/metanoia/issues" class="text-link">Metanoia issues <Icon name="arrow" size={17}/></a><a href={`${SHEMA_GITHUB}/issues`} class="text-link">Shema issues <Icon name="arrow" size={17}/></a></div></article>
   </section>
   <div class="wrap contact-note"><Icon name="lock" size={19}/><p>If you’re reporting a problem with Metanoia, please leave personal journal and confession entries out of screenshots.</p></div>

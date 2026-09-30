@@ -1,0 +1,29 @@
+---
+interface Props { content: string; }
+// Interpret the app's text markers as typography. Astro escapes all source text.
+const blocks = Astro.props.content.split(/(\[\/?(?:PRAYER|LITURGICAL|RUBRIC|INSTRUCTION|VERSICLE|RESPONSE|AMEN|SAINT|SCRIPTURE)\])/g);
+let tone = '';
+const paragraphs: { text: string; tone: string; bullets: boolean }[] = [];
+for (const block of blocks) {
+  if (/^\[\//.test(block)) { tone = ''; continue; }
+  if (/^\[/.test(block)) { tone = block.slice(1, -1).toLowerCase(); continue; }
+  for (const paragraph of block.split(/\n\s*\n/)) {
+    if (!paragraph.trim()) continue;
+    paragraphs.push({ text: paragraph.trim(), tone, bullets: paragraph.trim().split('\n').every(line => line.trim().startsWith('•')) });
+    if (['saint', 'scripture', 'amen'].includes(tone)) tone = '';
+  }
+}
+---
+<div class="reading-text">{paragraphs.map(paragraph => paragraph.bullets ? <ul class={paragraph.tone}>{paragraph.text.split('\n').map(line => <li>{line.trim().replace(/^•\s*/, '')}</li>)}</ul> : <p class={paragraph.tone}>{paragraph.text}</p>)}</div>
+<style>
+  .reading-text { color: var(--site-ink); font-size: .94rem; line-height: 1.95; overflow-wrap: anywhere; }
+  p { margin: 0 0 18px; white-space: pre-line; }
+  ul { padding-left: 22px; margin: 0 0 18px; }
+  li { margin-block: 8px; }
+  li::marker { color: var(--site-accent); }
+  .prayer, .liturgical, .scripture, .saint { padding: 18px 20px; border-left: 2px solid var(--site-accent); background: var(--site-soft); border-radius: 0 8px 8px 0; }
+  .rubric, .instruction { font-style: italic; color: var(--site-muted); font-size: .85rem; }
+  .versicle, .response, .amen { font-weight: 500; }
+  .reading-text > :last-child { margin-bottom: 0; }
+  @media(max-width:760px) { .reading-text { font-size: 1rem; }.prayer, .liturgical, .scripture, .saint { padding: 14px; } }
+</style>

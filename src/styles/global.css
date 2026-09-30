@@ -3,6 +3,12 @@
 @import "@fontsource/inter/600.css";
 @import "@fontsource/playfair-display/400.css";
 @import "@fontsource/merriweather/400-italic.css";
+@import "@fontsource/noto-sans-malayalam/malayalam-400.css";
+@import "@fontsource/noto-sans-malayalam/malayalam-500.css";
+@import "@fontsource/noto-sans-tamil/tamil-400.css";
+@import "@fontsource/noto-sans-tamil/tamil-500.css";
+@import "@fontsource/noto-sans-devanagari/devanagari-400.css";
+@import "@fontsource/noto-sans-devanagari/devanagari-500.css";
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @theme {
@@ -12,6 +18,9 @@
 }
 body { font-family: var(--font-sans); line-height: 1.65; }
 h1,h2,h3,h4,h5,h6 { font-family: var(--font-serif); font-weight: 400; }
+:lang(ml) { font-family: "Noto Sans Malayalam", var(--font-sans); letter-spacing: normal; }
+:lang(ta) { font-family: "Noto Sans Tamil", var(--font-sans); letter-spacing: normal; }
+:lang(hi) { font-family: "Noto Sans Devanagari", var(--font-sans); letter-spacing: normal; }
 button, input, select { font: inherit; }
 @media (prefers-reduced-motion: reduce) {
   *,*::before,*::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }

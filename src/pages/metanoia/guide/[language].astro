@@ -1,0 +1,8 @@
+---
+import GuidePage from '../../../components/metanoia/GuidePage.astro';
+import { guideLocales } from '../../../data/metanoia-guide';
+export function getStaticPaths() {
+  return guideLocales.filter(locale => locale.slug !== 'en').map(locale => ({ params: { language: locale.slug } }));
+}
+---
+<GuidePage language={Astro.params.language}/>

@@ -22,7 +22,7 @@ export const projects: Project[] = [
     id: 'metanoia', name: 'Metanoia', href: '/metanoia', category: 'iOS & Android',
     description: 'Prepare for confession, reflect with the Daily Examen and keep a private journal. A companion for the Sacrament of Reconciliation and daily prayer.',
     tags: ['Confession', 'Daily Examen', '14 languages'],
-    media: { kind: 'phone', src: metaImages.home, alt: 'Metanoia home screen with daily reflection, penance and confession reminders' },
+    media: { kind: 'phone', src: metaImages.examination, alt: 'Metanoia examination of conscience with Quick Review questions and selected notes' },
   },
   {
     id: 'shema', name: 'Shema', href: '/shema', category: 'Offline audio Bible',

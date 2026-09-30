@@ -21,7 +21,7 @@ const { project, eager = false } = Astro.props;
 </article>
 <style>
   .product-card { display: flex; flex-direction: column; min-width: 0; }
-  .product-art { display: flex; align-items: center; justify-content: center; height: 470px; padding: 30px; border: 1px solid var(--site-line); border-radius: 18px; text-decoration: none; background: var(--site-soft); transition: border-color .2s; }
+  .product-art { display: flex; align-items: center; justify-content: center; height: 500px; padding: 30px; border: 1px solid var(--site-line); border-radius: 18px; text-decoration: none; background: var(--site-soft); transition: border-color .2s; }
   .product-art:hover { border-color: var(--site-accent); }
   .metanoia .product-art { background: var(--product-meta); }
   .shema .product-art { background: var(--product-shema); }
@@ -34,7 +34,7 @@ const { project, eager = false } = Astro.props;
   .tag-list { margin: auto 0 16px; }
   .product-link { display: inline-flex; align-items: center; gap: 16px; align-self: start; min-height: 44px; color: var(--site-accent); font-size: .83rem; font-weight: 500; text-decoration: none; }
   .product-link:hover { text-decoration: underline; text-underline-offset: 5px; }
-  @media(max-width: 1000px) { .product-art { height: 440px; }.product-title { align-items: start; flex-direction: column; gap: 8px; } }
-  @media(max-width: 760px) { .product-art { height: 440px; padding: 24px; }.product-title { flex-direction: row; align-items: center; }.product-copy { padding-top: 23px; } }
-  @media(max-width: 380px) { .product-art { height: 410px; }.product-title { align-items: start; flex-direction: column; } }
+  @media(max-width: 1000px) { .product-art { height: 480px; }.product-title { align-items: start; flex-direction: column; gap: 8px; } }
+  @media(max-width: 760px) { .product-art { padding: 24px; }.product-title { flex-direction: row; align-items: center; }.product-copy { padding-top: 23px; } }
+  @media(max-width: 380px) { .product-title { align-items: start; flex-direction: column; } }
 </style>

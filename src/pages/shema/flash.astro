@@ -1,6 +1,7 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
 import DeviceFrame from '../../components/shema/DeviceFrame.astro';
+import Icon from '../../components/common/Icon.astro';
 import { SHEMA_GITHUB, screen } from '../../data/shema';
 import '../../styles/shema.css';
 
@@ -42,7 +43,7 @@ const troubleshooting = [
 
   <div class="shema-theme installer-page">
     <div class="installer-width">
-      <a href="/shema/" class="back-link">← Back to Shema</a>
+      <a href="/shema/" class="back-link"><Icon name="arrowLeft" size={16}/>Back to Shema</a>
 
       <section class="install-hero" aria-labelledby="install-title">
         <div class="intro">
@@ -51,15 +52,15 @@ const troubleshooting = [
           <p class="lead">Prepare your audio card and install the firmware from your browser.</p>
           <h2 class="checklist-title">Before you start</h2>
           <ul class="checklist">
-            <li>Waveshare ESP32-S3-Touch-LCD-1.85C <strong>V2</strong></li>
-            <li>A computer with <strong>Chrome or Edge</strong></li>
-            <li>A <strong>USB-C data cable</strong></li>
-            <li>A microSD card and your MP3 audio files</li>
+            <li><Icon name="check" size={16}/><span>Waveshare ESP32-S3-Touch-LCD-1.85C <strong>V2</strong></span></li>
+            <li><Icon name="check" size={16}/><span>A computer with <strong>Chrome or Edge</strong></span></li>
+            <li><Icon name="check" size={16}/><span>A <strong>USB-C data cable</strong></span></li>
+            <li><Icon name="check" size={16}/><span>A microSD card and your MP3 audio files</span></li>
           </ul>
           <aside class="format-note" aria-label="Required card format">
             <strong>FAT32 is required.</strong>
             <p>Format the microSD card as FAT32 before adding audio. Back up any files first: formatting erases the card.</p>
-            <a class="text-link" href="/shema/#audio-setup">See the folder layout and file names →</a>
+            <a class="text-link" href="/shema/#audio-setup">See the folder layout and file names <Icon name="arrow" size={17}/></a>
           </aside>
         </div>
 
@@ -84,7 +85,7 @@ const troubleshooting = [
         <ol class="steps">
           {steps.map((step, index) => <li>
             <span class="step-number" aria-hidden="true">{index + 1}</span>
-            <div><h3>{step.title}</h3><p>{step.text}</p>{step.link && <a class="text-link" href={step.link.href}>{step.link.label} →</a>}</div>
+            <div><h3>{step.title}</h3><p>{step.text}</p>{step.link && <a class="text-link" href={step.link.href}>{step.link.label} <Icon name="arrow" size={17}/></a>}</div>
           </li>)}
         </ol>
       </section>
@@ -103,7 +104,7 @@ const troubleshooting = [
         <p class="eyebrow">HELP</p>
         <h2 id="help-title">Troubleshooting</h2>
         <div class="help-list">{troubleshooting.map(([problem, fix]) => <details><summary>{problem}</summary><p>{fix}</p></details>)}</div>
-        <div class="guide-links"><a href="/shema/#get-started" class="text-link">Hardware and audio setup →</a><a href={SHEMA_GITHUB} class="text-link">Source code and build instructions ↗</a></div>
+        <div class="guide-links"><a href="/shema/#get-started" class="text-link">Hardware and audio setup <Icon name="arrow" size={17}/></a><a href={SHEMA_GITHUB} class="text-link">Source code and build instructions <Icon name="arrowUpRight" size={17}/></a></div>
       </section>
     </div>
   </div>
@@ -120,7 +121,7 @@ const troubleshooting = [
 <style>
   .installer-page { padding: 32px 0 88px; }
   .installer-width { width: min(1120px, calc(100% - 64px)); margin-inline: auto; }
-  .back-link { display: inline-block; padding-block: 10px; font-size: 13px; color: var(--shema-muted); }
+  .back-link { display: inline-flex; align-items: center; gap: 8px; padding-block: 10px; font-size: 13px; color: var(--shema-muted); }
   .back-link:hover, .install-help a:hover { color: var(--shema-accent); }
   .install-hero { display: grid; grid-template-columns: 1.2fr 1fr; gap: 76px; align-items: center; padding-block: 40px 76px; }
   .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .16em; color: var(--shema-accent); margin-bottom: 18px; }
@@ -130,13 +131,13 @@ const troubleshooting = [
   h2 { font-size: 34px; line-height: 1.2; }
   .checklist-title { font: 600 15px/1.6 var(--font-sans); letter-spacing: 0; margin: 30px 0 14px; }
   .checklist { list-style: none; padding: 0; font-size: 14px; color: var(--shema-muted); }
-  .checklist li { position: relative; padding-left: 22px; margin-bottom: 10px; }
-  .checklist li::before { content: '✓'; position: absolute; left: 0; color: var(--shema-accent); }
+  .checklist li { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 10px; }
+  .checklist :global(svg) { flex-shrink: 0; margin-top: 4px; color: var(--shema-accent); }
   strong { color: var(--shema-ink); font-weight: 600; }
   .format-note { margin-top: 26px; padding: 20px; border: 1px solid var(--shema-accent); border-radius: 14px; background: var(--shema-card); font-size: 14px; }
   .format-note > strong { color: var(--shema-accent); }
   .format-note p { color: var(--shema-muted); line-height: 1.8; margin-top: 8px; }
-  .text-link { display: inline-block; padding-block: 10px; color: var(--shema-accent); font-size: 13px; font-weight: 600; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 4px; }
+  .text-link { display: inline-flex; align-items: center; gap: 8px; padding-block: 10px; color: var(--shema-accent); font-size: 13px; font-weight: 600; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 4px; }
   .text-link:hover { text-decoration-color: currentColor; }
   .install-card { padding: 28px; background: var(--shema-card); border: 1px solid var(--shema-line); border-radius: 22px; text-align: center; min-width: 0; }
   .install-device { margin: -8px -8px 28px; padding: 26px 12px; border-radius: 12px; background: var(--product-shema); }

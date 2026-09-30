@@ -1,0 +1,109 @@
+{
+  "imported": "2026-09-30",
+  "kind": "Unchanged supplied raw app screenshots",
+  "note": "Product captures contain sample entries. Import date is not an app release date.",
+  "files": [
+    {
+      "file": "01_examine.png",
+      "source": "01_examine.png",
+      "sha256": "a583f2a1f3f268e9636b56558deef2ddd8c95ab8b8fbef71ace757173311040d",
+      "bytes": 368527
+    },
+    {
+      "file": "02_journal.png",
+      "source": "02_journal.png",
+      "sha256": "c34567927552fc79e30d8f75c54d9f2d3962cc8969c3b2c4e6ff34bec0852a80",
+      "bytes": 200914
+    },
+    {
+      "file": "03_confess.png",
+      "source": "03_confess.png",
+      "sha256": "2ca57e7723757c15af94921499e3ddb5f7301b7c6b90ee2ca701532d0260666b",
+      "bytes": 288238
+    },
+    {
+      "file": "04_prayers.png",
+      "source": "04_prayers.png",
+      "sha256": "3203c5f1c5b75de0eb65619e213759c0404d9826bd65c6aa716e3ec575f14620",
+      "bytes": 364753
+    },
+    {
+      "file": "05_guide.png",
+      "source": "05_guide.png",
+      "sha256": "882e2db5782feb1a26f0f1ae57d00edc5b5288d8d1c0c8b0339757f4f7644e71",
+      "bytes": 373543
+    },
+    {
+      "file": "06_languages.png",
+      "source": "06_languages.png",
+      "sha256": "9b03c91802a624efba26e927cc9c3a36112a0df9080068131be8f6b3f71e9d5f",
+      "bytes": 177352
+    },
+    {
+      "file": "07_privacy.png",
+      "source": "07_privacy.png",
+      "sha256": "cf7b37b13162661042a772a0f2b448416f554c78b1df665801d19bcb3e372b40",
+      "bytes": 209535
+    },
+    {
+      "file": "08_penance.png",
+      "source": "08_penance.png",
+      "sha256": "f320e70f11115c316fc91c2408aa0d0f65d96b6a3a687f5827cafb9b5796cad3",
+      "bytes": 152506
+    },
+    {
+      "file": "extras/alt_act_of_contrition.png",
+      "source": "extras/alt_act_of_contrition.png",
+      "sha256": "b03c60c04a9a1faa01e0e339935c0fa8504b782cba39ee723504217bf1971e38",
+      "bytes": 338394
+    },
+    {
+      "file": "extras/alt_confession_opening.png",
+      "source": "extras/alt_confession_opening.png",
+      "sha256": "1a05829bb6eee7420114de6a6cf8f66c082d119d9fa8b42c50493037be41d744",
+      "bytes": 191463
+    },
+    {
+      "file": "extras/alt_examen_holy_spirit.png",
+      "source": "extras/alt_examen_holy_spirit.png",
+      "sha256": "fb71590226865bff422c9d7095a07aab4516ef40ec5ae16ea325414f8d647deb",
+      "bytes": 183482
+    },
+    {
+      "file": "extras/alt_guide_menu.png",
+      "source": "extras/alt_guide_menu.png",
+      "sha256": "951bc2c843ba14ac5534d9e2ab6dc3d584308f160ad8ea1ea690a6e4a82b45d4",
+      "bytes": 192103
+    },
+    {
+      "file": "extras/alt_guide_with_shortfilm.png",
+      "source": "extras/alt_guide_with_shortfilm.png",
+      "sha256": "7cb9e61d63f9a22d31afa7d2776076cde433eb5dbe6a7c4b4dcb962a268681cc",
+      "bytes": 229405
+    },
+    {
+      "file": "extras/alt_insights.png",
+      "source": "extras/alt_insights.png",
+      "sha256": "80454ef904883271c8808ee17a9ac296176407f142a259e8401696610236232d",
+      "bytes": 219064
+    },
+    {
+      "file": "extras/alt_journal_calendar.png",
+      "source": "extras/alt_journal_calendar.png",
+      "sha256": "d2273d858d55ff4b830a3c0a78cad799ef406aaf2b9ab34b51fdf0b39b8fc45c",
+      "bytes": 187856
+    },
+    {
+      "file": "extras/alt_security.png",
+      "source": "extras/alt_security.png",
+      "sha256": "13a6d680fb5cd9c8404d04e6371755d305fc1ab170d54adcc3243a1c526fb7c7",
+      "bytes": 179885
+    },
+    {
+      "file": "extras/extra_goinpeace.png",
+      "source": "extras/extra_goinpeace.png",
+      "sha256": "7f08af2532770b1a8b8e293de7b897467d80bf7496f83aaf401891a1bafed85d",
+      "bytes": 861325
+    }
+  ]
+}

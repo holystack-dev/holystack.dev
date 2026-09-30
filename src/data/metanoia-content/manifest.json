@@ -1,0 +1,517 @@
+{
+  "imported": "2026-09-30",
+  "kind": "Unchanged examination, guide, prayers, FAQs and invitation text; quotes excluded",
+  "source": "https://github.com/holystack-dev/metanoia",
+  "files": [
+    {
+      "file": "LICENSE",
+      "source": "assets/data/LICENSE",
+      "sha256": "e7a10381b2f9c627fbf953e9f031db19bb9477e82f3ac999e11f1f798bb2d515",
+      "bytes": 2973
+    },
+    {
+      "file": "commandments/commandments_en.json",
+      "source": "assets/data/commandments/commandments_en.json",
+      "sha256": "48b14bbc9719e0450d8bb388aa6ddd6274006e0a9eb676c4ec340fb36c9582be",
+      "bytes": 1951
+    },
+    {
+      "file": "questions/questions_en.json",
+      "source": "assets/data/questions/questions_en.json",
+      "sha256": "4d6829902e891bc18d3c5e1d359de0a9b1d09ebd37af228faa36554c441b3fed",
+      "bytes": 41695
+    },
+    {
+      "file": "confession_guide/confession_guide_en.json",
+      "source": "assets/data/confession_guide/confession_guide_en.json",
+      "sha256": "3c945c3939e8e9ffc301325d16637875b60c492e032fb754ab757a9bb7b6d14d",
+      "bytes": 7161
+    },
+    {
+      "file": "prayers/prayers_en.json",
+      "source": "assets/data/prayers/prayers_en.json",
+      "sha256": "a858d6f7572e4ecabbe3ee99040cb802107fcadabb493c48458b271d9b545fb5",
+      "bytes": 18862
+    },
+    {
+      "file": "faqs/faqs_en.json",
+      "source": "assets/data/faqs/faqs_en.json",
+      "sha256": "1e87b63f853c5cb3f323d2b8295676e43cc9c8b0e3355d58349f33b99ba9848e",
+      "bytes": 21527
+    },
+    {
+      "file": "invitation/invitation_en.json",
+      "source": "assets/data/invitation/invitation_en.json",
+      "sha256": "8f2fcf664860d8e3de88fa585fa2f527bef2276b06ef3b80eb14e6b20ccaea36",
+      "bytes": 5998
+    },
+    {
+      "file": "commandments/commandments_es.json",
+      "source": "assets/data/commandments/commandments_es.json",
+      "sha256": "5dad85270a65bfc7b6dc136ddd6f104a179546474b08b7ea4f70e1f0e0a3f7a9",
+      "bytes": 1869
+    },
+    {
+      "file": "questions/questions_es.json",
+      "source": "assets/data/questions/questions_es.json",
+      "sha256": "bb0d266200838f3f0d976cab346fd3fe12f27da398fea9ab60ae37cfc85a6ccb",
+      "bytes": 42732
+    },
+    {
+      "file": "confession_guide/confession_guide_es.json",
+      "source": "assets/data/confession_guide/confession_guide_es.json",
+      "sha256": "5dcd7ce31203ccb3a138107533d11735692c2b8ec1a1aef27de2459e0ced37b7",
+      "bytes": 8052
+    },
+    {
+      "file": "prayers/prayers_es.json",
+      "source": "assets/data/prayers/prayers_es.json",
+      "sha256": "4f3a8b5ff0d54cb2d687d5e519ddbba64322746d43a29e73236555eaed01d2a5",
+      "bytes": 16076
+    },
+    {
+      "file": "faqs/faqs_es.json",
+      "source": "assets/data/faqs/faqs_es.json",
+      "sha256": "8f55ceebbebb561c8857644a93be539cfe5932903a0bc3fc08481c8648cd874b",
+      "bytes": 23386
+    },
+    {
+      "file": "invitation/invitation_es.json",
+      "source": "assets/data/invitation/invitation_es.json",
+      "sha256": "0513d5a5f1329ee431b5961010e752c0d17f11e910b02327dbe3a7e7d2d2287c",
+      "bytes": 6300
+    },
+    {
+      "file": "commandments/commandments_pt_BR.json",
+      "source": "assets/data/commandments/commandments_pt_BR.json",
+      "sha256": "00d8c05f20cd7e11e2ba0d5a7d78c9b4909dee1f365f5afe3ea48011406fc420",
+      "bytes": 1836
+    },
+    {
+      "file": "questions/questions_pt_BR.json",
+      "source": "assets/data/questions/questions_pt_BR.json",
+      "sha256": "4b3a2e02b29a8cab8a8a0e235434c21f8f6bc52e2bc1a112ebba37cb3ae8b10d",
+      "bytes": 41818
+    },
+    {
+      "file": "confession_guide/confession_guide_pt_BR.json",
+      "source": "assets/data/confession_guide/confession_guide_pt_BR.json",
+      "sha256": "fa445780cf501b9f59de0c81e96e6a923f5fd061f2c8997eece2dd9e6b76633f",
+      "bytes": 8042
+    },
+    {
+      "file": "prayers/prayers_pt_BR.json",
+      "source": "assets/data/prayers/prayers_pt_BR.json",
+      "sha256": "376557993587d98fb0c6bee893703f6a15393933cfb24e77f9ab9e4bd0eb9114",
+      "bytes": 15781
+    },
+    {
+      "file": "faqs/faqs_pt_BR.json",
+      "source": "assets/data/faqs/faqs_pt_BR.json",
+      "sha256": "3a231b4059b135be829bcf73e38beb40f44ad2a3a7514f5fe67bb0125462edac",
+      "bytes": 23102
+    },
+    {
+      "file": "invitation/invitation_pt_BR.json",
+      "source": "assets/data/invitation/invitation_pt_BR.json",
+      "sha256": "6b11435113022aeb6c370f85c9167c9229f5c8172df71212d335d66a60d0e12e",
+      "bytes": 6452
+    },
+    {
+      "file": "commandments/commandments_fr.json",
+      "source": "assets/data/commandments/commandments_fr.json",
+      "sha256": "f77011bd3effe48d43b198525e0d1b6456cbaab3bea36da47db8055a4e270bbb",
+      "bytes": 2125
+    },
+    {
+      "file": "questions/questions_fr.json",
+      "source": "assets/data/questions/questions_fr.json",
+      "sha256": "89054de8e3207aaa42b638870df50859b5f83189ae0a7dd8fb0dd97579ca80ac",
+      "bytes": 44614
+    },
+    {
+      "file": "confession_guide/confession_guide_fr.json",
+      "source": "assets/data/confession_guide/confession_guide_fr.json",
+      "sha256": "71f6c41ba9c96cf8c1b88db97ec11ae3dce71805f1663b6acff47f7088cda8a5",
+      "bytes": 8469
+    },
+    {
+      "file": "prayers/prayers_fr.json",
+      "source": "assets/data/prayers/prayers_fr.json",
+      "sha256": "5b54e667d86c8bccf0b0e8de6e08e5aba0f940d99629d5e2709aedc127138a6b",
+      "bytes": 15892
+    },
+    {
+      "file": "faqs/faqs_fr.json",
+      "source": "assets/data/faqs/faqs_fr.json",
+      "sha256": "3dfccdff29776a0f9755057e96840a13a918763f60d92b3367d956ff6f36dfd9",
+      "bytes": 25167
+    },
+    {
+      "file": "invitation/invitation_fr.json",
+      "source": "assets/data/invitation/invitation_fr.json",
+      "sha256": "127da6e12bf051359e343daf801534280fef3c717d075996df5032c725ce28e8",
+      "bytes": 6904
+    },
+    {
+      "file": "commandments/commandments_de.json",
+      "source": "assets/data/commandments/commandments_de.json",
+      "sha256": "01d15111288dcf4a2978b3aa49a8dc59a4f979029bc48e59663f34fec70fbb70",
+      "bytes": 1916
+    },
+    {
+      "file": "questions/questions_de.json",
+      "source": "assets/data/questions/questions_de.json",
+      "sha256": "f0755272583f4fd53db241d6abc6984cae6a0a6059830e4e7853b2621b501595",
+      "bytes": 46406
+    },
+    {
+      "file": "confession_guide/confession_guide_de.json",
+      "source": "assets/data/confession_guide/confession_guide_de.json",
+      "sha256": "49da205a4dd00560482f75cc27628fd6c21753f999a3bb147eb40ecfc2475ed4",
+      "bytes": 7978
+    },
+    {
+      "file": "prayers/prayers_de.json",
+      "source": "assets/data/prayers/prayers_de.json",
+      "sha256": "12138a58227e612c23304f3dfd823e473d63d1898fb6951c78549251f8c59a11",
+      "bytes": 19920
+    },
+    {
+      "file": "faqs/faqs_de.json",
+      "source": "assets/data/faqs/faqs_de.json",
+      "sha256": "a2ef3c050fbb41e43679e08f122a78d3b9ab01add1ccee1ea08a596c3b26cd2e",
+      "bytes": 24454
+    },
+    {
+      "file": "invitation/invitation_de.json",
+      "source": "assets/data/invitation/invitation_de.json",
+      "sha256": "c24b1df17fc7a01092f2d70f099e812d95ca8bf34bba279fec52a9a9d3dd3de3",
+      "bytes": 6768
+    },
+    {
+      "file": "commandments/commandments_it.json",
+      "source": "assets/data/commandments/commandments_it.json",
+      "sha256": "7d1484c8a9215fba96f586ac69decebf9a39130dec03a27afa7634bf8d4eca35",
+      "bytes": 1889
+    },
+    {
+      "file": "questions/questions_it.json",
+      "source": "assets/data/questions/questions_it.json",
+      "sha256": "a25456b40fbb2f1b66608cc1827df95a54ec9b1c25385d920d2b7609d4f96d6c",
+      "bytes": 42947
+    },
+    {
+      "file": "confession_guide/confession_guide_it.json",
+      "source": "assets/data/confession_guide/confession_guide_it.json",
+      "sha256": "3e1ff2f5feb83a1504c20a664173834039968944f897b164cb05f49c123ab7a3",
+      "bytes": 7834
+    },
+    {
+      "file": "prayers/prayers_it.json",
+      "source": "assets/data/prayers/prayers_it.json",
+      "sha256": "48d7ec3c570d37b1f45c1f5fe6d2a7c7c414171ccfeee4a925261669d68282f2",
+      "bytes": 18992
+    },
+    {
+      "file": "faqs/faqs_it.json",
+      "source": "assets/data/faqs/faqs_it.json",
+      "sha256": "b30f518c3d3813dd8f57dad569a320d0e8de953dcfa4e13c2374391041b0eefa",
+      "bytes": 23303
+    },
+    {
+      "file": "invitation/invitation_it.json",
+      "source": "assets/data/invitation/invitation_it.json",
+      "sha256": "bcdc5e57105b3fc4a3698c57c1569823f082de247cb2d4470614c479ac5ec474",
+      "bytes": 6405
+    },
+    {
+      "file": "commandments/commandments_pl.json",
+      "source": "assets/data/commandments/commandments_pl.json",
+      "sha256": "0940d3310118540c8a2cdc692c6dabd49bfffcf07c313707f3679cf9164cb241",
+      "bytes": 1951
+    },
+    {
+      "file": "questions/questions_pl.json",
+      "source": "assets/data/questions/questions_pl.json",
+      "sha256": "f84a3b172f52a6bd82cf7e790d47b019d7cbd40e211b20fe82f07cddf2ca22ce",
+      "bytes": 44277
+    },
+    {
+      "file": "confession_guide/confession_guide_pl.json",
+      "source": "assets/data/confession_guide/confession_guide_pl.json",
+      "sha256": "3ad3d3b51db4d55715a72245dbd4fd62bac50b48d4908965ec4f21b120934a9b",
+      "bytes": 7746
+    },
+    {
+      "file": "prayers/prayers_pl.json",
+      "source": "assets/data/prayers/prayers_pl.json",
+      "sha256": "9c6e4ee8027473b4fb344555919d44340ab94bb16ae3a25ec3eb01f8ea1e5e60",
+      "bytes": 19489
+    },
+    {
+      "file": "faqs/faqs_pl.json",
+      "source": "assets/data/faqs/faqs_pl.json",
+      "sha256": "1cc3f4fa1e26ed45d419b7553e395d8bc72562b453e760dac274f487fd0d49a9",
+      "bytes": 23809
+    },
+    {
+      "file": "invitation/invitation_pl.json",
+      "source": "assets/data/invitation/invitation_pl.json",
+      "sha256": "c2da0f74628fea92d61f968250d75ba519bca55bd7963b112d9fb7ee1ee610aa",
+      "bytes": 6567
+    },
+    {
+      "file": "commandments/commandments_tl.json",
+      "source": "assets/data/commandments/commandments_tl.json",
+      "sha256": "11f601295e98c2711526275de4a18e4837a53eb2bef2d80316362188ec8becbd",
+      "bytes": 1994
+    },
+    {
+      "file": "questions/questions_tl.json",
+      "source": "assets/data/questions/questions_tl.json",
+      "sha256": "dc46ce9682cc41ae7bf77d7d9f91c65c1073f070d4de1a8d514e2cf3f9111959",
+      "bytes": 46102
+    },
+    {
+      "file": "confession_guide/confession_guide_tl.json",
+      "source": "assets/data/confession_guide/confession_guide_tl.json",
+      "sha256": "35050024dc31dc8e80f40cbae762a885fe35d84610f4aaee4aac2f9e756b4fcd",
+      "bytes": 8776
+    },
+    {
+      "file": "prayers/prayers_tl.json",
+      "source": "assets/data/prayers/prayers_tl.json",
+      "sha256": "7d9848903ca7959147796a96c11c6348fe531532d215370d0934d04d57226e10",
+      "bytes": 21963
+    },
+    {
+      "file": "faqs/faqs_tl.json",
+      "source": "assets/data/faqs/faqs_tl.json",
+      "sha256": "9418fddc67ad90d1657bea4150980dc3509d403a3128c6a1e3c9f79d0f2cc9fa",
+      "bytes": 25852
+    },
+    {
+      "file": "invitation/invitation_tl.json",
+      "source": "assets/data/invitation/invitation_tl.json",
+      "sha256": "21d6c2a3cf4be107ba3325c5484208e58bb4965d95ae749b8a94db9ddd881ae6",
+      "bytes": 7139
+    },
+    {
+      "file": "commandments/commandments_vi.json",
+      "source": "assets/data/commandments/commandments_vi.json",
+      "sha256": "a817c8885e4ad2e325291d7a1c366b506adaac3798760714c0b8366a61f61d28",
+      "bytes": 2071
+    },
+    {
+      "file": "questions/questions_vi.json",
+      "source": "assets/data/questions/questions_vi.json",
+      "sha256": "470506ab71c76011f21d121845954fd64560e516c1bdfee44e7d64404c0e4e48",
+      "bytes": 50315
+    },
+    {
+      "file": "confession_guide/confession_guide_vi.json",
+      "source": "assets/data/confession_guide/confession_guide_vi.json",
+      "sha256": "72bea3b0510697a9cddf438e2b052188906b9362a8d89c1760c9c88b030d73ca",
+      "bytes": 9079
+    },
+    {
+      "file": "prayers/prayers_vi.json",
+      "source": "assets/data/prayers/prayers_vi.json",
+      "sha256": "cde45840546e5fa3d0c1399beb031811dc40dd191d091de58498605b5811f954",
+      "bytes": 23211
+    },
+    {
+      "file": "faqs/faqs_vi.json",
+      "source": "assets/data/faqs/faqs_vi.json",
+      "sha256": "5b2bb665fc8579721514966a9dbaebd086c5935a0f52ed1c3bdc67a2600a1671",
+      "bytes": 30192
+    },
+    {
+      "file": "invitation/invitation_vi.json",
+      "source": "assets/data/invitation/invitation_vi.json",
+      "sha256": "684b959b612af0a6ae4b3ac320adf67cee17b583283ba4870525cb4b964e2a68",
+      "bytes": 8350
+    },
+    {
+      "file": "commandments/commandments_id.json",
+      "source": "assets/data/commandments/commandments_id.json",
+      "sha256": "6432c1ea67b34cb92ae0103a69ed15058554f3793811f37cf3ffc014945d39f2",
+      "bytes": 1916
+    },
+    {
+      "file": "questions/questions_id.json",
+      "source": "assets/data/questions/questions_id.json",
+      "sha256": "f2cb3481f5bf58971be92a8857d54630db61a1e9ef7783364686aa03e273320f",
+      "bytes": 46104
+    },
+    {
+      "file": "confession_guide/confession_guide_id.json",
+      "source": "assets/data/confession_guide/confession_guide_id.json",
+      "sha256": "cebff0374d1c297f85f91913f438eced840330b75335cff20358d46074f7bb59",
+      "bytes": 8094
+    },
+    {
+      "file": "prayers/prayers_id.json",
+      "source": "assets/data/prayers/prayers_id.json",
+      "sha256": "cfa2dec284d14d6b9357e5cfd49583a832514c7de7e4ff469f637a74a2387db9",
+      "bytes": 19667
+    },
+    {
+      "file": "faqs/faqs_id.json",
+      "source": "assets/data/faqs/faqs_id.json",
+      "sha256": "2b3904b61f87f7d7826ad6621827563951ee7bb6a36df8f07575b760f8f3dd4c",
+      "bytes": 25093
+    },
+    {
+      "file": "invitation/invitation_id.json",
+      "source": "assets/data/invitation/invitation_id.json",
+      "sha256": "3f64d0a660b37889ede47c1b373998d20c1854d3906eb97d4b24dbb56a6b58a0",
+      "bytes": 6995
+    },
+    {
+      "file": "commandments/commandments_ko.json",
+      "source": "assets/data/commandments/commandments_ko.json",
+      "sha256": "febb22101994e77f325dd17431e1acae37eac8651c5231e85c65085a04ba7771",
+      "bytes": 1806
+    },
+    {
+      "file": "questions/questions_ko.json",
+      "source": "assets/data/questions/questions_ko.json",
+      "sha256": "d2d01a242b4b480de9a83f7a95d5d1efee87e17c479e8b80261db3f27f113161",
+      "bytes": 47512
+    },
+    {
+      "file": "confession_guide/confession_guide_ko.json",
+      "source": "assets/data/confession_guide/confession_guide_ko.json",
+      "sha256": "4e4d986e82f16470d6bfe84375f8b014d1f0398cae88fbd0f64637b558b1e1bd",
+      "bytes": 8734
+    },
+    {
+      "file": "prayers/prayers_ko.json",
+      "source": "assets/data/prayers/prayers_ko.json",
+      "sha256": "8f00e43cb92465824d490771493068c9dfc09022362967911e28a830488cade3",
+      "bytes": 21300
+    },
+    {
+      "file": "faqs/faqs_ko.json",
+      "source": "assets/data/faqs/faqs_ko.json",
+      "sha256": "90b52557c199db8e18ed88f40cb1697bfabd85053a7af53e61d0466606951b65",
+      "bytes": 28723
+    },
+    {
+      "file": "invitation/invitation_ko.json",
+      "source": "assets/data/invitation/invitation_ko.json",
+      "sha256": "1106657daba7547b32417db14d8972ad31531987f1cfaf9d599913ca4f37d0ed",
+      "bytes": 8520
+    },
+    {
+      "file": "commandments/commandments_ml.json",
+      "source": "assets/data/commandments/commandments_ml.json",
+      "sha256": "58e84a491a2f96ec1f8544defe275118d5fe46f9b823fe669952867202733d6d",
+      "bytes": 2961
+    },
+    {
+      "file": "questions/questions_ml.json",
+      "source": "assets/data/questions/questions_ml.json",
+      "sha256": "3bb75d52a909a2b3749ae8d501629c4546d86d203090d6bf90a94f926f70b862",
+      "bytes": 63006
+    },
+    {
+      "file": "confession_guide/confession_guide_ml.json",
+      "source": "assets/data/confession_guide/confession_guide_ml.json",
+      "sha256": "2acd668a9c3bf151c42513f18bd6dcad79e77dc1d84aa07b3f8c1c4292b95f84",
+      "bytes": 19787
+    },
+    {
+      "file": "prayers/prayers_ml.json",
+      "source": "assets/data/prayers/prayers_ml.json",
+      "sha256": "dd9ca80cfc78bf7e348aae42b05dd8258284c5d542d8ac33107589c146f4823a",
+      "bytes": 15960
+    },
+    {
+      "file": "faqs/faqs_ml.json",
+      "source": "assets/data/faqs/faqs_ml.json",
+      "sha256": "756ae0a9b06a3c3c32011c5fc5d69935dc5dead7038d1717d60d2b1f1a4adf99",
+      "bytes": 39703
+    },
+    {
+      "file": "invitation/invitation_ml.json",
+      "source": "assets/data/invitation/invitation_ml.json",
+      "sha256": "a43624261ef65f16db84304e5ccfb08b9035865f55d8e739265427ff94ca45e3",
+      "bytes": 14660
+    },
+    {
+      "file": "commandments/commandments_ta.json",
+      "source": "assets/data/commandments/commandments_ta.json",
+      "sha256": "b48d57a29c65d2043e34f2addfff11da4af51827b2567411a204e6baa72fbee2",
+      "bytes": 3049
+    },
+    {
+      "file": "questions/questions_ta.json",
+      "source": "assets/data/questions/questions_ta.json",
+      "sha256": "590077496a1be74f46bc753ff6fdc39127d5225a7131419448f2080b66c4dd5c",
+      "bytes": 61524
+    },
+    {
+      "file": "confession_guide/confession_guide_ta.json",
+      "source": "assets/data/confession_guide/confession_guide_ta.json",
+      "sha256": "a576b902607023c870366435badd6e9604d953ea040ed478cdb2258679777b39",
+      "bytes": 21004
+    },
+    {
+      "file": "prayers/prayers_ta.json",
+      "source": "assets/data/prayers/prayers_ta.json",
+      "sha256": "ae266fbaa9e2978fa973a7d6e803fe345bcb3f75097341f1e4a45f2ad74496c0",
+      "bytes": 44578
+    },
+    {
+      "file": "faqs/faqs_ta.json",
+      "source": "assets/data/faqs/faqs_ta.json",
+      "sha256": "7f8d144dfc9e1aecd30f60b62987dfdd1957ef5a7a92da8e037a5289a51fb6aa",
+      "bytes": 62757
+    },
+    {
+      "file": "invitation/invitation_ta.json",
+      "source": "assets/data/invitation/invitation_ta.json",
+      "sha256": "073aa212c139e7166a12ed1d05b70eea60410589283e8ca689d240df650426af",
+      "bytes": 17045
+    },
+    {
+      "file": "commandments/commandments_hi.json",
+      "source": "assets/data/commandments/commandments_hi.json",
+      "sha256": "b8e5b5155bffddf3e877ef34edbf6fa1d9ce5216c5a48d1459cbed9eae4c52b1",
+      "bytes": 2472
+    },
+    {
+      "file": "questions/questions_hi.json",
+      "source": "assets/data/questions/questions_hi.json",
+      "sha256": "23ce583cbf41f0e4df3a8b4d391898a1184619b043c82a311e6a54778e9ec48d",
+      "bytes": 50733
+    },
+    {
+      "file": "confession_guide/confession_guide_hi.json",
+      "source": "assets/data/confession_guide/confession_guide_hi.json",
+      "sha256": "e70a67eb9ff2bcb2c20c285a0764bed3a1d51a6ac48e9df2525906304f505cd5",
+      "bytes": 17736
+    },
+    {
+      "file": "prayers/prayers_hi.json",
+      "source": "assets/data/prayers/prayers_hi.json",
+      "sha256": "360ca432035ef0115c0aab3487ac5f9e2b63d4b331b101d3d54af42ded97f678",
+      "bytes": 36925
+    },
+    {
+      "file": "faqs/faqs_hi.json",
+      "source": "assets/data/faqs/faqs_hi.json",
+      "sha256": "68522437910e8c3151ab1654fe60f279d997bc4bef4c2b1ce0ab29b932e823a5",
+      "bytes": 52259
+    },
+    {
+      "file": "invitation/invitation_hi.json",
+      "source": "assets/data/invitation/invitation_hi.json",
+      "sha256": "dd6d1ee9ae7fc9dd6830ee248c07a9e3701b1331ab47ff031a6c1fbd54fe438a",
+      "bytes": 13265
+    }
+  ]
+}

@@ -4,13 +4,27 @@ import PhoneFrame from '../../components/common/PhoneFrame.astro';
 import Icon from '../../components/common/Icon.astro';
 import GitHubIcon from '../../components/common/GitHubIcon.astro';
 import StoreLinks from '../../components/metanoia/StoreLinks.astro';
+import StoreIcon from '../../components/metanoia/StoreIcon.astro';
 import { Image } from 'astro:assets';
-import { metaImages, metaLinks, languages, metaFaqs } from '../../data/metanoia';
+import { metaImages, metaLinks, languages, metaFaqs, metaReviews } from '../../data/metanoia';
 const gallery = [
-  {src:metaImages.examination,title:'Examine your conscience',text:'Quick Review for a familiar list. Deep Reflection for one question at a time.',alt:'Metanoia Deep Reflection with a question about honesty and Yes, No and Skip controls'},
-  {src:metaImages.confession,title:'Notes for confession',text:'Opening words, prepared notes, prayers and penance in Confession Mode.',alt:'The opening step of Confession Mode with the words to begin confession'},
-  {src:metaImages.penance,title:'Remember your penance',text:'Record the penance your priest gives you and mark it complete when it is done.',alt:'A sample penance of three Hail Marys with a Mark as Complete button'},
+  {src:metaImages.examination,title:'Examine your conscience',text:'Quick Review for a familiar list. Deep Reflection for one question at a time.',alt:'Metanoia Quick Review showing examination questions about honesty with selected notes'},
+  {src:metaImages.confession,title:'Notes for confession',text:'Opening words, prepared notes, prayers and penance in Confession Mode.',alt:'The Sins to confess step of Confession Mode with a prepared list of sample notes'},
+  {src:metaImages.penance,title:'Remember your penance',text:'Record the penance your priest gives you and mark it complete when it is done.',alt:'A sample penance of an Our Father, three Hail Marys and Psalm 51 with a Mark as Complete button'},
 ];
+const sectionLinks = [
+  {href:'#inside',label:'Confession',icon:'heart'},
+  {href:'#daily-examen',label:'Daily Examen',icon:'moon'},
+  {href:'#privacy',label:'Privacy',icon:'lock'},
+  {href:'#languages',label:'Languages',icon:'language'},
+  {href:'#download',label:'Download',icon:'download'},
+] as const;
+const appFacts = [
+  {icon:'journal',value:'240+',label:'examination questions'},
+  {icon:'language',value:'14 languages',label:'for prayer & reflection'},
+  {icon:'offline',value:'Works offline',label:'wherever you are'},
+  {icon:'lock',value:'Private by design',label:'entries stay on your device'},
+] as const;
 const appSchema = {'@context':'https://schema.org','@type':'SoftwareApplication',name:'Metanoia',url:'https://holystack.dev/metanoia',applicationCategory:'LifestyleApplication',operatingSystem:'iOS, Android',offers:{'@type':'Offer',price:'0',priceCurrency:'USD'},isAccessibleForFree:true,inLanguage:languages.map(l=>l.code),featureList:['Examination of conscience','Quick Review and Deep Reflection','Confession Mode','Daily Examen and private journal','Penance tracking','Local encrypted entries','PIN and optional biometrics','14 languages'],installUrl:metaLinks.google,author:{'@type':'Organization',name:'HolyStack',url:'https://holystack.dev'}};
 const faqSchema = {'@context':'https://schema.org','@type':'FAQPage',mainEntity:metaFaqs.map(f=>({'@type':'Question',name:f.question,acceptedAnswer:{'@type':'Answer',text:f.answer}}))};
 ---
@@ -18,17 +32,34 @@ const faqSchema = {'@context':'https://schema.org','@type':'FAQPage',mainEntity:
   <Fragment slot="head"><script type="application/ld+json" set:html={JSON.stringify(appSchema)}/><script type="application/ld+json" set:html={JSON.stringify(faqSchema)}/></Fragment>
   <section class="meta-hero wrap" id="hero">
     <div>
-      <div class="app-name"><Image src={metaImages.icon} alt="" width={40} height={40} format="webp"/><span>Metanoia</span></div>
+      <div class="app-name"><Image src={metaImages.icon} alt="" width={64} height={64} format="webp"/><span>Metanoia</span></div>
       <h1 class="display">Prepare for confession.<br />Return to prayer.</h1>
       <p class="lede">Examine your conscience, prepare for the Sacrament of Reconciliation, and reflect on your day with the Daily Examen.</p>
       <StoreLinks/>
-      <p class="availability">Free for iOS & Android · No ads or subscriptions</p>
-      <a href="#inside" class="text-link">Explore the app <Icon name="arrow" size={18}/></a>
+      <p class="availability">Completely free · No ads, subscriptions or in-app purchases</p>
+      <p class="download-privacy"><Icon name="lock" size={18}/><span>No account or tracking. Your personal entries stay encrypted on your device.</span></p>
+      <a href="/metanoia/examine" class="text-link"><Icon name="journal" size={18}/>Read the examination online <Icon name="arrow" size={18}/></a>
     </div>
-    <div class="meta-hero-art"><span class="preview-label">Confession & daily reflection</span><PhoneFrame src={metaImages.home} alt="Metanoia home screen showing penance, an evening reflection and confession reminders" size={255} eager/><span class="preview-caption">Metanoia on your phone</span></div>
+    <div class="meta-hero-art"><span class="preview-label">Confession & daily reflection</span><PhoneFrame src={metaImages.examination} alt="Metanoia examination of conscience with Quick Review questions and selected notes" size={255} eager/><span class="preview-caption">Metanoia on your phone</span></div>
+    <section class="reviews" id="reviews" aria-labelledby="reviews-heading">
+      <div class="section-heading"><p class="eyebrow">Community voices</p><h2 class="heading" id="reviews-heading">From the community.</h2><p class="lede">Selected reviews from the App Store and Google Play.</p></div>
+      <div class="review-grid" role="region" aria-label="Selected app reviews" tabindex="0">{metaReviews.map(review=><figure class="review-card">
+        <div class="review-top"><a href={metaLinks[review.platform]} class="review-source"><StoreIcon name={review.platform} size={18}/>{review.platform === 'apple' ? 'App Store review' : 'Google Play review'}<Icon name="arrowUpRight" size={14}/></a><Icon name="quote" size={22}/></div>
+        {review.rating && <div class="review-stars" role="img" aria-label={`${review.rating} out of 5 stars`}>{Array.from({length:review.rating},()=> <Icon name="star" size={16}/>)}</div>}
+        {review.title && <h3>{review.title}</h3>}
+        <blockquote><p>{review.quote}</p></blockquote>
+        <figcaption><span class="review-author">{review.author}</span><span class="review-date">{review.date}</span>{(review.excerpt || review.translated) && <span class="review-note">{review.translated ? 'Translated from Spanish' : 'Review excerpt'}</span>}</figcaption>
+      </figure>)}</div>
+      <p class="review-swipe-hint">Swipe to read more reviews <Icon name="arrow" size={16}/></p>
+    </section>
   </section>
-  <nav class="page-links wrap" aria-label="On this page"><a href="#inside">Confession</a><a href="#daily-examen">Daily Examen</a><a href="#privacy">Privacy</a><a href="#languages">Languages</a><a href="#download">Download</a></nav>
-  <div class="facts"><div class="wrap"><span>240+ examination questions</span><span>14 languages</span><span>Works offline</span><span>Personal entries stay on your device</span></div></div>
+  <div class="app-overview wrap">
+    <nav class="section-nav" aria-label="On this page">
+      <span class="section-nav-label">Explore Metanoia</span>
+      <div class="section-nav-links">{sectionLinks.map(link=><a href={link.href} class:list={{'download-link':link.href === '#download'}}><Icon name={link.icon} size={18}/>{link.label}</a>)}</div>
+    </nav>
+    <dl class="app-facts">{appFacts.map(fact=><div class="app-fact"><span class="fact-icon"><Icon name={fact.icon} size={22}/></span><div><dt>{fact.value}</dt><dd>{fact.label}</dd></div></div>)}</dl>
+  </div>
   <section class="section wrap" id="inside">
     <div class="section-heading"><p class="eyebrow">The Sacrament of Reconciliation</p><h2 class="heading">Before, during<br />and after confession.</h2><p class="lede">Take time to reflect, bring your notes to confession, and remember your penance afterwards.</p></div>
     <div class="screenshot-grid" id="preview">{gallery.map(item=><figure><div class="shot-surface"><PhoneFrame src={item.src} alt={item.alt} size={235}/></div><figcaption><h3>{item.title}</h3><p>{item.text}</p></figcaption></figure>)}</div>
@@ -36,7 +67,7 @@ const faqSchema = {'@context':'https://schema.org','@type':'FAQPage',mainEntity:
   </section>
   <section class="section dark-section" id="daily-examen">
     <div class="wrap split">
-      <div class="examen-images"><div class="examen-main"><PhoneFrame src={metaImages.examen} alt="Daily Examen gratitude reflection with Scripture and a private writing area" size={245}/></div><div class="examen-journal"><PhoneFrame src={metaImages.darkJournal} alt="The journal calendar in dark mode with an evening reflection entry" size={220}/></div></div>
+      <div class="examen-images"><div class="examen-main"><PhoneFrame src={metaImages.examen} alt="Daily Examen gratitude reflection with Scripture and a private writing area" size={245}/></div><div class="examen-journal"><PhoneFrame src={metaImages.journal} alt="The journal calendar with an evening reflection and a selected day" size={220}/></div></div>
       <div><p class="eyebrow">Daily Examen & journal</p><h2 class="heading">Reflect on the day<br />in prayer.</h2><p class="lede">A few minutes for Scripture, gratitude and an honest reflection on your day. Write what you want to remember, and leave with a resolution for tomorrow.</p><p class="muted follow-up">Your entries stay in a private journal. Revisit a day on the calendar, set a reminder, and choose the light or dark theme that suits you.</p><ul class="tag-list"><li>Guided reflection</li><li>Private journal</li><li>Daily reminders</li></ul></div>
     </div>
   </section>
@@ -55,20 +86,40 @@ const faqSchema = {'@context':'https://schema.org','@type':'FAQPage',mainEntity:
     </div>
   </section>
   <section class="section wrap languages" id="languages"><div class="section-heading"><p class="eyebrow">14 languages</p><h2 class="heading">Prayer in your language.</h2><p class="lede">Choose the language you feel most at home with.</p></div><ul>{languages.map(l=><li lang={l.code}>{l.name}</li>)}</ul></section>
+
   <section class="section rule wrap" id="faq"><div class="split faq-layout"><div><p class="eyebrow">Common questions</p><h2 class="heading">About the app</h2><p class="lede">New to confession, or returning after some time away?</p><a href="/metanoia/guide" class="text-link guide-link">Read the confession guide <Icon name="arrow" size={18}/></a></div><div class="accordion">{metaFaqs.map(f=><details><summary>{f.question}</summary><div class="answer">{f.answer}</div></details>)}</div></div></section>
-  <section class="section dark-section" id="download"><div class="wrap download"><div><p class="eyebrow">Metanoia</p><h2 class="heading">Download Metanoia</h2><p class="lede">Free for iOS and Android.</p></div><div><StoreLinks/><p class="download-note">Confession takes place with a priest.<br />Metanoia helps you prepare for it.</p></div></div></section>
+  <section class="section dark-section" id="download"><div class="wrap download"><div><p class="eyebrow">Metanoia</p><h2 class="heading">Download Metanoia</h2><p class="lede">Completely free for iOS and Android.</p><p class="download-privacy"><Icon name="lock" size={18}/><span>Private by design. No account, cloud sync or tracking.<br />Your personal entries stay encrypted on your device.</span></p></div><div><StoreLinks/><p class="download-note">No ads, subscriptions or in-app purchases.</p><p class="download-note">Confession takes place with a priest.<br />Metanoia helps you prepare for it.</p></div></div></section>
 </MainLayout>
 <style>
   .meta-hero { display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 70px; padding-block: 64px; }
-  .app-name { display: flex; align-items: center; gap: 12px; margin-bottom: 30px; font-weight: 500; font-size: 1rem; }
-  .app-name img { border-radius: 10px; }
+  .app-name { display: flex; align-items: center; gap: 16px; margin-bottom: 30px; font-weight: 500; font-size: 1rem; }
+  .app-name img { width: 64px; height: 64px; flex-shrink: 0; border-radius: 14px; }
+  @media(max-width:760px) { .app-name img { width: 56px; height: 56px; border-radius: 12px; } }
   .meta-hero .display { font-size: clamp(3rem, 5.3vw, 4.8rem); }
-  .availability { font-size: .73rem; color: var(--site-muted); margin: 20px 0 26px; }
+  .availability { font-size: .73rem; color: var(--site-muted); margin: 20px 0 14px; }
+  .download-privacy { display: flex; align-items: flex-start; gap: 10px; color: var(--site-muted); font-size: .78rem; line-height: 1.8; max-width: 430px; margin: 0 0 20px; }
+  .download-privacy :global(svg) { flex-shrink: 0; margin-top: 3px; color: var(--site-accent); }
+  .download .download-privacy { margin-top: 18px; margin-bottom: 0; }
   .meta-hero-art { display: grid; gap: 28px; padding: 26px 30px; background: var(--product-meta); border: 1px solid var(--site-line); border-radius: 18px; text-align: center; }
   .preview-label { color: var(--site-muted); text-transform: uppercase; letter-spacing: .12em; font-size: .6rem; }
   .preview-caption { color: var(--site-muted); font-size: .66rem; }
-  .facts { border-bottom: 1px solid var(--site-line); }
-  .facts .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; padding-block: 24px; color: var(--site-muted); font-size: .77rem; }
+  .app-overview { border: 1px solid var(--site-line); border-radius: 16px; background: var(--site-card); overflow: hidden; }
+  .section-nav { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 18px 26px; border-bottom: 1px solid var(--site-line); }
+  .section-nav-label { font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; color: var(--site-muted); }
+  .section-nav-links { display: flex; flex-wrap: wrap; gap: 6px; }
+  .section-nav a { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 44px; padding: 10px 14px; border-radius: 8px; color: var(--site-muted); font-size: .8rem; transition: background .15s, color .15s; }
+  .section-nav a :global(svg) { color: var(--site-accent); flex-shrink: 0; }
+  .section-nav a:hover, .section-nav a:focus-visible { color: var(--site-ink); background: var(--site-soft); }
+  .section-nav .download-link { background: var(--site-soft); color: var(--site-accent); }
+  .app-facts { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0; padding: 28px 26px; }
+  .app-fact { display: flex; align-items: center; gap: 14px; padding-inline: 22px; border-left: 1px solid var(--site-line); }
+  .app-fact:first-child { border-left: 0; padding-left: 0; }
+  .app-fact:last-child { padding-right: 0; }
+  .fact-icon { display: grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; border-radius: 12px; background: var(--site-soft); color: var(--site-accent); }
+  .app-fact dt { font-size: .94rem; font-weight: 500; color: var(--site-ink); }
+  .app-fact dd { margin: 5px 0 0; color: var(--site-muted); font-size: .72rem; line-height: 1.5; }
+  @media(max-width:1000px) { .section-nav { flex-direction: column; align-items: flex-start; gap: 12px; }.app-facts { grid-template-columns: repeat(2, 1fr); gap: 24px 0; }.app-fact:nth-child(3) { border-left: 0; padding-left: 0; } }
+  @media(max-width:760px) { .section-nav { padding: 20px; }.section-nav-links { display: grid; grid-template-columns: repeat(2, 1fr); width: 100%; gap: 8px; }.section-nav a { justify-content: flex-start; background: var(--site-soft); padding-inline: 12px; }.section-nav .download-link { grid-column: 1 / -1; justify-content: center; border: 1px solid var(--site-line); }.app-facts { padding: 22px 20px; gap: 24px 16px; }.app-fact { flex-direction: column; align-items: flex-start; gap: 12px; padding: 0; border: 0; }.app-fact dt { font-size: .86rem; }.app-fact dd { font-size: .7rem; }.fact-icon { width: 40px; height: 40px; } }
   .screenshot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
   .shot-surface { padding: 30px 20px; background: var(--product-meta); border: 1px solid var(--site-line); border-radius: 16px; }
   figcaption { padding: 24px 4px 0; }
@@ -88,10 +139,33 @@ const faqSchema = {'@context':'https://schema.org','@type':'FAQPage',mainEntity:
   .privacy-card li :global(svg) { color: var(--site-accent); flex-shrink: 0; }
   .languages ul { display: flex; flex-wrap: wrap; list-style: none; padding: 0; gap: 12px; }
   .languages li { background: var(--site-card); border: 1px solid var(--site-line); border-radius: 8px; padding: 13px 20px; font-size: .92rem; }
+  .reviews { grid-column: 1 / -1; min-width: 0; }
+  .reviews .section-heading { margin-bottom: 30px; }
+  .reviews .eyebrow { margin-bottom: 14px; }
+  .reviews .heading { font-size: clamp(1.9rem, 3vw, 2.6rem); }
+  .reviews .lede { margin-top: 14px; font-size: .94rem; }
+  .review-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; border-radius: 16px; }
+  .review-card { display: flex; flex-direction: column; margin: 0; padding: 24px; border: 1px solid var(--site-line); border-radius: 16px; background: var(--site-card); box-shadow: var(--site-shadow); }
+  .review-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 20px; color: var(--site-accent); }
+  .review-top > :global(svg) { opacity: .45; width: 18px; height: 18px; }
+  .review-source { display: inline-flex; align-items: center; gap: 6px; color: var(--site-accent); font-size: .68rem; font-weight: 500; min-height: 30px; }
+  .review-source:hover { text-decoration: underline; text-underline-offset: 4px; }.review-source :global(svg) { flex-shrink: 0; }
+  .review-stars { display: flex; gap: 4px; margin-bottom: 16px; color: var(--site-accent); }
+  .review-stars :global(svg) { fill: currentColor; stroke-width: 1; }
+  .review-card h3 { margin: 0 0 12px; font-family: var(--font-sans); font-size: .95rem; font-weight: 600; line-height: 1.5; }
+  .review-card blockquote { margin: 0 0 24px; }
+  .review-card blockquote p { margin: 0; font-size: .85rem; line-height: 1.85; color: var(--site-ink); }
+  .review-card figcaption { display: grid; gap: 5px; margin-top: auto; padding: 18px 0 0; border-top: 1px solid var(--site-line); font-size: .75rem; }
+  .review-author { font-weight: 500; }
+  .review-date, .review-note { color: var(--site-muted); font-size: .69rem; }
+  .review-note { margin-top: 5px; font-style: italic; }
+  .review-swipe-hint { display: none; }
+  @media(max-width:1000px) { .review-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media(max-width:760px) { .reviews { order: 1; }.meta-hero-art { order: 2; }.review-grid { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: calc(100% - 28px); gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 1px; padding: 2px 1px 18px; border-radius: 0; scrollbar-width: thin; scrollbar-color: var(--site-accent) var(--site-soft); }.review-card { scroll-snap-align: start; box-shadow: none; }.review-swipe-hint { display: flex; align-items: center; justify-content: flex-end; gap: 8px; color: var(--site-muted); font-size: .7rem; margin-top: 12px; } }
   .faq-layout { align-items: start; }
   .guide-link { margin-top: 24px; }
   .download { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
   .download-note { color: var(--site-muted); font-size: .76rem; line-height: 1.8; margin-top: 20px; }
   @media(max-width: 1000px) and (min-width:761px) { .meta-hero { gap: 40px; }.examen-images { height: 500px; }.examen-journal { top: 130px; } }
-  @media(max-width:760px) { .meta-hero { grid-template-columns: 1fr; padding-block: 54px; gap: 42px; }.meta-hero .display { font-size: clamp(2.5rem, 10vw, 4rem); }.meta-hero-art { max-width: 360px; width: 100%; margin-inline: auto; }.hero-halo { width: 100%; left: 0; }.facts .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 12px; font-size: .7rem; }.screenshot-grid { grid-template-columns: 1fr; gap: 38px; }.shot-surface { padding: 32px; }figcaption { padding: 20px 4px 0; }.examen-images { width: min(460px, 100%); height: auto; aspect-ratio: 1 / 1.4; margin-inline: auto; }.examen-journal { top: 16%; right: 3%; }.privacy-card { padding: 28px; }.download { flex-direction: column; align-items: flex-start; gap: 5px; }.languages li { padding: 10px 15px; } }
+  @media(max-width:760px) { .meta-hero { grid-template-columns: 1fr; padding-block: 54px; gap: 42px; }.meta-hero .display { font-size: clamp(2.5rem, 10vw, 4rem); }.meta-hero-art { max-width: 360px; width: 100%; margin-inline: auto; }.hero-halo { width: 100%; left: 0; }.screenshot-grid { grid-template-columns: 1fr; gap: 38px; }.shot-surface { padding: 32px; }figcaption { padding: 20px 4px 0; }.examen-images { width: min(460px, 100%); height: auto; aspect-ratio: 1 / 1.4; margin-inline: auto; }.examen-journal { top: 16%; right: 3%; }.privacy-card { padding: 28px; }.download { flex-direction: column; align-items: flex-start; gap: 5px; }.languages li { padding: 10px 15px; } }
 </style>
